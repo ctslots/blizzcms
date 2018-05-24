@@ -2,121 +2,107 @@
     $this->admin_model->delSpecifyNew($_POST['button_delNew']);
 } ?>
 
-<?php if(isset($_POST['button_createNew'])) {
-    $title = $_POST['new_title'];
-    $desc  = $_POST['new_description'];
-    $type  = $_POST['new_destac'];
-    $image = $_FILES["new_imageup"];
+    <script src="<?= base_url(); ?>core/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({
+        selector: '.tinyeditor',
+        language: '<?= $this->config->item('tinymce_language'); ?>',
+        menubar: false,
+        plugins: ['advlist autolink autosave link image lists charmap preview hr searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media table contextmenu directionality emoticons textcolor paste fullpage textcolor colorpicker textpattern'],
+        toolbar: 'insert unlink emoticons | undo redo | formatselect fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | blockquote | removeformat'});
+    </script>
+    <div id="content" data-uk-height-viewport="expand: true">
+        <div class="uk-container uk-container-expand">
+            <div class="uk-grid uk-grid-medium uk-grid-match" data-uk-grid>
+                <?php if(isset($_POST['button_createNew'])) {
+                    $title = $_POST['new_title'];
+                    $desc  = $_POST['new_description'];
+                    $type  = $_POST['new_destac'];
+                    $image = $_FILES["new_imageup"];
 
-    if ($image['type'] == 'image/jpeg')
-    {
-        $random = $this->m_data->randomUTF();
-        $name_new = sha1($image['name'].$random).'.jpg';
+                    if ($image['type'] == 'image/jpeg')
+                    {
+                        $random = $this->m_data->randomUTF();
+                        $name_new = sha1($image['name'].$random).'.jpg';
 
-        move_uploaded_file($image["tmp_name"], "./assets/images/news/" . $name_new);
+                        move_uploaded_file($image["tmp_name"], "./assets/images/news/" . $name_new);
 
-        $this->admin_model->createNewADM($title, $name_new, $desc, $type);
-    }
-    else
-        echo '<div class="alert alert-danger">'.$this->lang->line('image_upload_error').'. </div>';
-} ?>
-
-    <script src="<?= base_url(); ?>core/ckeditor_admin/ckeditor.js"></script>
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row bg-title">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title"><i class="fa fa-mouse-pointer fa-fw"></i><?= $this->lang->line('admin_website'); ?> - <?= $this->lang->line('panel_admin_news_list'); ?></h4>
-                </div>
-                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                    <a href="#" data-toggle="modal" data-target="#create-modal">
-                        <button class="waves-effect waves-light btn btn-success pull-right m-l-20"><i class="fa fa-pencil fa-fw"></i><?= $this->lang->line('button_create'); ?></button>
-                    </a>
-                </div>
-            </div>
-            <!-- /row -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="white-box">
-                        <div class="table-responsive">
-                            <table id="myTable" class="table color-table info-table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th><?= $this->lang->line('form_title'); ?></th>
-                                        <th><?= $this->lang->line('column_date'); ?></th>
-                                        <th class="text-center"><?= $this->lang->line('column_action'); ?></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach($this->admin_model->getAdminNewsList()->result() as $news) { ?>
-                                        <tr>
-                                            <td><?= $news->title ?></td>
-                                            <td><?= $news->date ?></td>
-                                            <td class="text-center">
-                                                <a href="<?= base_url(); ?>admin/editnews/<?= $news->id ?>">
-                                                    <button class="btn btn-warning btn-circle btn-lg m-r-5"><i class="fa fa-pencil-square-o fa-fw" type="submit"></i></button>
-                                                </a>
-                                                <form action="" method="post" accept-charset="utf-8" style="display: inline;">
-                                                    <button class="btn btn-danger btn-circle btn-lg m-r-5" name="button_delNew" value="<?= $news->id ?>" type="submit"><i class="fa fa-trash fa-fw"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-
-        <div id="create-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title"><i class="fa fa-newspaper-o fa-fw"></i> <?= $this->lang->line('form_create_news'); ?></h4>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label class="control-label"><?= $this->lang->line('form_news_title'); ?></label>
-                                <input name="new_title" type="text" class="form-control" placeholder="<?= $this->lang->line('form_news_title'); ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><?= $this->lang->line('form_description'); ?></label>
-                                <textarea required="" name="new_description" id="adminPanelCK" rows="10" cols="80"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><?= $this->lang->line('form_highl'); ?></label>
-                                <select class="form-control" name="new_destac">
-                                    <option value="1"><?= $this->lang->line('option_no'); ?></option>
-                                    <option value="2"><?= $this->lang->line('option_yes'); ?></option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><?= $this->lang->line('form_upload_file'); ?></label>
-                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                    <div class="form-control" data-trigger="fileinput">
-                                        <span class="fileinput-filename">
-                                            <input type="file" required name="new_imageup">
-                                        </span>
-                                    </div>
+                        $this->admin_model->insertNews($title, $name_new, $desc, $type);
+                    }
+                    else
+                        echo '<div class="uk-width-1-1@l uk-width-1-1@xl"><div class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p><i class="fas fa-exclamation-circle"></i> '.$this->lang->line('image_upload_error').'</p></div></div>';
+                } ?>
+                <div class="uk-width-1-1@l uk-width-1-1@xl">
+                    <div class="uk-card uk-card-default uk-card-small">
+                        <div class="uk-card-header uk-card-secondary">
+                            <div class="uk-grid uk-grid-small">
+                                <div class="uk-width-auto"><h4 class="uk-margin-remove-bottom"><span data-uk-icon="icon: list"></span> <?= $this->lang->line('panel_admin_news_list'); ?></h4></div>
+                                <div class="uk-width-expand uk-text-right">
+                                    <a href="" class="uk-icon-link uk-margin-small-right" data-uk-icon="icon: pencil" uk-toggle="target: #newNews"></a>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?= $this->lang->line('button_close'); ?></button>
-                                <button type="submit" name="button_createNew" class="btn btn-success waves-effect waves-light"><i class="fa fa-pencil fa-fw"></i><?= $this->lang->line('button_create'); ?></button>
-                            </div>
-                        </form>
+                        </div>
+                        <!-- content -->
+                        <div class="uk-card-body">
+                        <!-- ajax -->
+                            <div id="newsList"></div>
+                        <!-- ajax -->
+                        </div>
+                        <!-- content -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <script>
-            CKEDITOR.replace('adminPanelCK');
-        </script>
+<script>
+    $(document).ready(function(){
+        function fetch_data(){
+            $.ajax({
+                url:"<?= base_url('admin/getNewsList'); ?>",
+                method:"POST",
+                success:function(data){
+                    $('#newsList').html(data);
+                }
+            });
+        }
+        fetch_data();
+        $(document).on('click', '#button_deleteNew', function(){
+            var id = $(this).data("id3");
+            $.ajax({
+                url:"<?= base_url('admin/deleteNew'); ?>",
+                method:"POST",
+                data:{id:id},
+                dataType:"text",
+                success:function(data){
+                    $.amaran({
+                        'theme'     :'awesome error',
+                        'content'   :{
+                            title:'<?= $this->lang->line('notify_title_success'); ?>',
+                            message:'<?= $this->lang->line('notify_news_deleted'); ?>',
+                            info:'',
+                            icon:'fas fa-minus'
+                        },
+                        'position'  :'top right',
+                        'inEffect'  :'slideRight',
+                        'outEffect' :'slideRight'
+                    });
+                    fetch_data();
+                }
+            });
+        });
+        $(document).on('click', '#button_editNew', function(){
+            var id = $(this).data("id4");
+            location.href = "<?= base_url('admin/managenews/?edit='); ?>"+id;
+        });
+    });
+</script>
+
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      init_instance_callback: function (editor) {
+        editor.on('blur', function (e) {
+          alert('test');
+        });
+      }
+    });
+</script>

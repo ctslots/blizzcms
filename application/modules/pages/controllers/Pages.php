@@ -7,10 +7,11 @@ class Pages extends MX_Controller {
     {
         parent::__construct();
 
-        if ($this->config->item('maintenance_mode') == '1' && $this->m_data->isLogged() && $this->m_general->getPermissions($this->session->userdata('fx_sess_id')) != 1)
-        {
-            redirect(base_url('maintenance'),'refresh');
-        }
+        if(!ini_get('date.timezone'))
+           date_default_timezone_set($this->config->item('timezone'));
+
+        if(!$this->m_permissions->getMaintenance())
+            redirect(base_url(),'refresh');
 
         $this->load->model('pages_model');
     }
@@ -24,7 +25,9 @@ class Pages extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data['idlink'] = $id;
-
+        $data['fxtitle'] = '';
+        
+        $this->load->view('header', $data);
         $this->load->view('page', $data);
         $this->load->view('footer');
     }

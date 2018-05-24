@@ -30,15 +30,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*Navigation Menu Lang*/
 $lang['admin_dashboard'] = 'Kezdőoldal';
+$lang['admin_settings'] = 'Settings';
 $lang['admin_users'] = 'Felhasználók';
 $lang['admin_users_list'] = 'Felhasználó Lista';
 $lang['admin_chars_list'] = 'Characters List';
+$lang['admin_website_settings'] = 'Website Settings';
+$lang['admin_manage_realms'] = 'Manage Realms';
+$lang['admin_manage_slides'] = 'Manage Slides';
 $lang['admin_website'] = 'Website';
 $lang['admin_news'] = 'News';
 $lang['admin_changelogs'] = 'Changelogs';
 $lang['admin_pages'] = 'Pages';
 $lang['admin_store'] = 'Store';
-$lang['admin_items'] = 'Manage Items';
+$lang['admin_manage_groups'] = 'Manage Groups';
+$lang['admin_manage_items'] = 'Manage Items';
 $lang['admin_forums'] = 'Forums';
 $lang['admin_manage_categories'] = 'Manage Categories';
 $lang['admin_manege_forums'] = 'Manage Forums';
@@ -48,6 +53,10 @@ $lang['players_count'] = 'Players Online';
 $lang['account_count'] = 'Accounts created';
 $lang['staff_count'] = 'STAFF accounts';
 $lang['ban_count'] = 'Banned accounts';
+$lang['total_players_playing'] = 'Total players playing on realm. ';
+$lang['total_account_registered'] = 'Total accounts registered.';
+$lang['total_account_banned'] = 'Total accounts banned. ';
+$lang['total_account_gm'] = 'Total accounts with GM access. ';
 
 /*Button Lang*/
 $lang['button_server_restart'] = 'Restart Server';
@@ -58,6 +67,7 @@ $lang['button_grant_account'] = 'Grant GM';
 $lang['button_grant_web_acc'] = 'Grant ADM';
 $lang['button_re_grant_web_acc'] = 'Remove ADM';
 $lang['button_change_level'] = 'Change Level';
+$lang['panel_admin_edit_pages'] = 'Edit Pages';
 
 /*Panel Lang*/
 $lang['panel_admin_user_manage'] = 'Manage user';
@@ -80,7 +90,8 @@ $lang['panel_admin_change_faction'] = 'Change Faction';
 $lang['panel_admin_changelogs_list'] = 'List of Changelogs';
 $lang['panel_admin_pages_list'] = 'List of Pages';
 $lang['panel_admin_news_list'] = 'News List';
-$lang['panel_admin_item_list'] = 'List of Items';
+$lang['panel_admin_edit_news'] = 'Edit News';
+$lang['panel_admin_edit_changelogs'] = 'Edit Changelogs';
 
 /*Column Lang*/
 $lang['column_race'] = 'Race';
@@ -89,6 +100,9 @@ $lang['column_level'] = 'Level';
 $lang['column_money'] = 'Money';
 $lang['column_own'] = 'Own';
 $lang['column_action'] = 'Action';
+$lang['column_realm_id'] = 'Realm ID';
+$lang['column_realm_name'] = 'Realm Name';
+$lang['column_realm_char_database'] = 'Character Database Name';
 
 /*Form Lang*/
 $lang['form_create_changelog'] = 'Create a new Changelog';
@@ -108,6 +122,8 @@ $lang['form_create_item'] = 'Create a item';
 $lang['form_store_item_name'] = 'Product Name';
 $lang['form_store_item_id'] = 'Item Id';
 $lang['form_store_image_name'] = 'Image File Name';
+$lang['form_create_group'] = 'Create Group';
+$lang['form_group_title'] = 'Title of the Group';
 
 /*Placeholder Lang*/
 $lang['panel_admin_reason'] = 'Reason';

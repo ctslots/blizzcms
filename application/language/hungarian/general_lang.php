@@ -60,10 +60,13 @@ $lang['button_save'] = 'Mentés';
 $lang['button_close'] = 'Bezárás';
 $lang['button_reply'] = 'Válasz';
 
+//armory
+$lang['playervsplayer'] = 'Player vs Player';
+$lang['notfound'] = 'Not found';
+
 /*Footer Lang*/
 $lang['footer_language'] = 'Magyar (HU)';
 $lang['footer_rights'] = 'Minden Jog Fenntartva.';
-$lang['footer_powered'] = ' Büszkén üzemelünk a BlizzCMS-el';
 $lang['footer_privacy'] = 'Személyes';
 $lang['footer_terms'] = 'Szabályok';
 
@@ -170,6 +173,9 @@ $lang['changelogs_list'] = 'Frissítések';
 /*Bugtracker Lang*/
 $lang['bugtracker_report_list'] = 'Jelentési Lista';
 
+/*Message Lang*/
+$lang['message_header'] = 'Private Message';
+
 /*Forum Lang*/
 $lang['forum_welcome'] = 'Üdvözlünk a Fórumunkon!';
 $lang['forum_post_count'] = 'bejegyzés';
@@ -179,6 +185,7 @@ $lang['forum_comment_header'] = 'Bejegyzés';
 $lang['forum_not_authorized'] = 'Nincs Bejelentkezve';
 $lang['forum_code_conduct'] = 'Magaviselet';
 $lang['forum_post_history'] = 'Bejegyzéstörténet';
+$lang['forum_topic_list'] = 'Topic List';
 
 /*Race Lang*/
 $lang['race_human'] = 'Human';

@@ -7,20 +7,30 @@ class Bugtracker extends MX_Controller {
     {
         parent::__construct();
 
-        if ($this->m_modules->getStatusLadBugtracker() != '1')
+        if(!ini_get('date.timezone'))
+           date_default_timezone_set($this->config->item('timezone'));
+
+        if(!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if ($this->config->item('maintenance_mode') == '1' && $this->m_data->isLogged() && $this->m_general->getPermissions($this->session->userdata('fx_sess_id')) != 1)
-        {
-            redirect(base_url('maintenance'),'refresh');
-        }
+        if (!$this->m_modules->getStatusLadBugtracker())
+            redirect(base_url(),'refresh');
 
+        if (!$this->m_permissions->getMyPermissions('Permission_Bugtracker'))
+            redirect(base_url(),'refresh');
+        
         $this->load->config('bugtracker');
         $this->load->model('bugtracker_model');
     }
 
     public function index()
     {
+
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_id')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
         $data = array(
                 "classDrop" => array(
                     'class' => 'uk-select',
@@ -48,11 +58,16 @@ class Bugtracker extends MX_Controller {
                     'id' => 'button_createIssue',
                     'name' => 'button_createIssue',
                     'value' => $this->lang->line('button_create'),
-                    'class' => 'uk-button uk-button-primary')
+                    'class' => 'uk-button uk-button-primary'),
+                'fxtitle' => $this->lang->line('nav_changelogs'),
+                'tiny' => $tiny,
+                'fx_adds' => '<div class="uk-container">'
             );
 
+        $this->load->view('header', $data);
         $this->load->view('index', $data);
         $this->load->view('footer');
+        $this->load->view('modal');
     }
 
     public function post($id)
@@ -60,11 +75,13 @@ class Bugtracker extends MX_Controller {
         if (empty($id) || is_null($id) || $id == '0')
             redirect(base_url(),'refresh');
 
-        if ($this->m_modules->getStatusLadBugtracker() != '1')
+        if (!$this->m_modules->getStatusLadBugtracker())
             redirect(base_url(),'refresh');
 
         $data['idlink'] = $id;
+        $data['fxtitle'] = $this->lang->line('nav_bugtracker');
 
+        $this->load->view('header', $data);
         $this->load->view('post', $data);
         $this->load->view('footer');
     }

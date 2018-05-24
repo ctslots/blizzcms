@@ -7,6 +7,15 @@ class Admin_model extends CI_Model {
     {
         $this->auth = $this->load->database('auth', TRUE);
         parent::__construct();
+
+        if (!$this->m_modules->getACP())
+            redirect(base_url(),'refresh');
+    }
+
+    public function currentVersion()
+    {
+        $version = 'v_0_013';
+        return $version;
     }
 
     public function insertShop($itemid, $type, $name, $pricedp, $pricevp, $iconname, $groups, $image)
@@ -42,17 +51,59 @@ class Admin_model extends CI_Model {
                 ->get('fx_shop_groups');
     }
 
-    public function insertChangelog($title, $desc)
+    public function insertChangelog($title, $image, $desc)
     {
         $date = $this->m_data->getTimestamp();
 
         $data = array(
             'title' => $title,
+            'image' => $image,
             'description' => $desc,
             'date' => $date,
         );
 
         $this->db->insert('fx_changelogs', $data);
+
+        redirect(base_url('admin/managechangelogs'),'refresh');
+    }
+
+    public function getChangelogSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('fx_changelogs')
+                ->num_rows();
+    }
+
+    public function getChangelogSpecifyName($id)
+    {
+        return $this->db->select('title')
+                ->where('id', $id)
+                ->get('fx_changelogs')
+                ->row('title');
+    }
+
+    public function getChangelogSpecifyDesc($id)
+    {
+        return $this->db->select('description')
+                ->where('id', $id)
+                ->get('fx_changelogs')
+                ->row_array()['description'];
+    }
+
+    public function updateSpecifyChangelog($id, $title, $description, $image)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $update = array(
+            'title' => $title,
+            'description' => $description,
+            'image' => $image,
+            'date' => $date
+        );
+
+        $this->db->where('id', $id)
+                ->update('fx_changelogs', $update);
 
         redirect(base_url('admin/managechangelogs'),'refresh');
     }
@@ -77,6 +128,46 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/managepages?newpage='.$idd),'refresh');
     }
 
+    public function getPagesSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('fx_pages')
+                ->num_rows();
+    }
+
+    public function getPagesSpecifyName($id)
+    {
+        return $this->db->select('title')
+                ->where('id', $id)
+                ->get('fx_pages')
+                ->row('title');
+    }
+
+    public function getPagesSpecifyDesc($id)
+    {
+        return $this->db->select('description')
+                ->where('id', $id)
+                ->get('fx_pages')
+                ->row_array()['description'];
+    }
+
+    public function updateSpecifyPage($id, $title, $description)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $update = array(
+            'title' => $title,
+            'description' => $description,
+            'date' => $date
+        );
+
+        $this->db->where('id', $id)
+                ->update('fx_pages', $update);
+
+        redirect(base_url('admin/managepages'),'refresh');
+    }
+
     public function delShopItm($id)
     {
         $this->db->where('id', $id)
@@ -86,6 +177,32 @@ class Admin_model extends CI_Model {
                 ->delete('fx_shop_top');
 
         redirect(base_url('admin/manageitems'),'refresh');
+    }
+
+    public function getShopGroupList()
+    {
+        return $this->db->select('*')
+            ->order_by('id', 'ASC')
+            ->get('fx_shop_groups');
+    }
+
+    public function deleteGroup($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('fx_shop_groups');
+
+        redirect(base_url('admin/managegroups'),'refresh');
+    }
+
+    public function insertGroup($name)
+    {
+        $data = array(
+            'name' => $name,
+        );
+
+        $this->db->insert('fx_shop_groups', $data);
+
+        redirect(base_url('admin/managegroups'),'refresh');
     }
 
     public function getShopAll()
@@ -149,26 +266,24 @@ class Admin_model extends CI_Model {
         return ($qq+1);
     }
 
-    public function delSpecifyNew($id)
+    public function deleteNewAjax($id)
     {
         $this->db->where('id', $id)
                 ->delete('fx_news');
 
         $this->db->where('id_new', $id)
                 ->delete('fx_news_top');
-
-        redirect(base_url('admin/managenews'),'refresh');
     }
 
-    public function getGeneralNewsSpecifyName($id)
+    public function getNewsSpecifyName($id)
     {
         return $this->db->select('title')
                 ->where('id', $id)
                 ->get('fx_news')
-                ->row('title');
+                ->row_array()['title'];
     }
 
-    public function getGeneralNewsSpecifyDesc($id)
+    public function getNewsSpecifyDesc($id)
     {
         return $this->db->select('description')
                 ->where('id', $id)
@@ -176,7 +291,7 @@ class Admin_model extends CI_Model {
                 ->row_array()['description'];
     }
 
-    public function getGeneralNewsSpecifyRows($id)
+    public function getNewsSpecifyRows($id)
     {
         return $this->db->select('*')
                 ->where('id', $id)
@@ -193,8 +308,8 @@ class Admin_model extends CI_Model {
 
     public function getRemoveADMRank($id)
     {
-        $this->db->where('id', $id)
-                ->delete('fx_ranks');
+        $this->db->where('iduser', $id)
+                ->delete('fx_users_permission');
 
         $date 	= $this->m_data->getTimestamp();
         $reason = $this->lang->line('remove_addmAnnoW');
@@ -213,11 +328,11 @@ class Admin_model extends CI_Model {
     public function getADDADMRank($id, $type = '')
     {
         $data1 = array(
-            'id' => $id,
-            'permission' => '1',
+            'iduser' => $id,
+            'idrank' => '1',
         );
 
-        $this->db->insert('fx_ranks', $data1);
+        $this->db->insert('fx_users_permission', $data1);
 
         $date 	= $this->m_data->getTimestamp();
         $reason = $this->lang->line('receive_addmAnnoW');
@@ -233,25 +348,6 @@ class Admin_model extends CI_Model {
         if ($type == '') {
             redirect(base_url().'admin/manageaccount/'.$id,'refresh');
         }
-    }
-
-    public function deleteCategory($id)
-    {
-        $this->db->where('id', $id)
-                ->delete('fx_forum_category');
-
-        redirect(base_url('admin/managecategories'),'refresh');
-    }
-
-    public function insertCategory($name)
-    {
-        $data = array(
-            'categoryName' => $name,
-        );
-
-        $this->db->insert('fx_forum_category', $data);
-
-        redirect(base_url('admin/managecategories'),'refresh');
     }
 
     public function insertForum($name, $category, $description, $icon, $type)
@@ -277,11 +373,49 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/manageforums'),'refresh');
     }
 
-    public function getForumCategoryList()
+    public function getForumCategoryListAjax()
     {
         return $this->db->select('*')
             ->order_by('id', 'ASC')
             ->get('fx_forum_category');
+    }
+
+    public function insertCategoryAjax($name)
+    {
+        $data = array(
+            'categoryName' => $name
+        );
+        $this->db->insert('fx_forum_category', $data);
+    }
+
+    public function insertDonationAjax($name, $price, $tax, $points)
+    {
+        $data = array(
+            'name' => $name,
+            'price' => $price,
+            'tax' => $price,
+            'points' => $price
+        );
+        $this->db->insert('fx_donate', $data);
+    }
+
+    public function updateCategoryAjax($id, $name, $column)
+    {
+        $this->db->set($column, $name)
+                ->where('id', $id)
+                ->update('fx_forum_category');
+    }
+
+    public function deleteCategoryAjax($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('fx_forum_category');
+    }
+
+    public function deleteDonationAjax($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('fx_donate');
     }
 
     public function getForumForumList()
@@ -333,7 +467,7 @@ class Admin_model extends CI_Model {
 
     public function insertCustomizeChar($id, $multirealm, $idrealm)
     {
-        if ($this->m_general->getCharActive($id, $multirealm) == '1')
+        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
         $date 		= $this->m_data->getTimestamp();
@@ -356,14 +490,73 @@ class Admin_model extends CI_Model {
         redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm,'refresh');
     }
 
-    public function getAdminNewsList()
+    public function getDonateListAjax()
     {
-        return $this->db->select('id, title, date')
+        return $this->db->select('*')
+            ->order_by('id', 'ASC')
+            ->get('fx_donate');
+    }
+
+    public function updateDonationAjax($id, $name, $column)
+    {
+        $this->db->set($column, $name)
+                ->where('id', $id)
+                ->update('fx_donate');
+    }
+
+     public function updateNewAjax($id, $name, $column)
+    {
+        $this->db->set($column, $name)
+                ->where('id', $id)
+                ->update('fx_news');
+    }
+
+    public function delSpecifyDonation($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('fx_donate');
+
+        redirect(base_url('admin/donate'),'refresh');
+    }
+
+    public function insertDonation($name, $price, $tax, $points)
+    {
+        $data = array(
+            'name' => $name,
+            'price' => $price,
+            'tax' => $tax,
+            'points' => $points,
+        );
+
+        $this->db->insert('fx_donate', $data);
+
+        redirect(base_url('admin/donate'),'refresh');
+    }
+
+    public function getAdminNewsListAjax()
+    {
+        return $this->db->select('*')
             ->order_by('id', 'ASC')
             ->get('fx_news');
     }
 
-    public function createNewADM($title, $image, $description, $type)
+    public function getUserHistoryDonate($id)
+    {
+        return $this->db->select('*')
+                ->where('user_id', $id)
+                ->order_by('id', 'DESC')
+                ->get('fx_donate_history');
+    }
+
+    public function getDonateStatus($id)
+    {
+        switch ($id) {
+            case 0: return $this->lang->line('status_donate_cancell'); break;
+            case 1: return $this->lang->line('status_donate_complete'); break;
+        }
+    }
+
+    public function insertNews($title, $image, $description, $type)
     {
         $date = $this->m_data->getTimestamp();
 
@@ -390,40 +583,9 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/managenews'),'refresh');
     }
 
-    public function updateNewADM($id, $title, $image, $description, $type)
-    {
-        $unlink = $this->getFileNameImage($id);
-        unlink('./assets/images/news/'.$unlink);
-
-        $date = $this->m_data->getTimestamp();
-
-        $update1 = array(
-            'title' => $title,
-            'image' => $image,
-            'description' => $description,
-            'date' => $date
-        );
-
-        $this->db->where('id', $id)
-                ->update('fx_news', $update1);
-
-        $this->db->where('id_new', $id)
-                ->delete('fx_news_top');
-
-        if ($type == 2)
-        {
-            $data['id_new'] = $id;
-
-            $this->db->insert('fx_news_top', $data);
-        }
-
-        redirect(base_url('admin/managenews'),'refresh');
-    }
-
     public function getNewIDperDate($date)
     {
-        return $this->db->select('id')
-            ->where('date', $date)
+        return $this->db->select('id')            ->where('date', $date)
             ->get('fx_news')
             ->row('id');
     }
@@ -438,7 +600,7 @@ class Admin_model extends CI_Model {
 
     public function insertChangeFactionChar($id, $multirealm, $idrealm)
     {
-        if ($this->m_general->getCharActive($id, $multirealm) == '1')
+        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
         $date 		= $this->m_data->getTimestamp();
@@ -463,7 +625,7 @@ class Admin_model extends CI_Model {
 
     public function insertChangeRaceChar($id, $multirealm, $idrealm)
     {
-        if ($this->m_general->getCharActive($id, $multirealm) == '1')
+        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
         $date 		= $this->m_data->getTimestamp();
@@ -509,14 +671,14 @@ class Admin_model extends CI_Model {
 
     public function insertCharRename($id, $name, $multirealm, $realm)
     {
-        if ($this->m_general->getCharActive($id, $multirealm) == '1')
+        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?char','refresh');
 
-        if ($this->m_general->getCharNameAlreadyExist($name, $multirealm)->num_rows())
+        if ($this->m_characters->getCharNameAlreadyExist($name, $multirealm)->num_rows())
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?name','refresh');
 
         $date 		= $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('char_newname').' -> '.$name.' | '.$this->lang->line('char_oldname').' -> '.$this->m_general->getCharName($id, $multirealm);
+        $annotation = $this->lang->line('char_newname').' -> '.$name.' | '.$this->lang->line('char_oldname').' -> '.$this->m_characters->getCharName($id, $multirealm);
 
         $data = array(
                 'idchar' => $id,
@@ -537,11 +699,11 @@ class Admin_model extends CI_Model {
 
     public function insertChangeLevelChar($id, $level, $multirealm, $realm)
     {
-        if ($this->m_general->getCharActive($id, $multirealm) == '1')
+        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?char','refresh');
 
         $date 		= $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('char_newlevel').' -> '.$level.' | '.$this->lang->line('char_oldlevel').' -> '.$this->m_general->getCharLevel($id, $multirealm);
+        $annotation = $this->lang->line('char_newlevel').' -> '.$level.' | '.$this->lang->line('char_oldlevel').' -> '.$this->m_characters->getCharLevel($id, $multirealm);
 
         $data = array(
                 'idchar' => $id,
@@ -687,6 +849,7 @@ class Admin_model extends CI_Model {
     {
         return $this->auth->select('*')
             ->where('id', $id)
+            ->where('active', '1')
             ->get('account_banned');
     }
 
@@ -714,5 +877,460 @@ class Admin_model extends CI_Model {
             ->where('online', '1')
             ->get('characters')
             ->num_rows();
+    }
+
+    //config
+    public function settingConfig($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualURL'],
+            $data['actualLang'],
+            $data['actualCharSet'],
+            $data['actualSess']
+        );
+
+        $Configreplace = array(
+            $data['configURL'],
+            $data['configLang'],
+            $data['configCharSet'],
+            $data['configSess']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getConfigBaseUrl($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[25], 22);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getConfigLanguage($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[78], 22);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getConfigCharSet($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[91], 22);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getConfigSessExpiration($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[381], 29);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    //fixcore
+    public function settingFixCore($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualName'],
+            $data['actualTimeZone'],
+            $data['actualDiscord'],
+            $data['actualRealmlist'],
+            $data['actualStaffColor'],
+            $data['actualTheme'],
+            $data['actualnavbr']
+        );
+
+        $Configreplace = array(
+            $data['fixcoreName'],
+            $data['fixcoreTimeZone'],
+            $data['fixcoreDiscord'],
+            $data['fixcoreRealmlist'],
+            $data['fixcoreStaffColor'],
+            $data['fixcoreThemeName'],
+            $data['devnavbarfx']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getFixCoreProjectName($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[11], 26);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getFixCoreTimeZone($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[21], 23);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getFixCoreDiscordInv($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[42], 25);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getFixCoreRealmlist($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[52], 24);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getFixCoreStaffColor($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[65], 31);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getFixCoreThemeName($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[96], 25);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getFixCoreNavBar($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[106], 23);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    //database
+    public function settingDatabase($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualdbCmsHost'],
+            $data['actualdbCmsUser'],
+            $data['actualdbCmsPassword'],
+            $data['actualdbCmsdbName'],
+            $data['actualdbAuthHost'],
+            $data['actualdbAuthUser'],
+            $data['actualdbAuthPassword'],
+            $data['actualdbAuthName']
+        );
+
+        $Configreplace = array(
+            $data['dbCmsHost'],
+            $data['dbCmsUser'],
+            $data['dbCmsPassword'],
+            $data['dbCmsName'],
+            $data['dbAuthHost'],
+            $data['dbAuthUser'],
+            $data['dbAuthPassword'],
+            $data['dbAuthName']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getDatabaseCmsHost($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[8], 16);
+        $fileHandle = explode(",", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getDatabaseCmsUser($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[9], 16);
+        $fileHandle = explode(",", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getDatabaseCmsPassword($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[10], 16);
+        $fileHandle = explode(",", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getDatabaseCmsName($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[11], 16);
+        $fileHandle = explode(",", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getDatabaseAuthHost($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[30], 16);
+        $fileHandle = explode(",", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getDatabaseAuthUser($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[31], 16);
+        $fileHandle = explode(",", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getDatabaseAuthPassword($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[32], 16);
+        $fileHandle = explode(",", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getDatabaseAuthName($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[33], 16);
+        $fileHandle = explode(",", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    //recaptcha
+    public function settingRecaptcha($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualrecaptchaKey'],
+            $data['actualrecaptchaPrivateKey'],
+            $data['actualrecaptchaLang']
+        );
+
+        $Configreplace = array(
+            $data['recaptchaKey'],
+            $data['recaptchaPrivateKey'],
+            $data['recaptchaLang']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getRecaptchaKey($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[14], 32);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getRecaptchaPrivateKey($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[15], 34);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getRecaptchaLang($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[16], 19);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    //bugtracker
+    public function settingBugtracker($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualbugtrackerText']
+        );
+
+        $Configreplace = array(
+            $data['bugtrackerText']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getBugtrackerText($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[11], 23);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    //donate
+    public function settingDonate($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualpaypalCurrency'],
+            $data['actualpaypalMode'],
+            $data['actualpaypalclientId'],
+            $data['actualpaypalPassword']
+        );
+
+        $Configreplace = array(
+            $data['paypalCurrency'],
+            $data['paypalMode'],
+            $data['paypalclientId'],
+            $data['paypalPassword']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getPaypalCurrency($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[12], 27);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getPaypalMode($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[25], 21);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getPaypalClientID($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[36], 21);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getPaypalPassword($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[47], 25);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    //store
+    public function settingStore($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualstoreType']
+        );
+
+        $Configreplace = array(
+            $data['storeType']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getStoreType($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[14], 24);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function delSpecifyRealm($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('fx_realms');
+                
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function insertNewSlides($title, $image)
+    {
+        $data = array(
+            'title' => $title,
+            'image' => $image,
+        );
+
+        $this->db->insert('fx_slides', $data);
+
+        redirect(base_url('admin/manageslides'),'refresh');
+    }
+
+    public function delSpecifySlide($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('fx_slides');
+
+        redirect(base_url('admin/manageslides'),'refresh');
+    }
+
+    public function getAdminSlideList()
+    {
+        return $this->db->select('id, title')
+            ->order_by('id', 'ASC')
+            ->get('fx_slides');
     }
 }

@@ -1,21 +1,22 @@
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row bg-title">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title"><i class="fa fa-users fa-fw"></i><?= $this->lang->line('admin_users'); ?> - <?= $this->lang->line('admin_users_list'); ?></h4>
-                </div>
-            </div>
-            <!-- /row -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="white-box">
-                        <div class="table-responsive">
-                            <table id="myTable" class="table color-table info-table table-striped">
+    <div id="content" data-uk-height-viewport="expand: true">
+        <div class="uk-container uk-container-expand">
+            <div class="uk-grid uk-grid-medium uk-grid-match" data-uk-grid>
+                <div class="uk-width-1-1@l uk-width-1-1@xl">
+                    <div class="uk-card uk-card-default uk-card-small">
+                        <div class="uk-card-header uk-card-secondary">
+                            <div class="uk-grid uk-grid-small">
+                                <div class="uk-width-auto"><h4 class="uk-margin-remove-bottom"><span data-uk-icon="icon: list"></span> <?= $this->lang->line('admin_users_list'); ?></h4></div>
+                                <div class="uk-width-expand uk-text-right">
+                                    <a href="#" class="uk-icon-link uk-margin-small-right" data-uk-icon="icon: info"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-card-body">
+                            <table class="uk-table uk-table-justify uk-table-divider">
                                 <thead>
                                     <tr>
                                         <th><?= $this->lang->line('form_username'); ?></th>
-                                        <th class="text-center"><?= $this->lang->line('form_email'); ?></th>
+                                        <th class="uk-text-center"><?= $this->lang->line('form_email'); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -24,7 +25,7 @@
                                             <td>
                                                 <a href="<?= base_url(); ?>admin/manageaccount/<?= $accs->id ?>" title="<?= $accs->username ?>"><?= $accs->username ?></a>
                                             </td>
-                                            <td class="text-center">
+                                            <td class="uk-text-center">
                                                 <a href="<?= base_url(); ?>admin/manageaccount/<?= $accs->id ?>" title="<?= $accs->email ?>"><?= $accs->email ?></a>
                                             </td>
                                         </tr>
@@ -35,6 +36,4 @@
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->

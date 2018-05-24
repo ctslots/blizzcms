@@ -62,10 +62,12 @@ $lang['button_reply'] = 'Responder';
 
 /*Footer Lang*/
 $lang['footer_language'] = 'Español (ES)';
-$lang['footer_rights'] = 'TODOS LOS DERECHOS RESERVADOS.';
-$lang['footer_powered'] = ' Creado por BlizzCMS';
 $lang['footer_privacy'] = 'Privacidad';
 $lang['footer_terms'] = 'Legal';
+
+//armory
+$lang['playervsplayer'] = 'Jugador contra Jugador';
+$lang['notfound'] = 'No encontrado';
 
 /*Login Lang*/
 $lang['login_description'] = 'Disfruta de todas las opciones que tenemos para ti';
@@ -105,8 +107,8 @@ $lang['form_subject'] = 'Asunto';
 $lang['column_name'] = 'Nombre';
 $lang['column_faction'] = 'Facción';
 $lang['column_total_kills'] = 'Muertes Totales';
-$lang['column_today_kills'] = 'Muertes de hoy';
-$lang['column_yersterday_kills'] = 'Yesterday Kills';
+$lang['column_today_kills'] = 'Muertes hoy';
+$lang['column_yersterday_kills'] = 'Muertes ayer';
 $lang['column_team_name'] = 'Nombre del equipo';
 $lang['column_members'] = 'Miembros';
 $lang['column_rating'] = 'Índice';
@@ -171,6 +173,9 @@ $lang['changelogs_list'] = 'Changelogs';
 /*Bugtracker Lang*/
 $lang['bugtracker_report_list'] = 'Lista de informes';
 
+/*Message Lang*/
+$lang['message_header'] = 'Mensaje Privado';
+
 /*Forum Lang*/
 $lang['forum_welcome'] = 'Bienvenido al foro oficial';
 $lang['forum_post_count'] = 'publicaciones';
@@ -180,6 +185,7 @@ $lang['forum_comment_header'] = 'Unirse a la conversación';
 $lang['forum_not_authorized'] = 'No Autorizado';
 $lang['forum_code_conduct'] = 'Código de conducta';
 $lang['forum_post_history'] = 'Ver historial de temas';
+$lang['forum_topic_list'] = 'Lista Temas';
 
 /*Race Lang*/
 $lang['race_human'] = 'Humano';
@@ -189,11 +195,11 @@ $lang['race_night_elf'] = 'Elfo Nocturno';
 $lang['race_undead'] = 'No-muerto';
 $lang['race_tauren'] = 'Tauren';
 $lang['race_gnome'] = 'Gnomo';
-$lang['race_troll'] = 'Troll';
+$lang['race_troll'] = 'Trol';
 $lang['race_goblin'] = 'Goblin';
 $lang['race_blood_elf'] = 'Elfo de Sangre';
 $lang['race_draenei'] = 'Draenei';
-$lang['race_worgen'] = 'Worgen';
+$lang['race_worgen'] = 'Huargen';
 $lang['race_panda_neutral'] = 'Pandaren Neutral';
 $lang['race_panda_alli'] = 'Pandaren Alianza';
 $lang['race_panda_horde'] = 'Pandaren Horda';

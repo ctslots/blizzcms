@@ -6,17 +6,26 @@ class User extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
-
         $this->load->model('user_model');
+
+        if (!ini_get('date.timezone'))
+           date_default_timezone_set($this->config->item('timezone'));
     }
 
     public function login()
     {
-        if ($this->m_modules->getStatusLogin() != '1')
+        if (!$this->m_modules->getStatusLogin())
             redirect(base_url(),'refresh');
 
         if ($this->m_data->isLogged())
             redirect(base_url(),'refresh');
+
+        if (!$this->m_permissions->getMyPermissions('Permission_Login'))
+            redirect(base_url(),'refresh');
+
+        $data['fxtitle'] = $this->lang->line('nav_login');
+        
+        $this->load->view('header', $data);
 
         if ($this->m_general->getExpansionAction() == 1)
         {
@@ -83,8 +92,8 @@ class User extends MX_Controller {
         if ($this->m_data->isLogged())
             redirect(base_url(),'refresh');
 
-        $username = $this->input->post('login_username');
-        $password = $this->input->post('login_password');
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
         $id = $this->m_data->getIDAccount($username);
 
@@ -92,12 +101,10 @@ class User extends MX_Controller {
             redirect(base_url('login?account'),'refresh');
         else
         {
-            $password = $this->m_data->encryptAccount($username, $password);
+            $password = $this->m_data->Account($username, $password);
 
             if (strtoupper($this->m_data->getPasswordAccountID($id)) == strtoupper($password))
-            {
                 $this->m_data->arraySession($id);
-            }
             else
                 redirect(base_url('login?password'),'refresh');
         }
@@ -117,7 +124,7 @@ class User extends MX_Controller {
             redirect(base_url('login?account'),'refresh');
         else
         {
-            $password = $this->m_data->encryptBattlenet($email, $password);
+            $password = $this->m_data->Battlenet($email, $password);
 
             if (strtoupper($this->m_data->getPasswordBnetID($id)) == strtoupper($password))
                 $this->m_data->arraySession($id);
@@ -128,19 +135,20 @@ class User extends MX_Controller {
 
     public function register()
     {
-        if ($this->m_modules->getStatusRegister() != '1')
+        if (!$this->m_modules->getStatusRegister())
             redirect(base_url(),'refresh');
 
-        if ($this->m_data->isLogged())
+        if (!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if ($this->config->item('maintenance_mode') == '1' && $this->m_data->isLogged() && $this->m_general->getPermissions($this->session->userdata('fx_sess_id')) != 1)
-        {
-            redirect(base_url('maintenance'),'refresh');
-        }
+        if (!$this->m_permissions->getMyPermissions('Permission_Register'))
+            redirect(base_url(),'refresh');
 
         $this->load->library('recaptcha');
 
+        $data['fxtitle'] = $this->lang->line('nav_register');
+        
+        $this->load->view('header', $data);
         $this->load->view('register');
         $this->load->view('footer');
     }
@@ -152,37 +160,50 @@ class User extends MX_Controller {
 
     public function panel()
     {
-        if ($this->m_modules->getStatusUCP() != '1')
+        if (!$this->m_modules->getStatusUCP())
             redirect(base_url(),'refresh');
-
-        if ($this->config->item('maintenance_mode') == '1' && $this->m_data->isLogged() && $this->m_general->getPermissions($this->session->userdata('fx_sess_id')) != 1)
-        {
-            redirect(base_url('maintenance'),'refresh');
-        }
 
         if (!$this->m_data->isLogged())
             redirect(base_url(),'refresh');
 
+        if (!$this->m_permissions->getMaintenance())
+            redirect(base_url(),'refresh');
+
+        if (!$this->m_permissions->getMyPermissions('Permission_Panel'))
+            redirect(base_url(),'refresh');
+
+        $data['fxtitle'] = $this->lang->line('nav_account');
+        
+        $this->load->view('header', $data);
         $this->load->view('panel');
         $this->load->view('footer');
+        $this->load->view('modal');
     }
 
     public function profile($id)
     {
-        if ($this->m_modules->getStatusUCP() != '1')
+        if (!$this->m_modules->getStatusUCP())
             redirect(base_url(),'refresh');
+
+        if (!$this->m_permissions->getMaintenance())
+            redirect(base_url(),'refresh');
+
+        if (!$this->m_permissions->getMyPermissions('Permission_Panel'))
+            redirect(base_url(),'refresh');
+
+        if ($this->m_data->getRank($id) != '0')
+            if($this->m_data->isLogged() && $this->session->userdata('fx_sess_gmlevel') == '0')
+                redirect(base_url(),'refresh');
 
         if (empty($id) || is_null($id) || $id == '0')
             redirect(base_url(),'refresh');
 
-        if ($this->config->item('maintenance_mode') == '1' && $this->m_data->isLogged() && $this->m_general->getPermissions($this->session->userdata('fx_sess_id')) != 1)
-        {
-            redirect(base_url('maintenance'),'refresh');
-        }
-
         $data['idlink'] = $id;
-
+        $data['fxtitle'] = $this->lang->line('nav_profile');
+        
+        $this->load->view('header', $data);
         $this->load->view('profile', $data);
         $this->load->view('footer');
+        $this->load->view('modal');
     }
 }

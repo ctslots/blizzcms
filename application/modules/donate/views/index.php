@@ -1,56 +1,35 @@
-<!DOCTYPE html>
-<html>
-<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-<head>
-    <title><?= $this->config->item('ProjectName'); ?> - <?= $this->lang->line('settings'); ?></title>
-    <script src="<?= base_url(); ?>assets/js/9013706011.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<?php if(isset($_POST['donateNow'])) {
+    $this->donate_model->getDonate($_POST['donateNow']);
+} ?>
 
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/blizzcms-general.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/blizzcms-app.css">
-    <link rel="stylesheet" type="text/css" media="all" href="<?= base_url('assets/css/blizzcms-template.css') ?>"/>
-    <link rel="stylesheet" type="text/css" media="all" href="<?= base_url('theme/'); ?><?= $this->config->item('theme_name'); ?>/css/<?= $this->config->item('theme_name'); ?>.css"/>
-    <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>assets/images/favicon.ico">
-    <!-- UiKit Start -->
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="<?= base_url(); ?>core/uikit/css/uikit.min.css" />
-
-    <!-- UIkit JS -->
-    <script src="<?= base_url(); ?>core/uikit/js/uikit.min.js"></script>
-    <script src="<?= base_url(); ?>core/uikit/js/uikit-icons.min.js"></script>
-    <!-- UiKit end -->
-    <!-- font-awesome Start -->
-    <link rel="stylesheet" href="<?= base_url(); ?>core/font-awesome/css/font-awesome.min.css">
-    <!-- font-awesome End -->
-
-    <!-- custom footer -->
-    <script src="<?= base_url(); ?>core/js/jquery-3.3.1.min.js"></script>
-    <!-- custom footer -->
-</head>
-
-<body class="en-us <?= $this->config->item('theme_name'); ?> glass-header preload" lang="en" data-locale="en-gb" data-device="desktop" data-name="index">
-    <!-- header -->
-    <?php $this->load->view('general/icons'); ?>
-    <!-- submenu -->
-    </div>
-    </div>
-    </div>
-    <!-- submenu -->
-    <br><br>
-    <div class="Page-container">
-        <div class="Page-content en-US">
-            <div style="" class="HeroPane HeroPane--large HeroPane--adaptive">
-                <div class="HeroPane-content">
-                    
-                    <section class="Scm-content">
-                        <div class="section uk-scrollspy-inview uk-animation-slide-bottom" uk-scrollspy-class="">
-                            <div id="donate">
-                                <iframe src="https://api.paymentwall.com/api/ps/?key=<?= $this->config->item('paymentwall_project_key'); ?>&amp;uid=<?= $this->session->userdata('fx_sess_id'); ?>&amp;widget=<?= $this->config->item('paymentwall_widget_code'); ?>" width="100%" height="1500px" frameborder="0" id="pw-iframe"></iframe>
+    <div class="uk-container">
+        <div class="uk-space-xlarge"></div>
+        <div class="uk-grid uk-grid-large" data-uk-grid>
+            <div class="uk-width-1-6@l"></div>
+            <div class="uk-width-4-6@l">
+                <div class="uk-principal-title uk-text-center"><i class="fab fa-cc-paypal"></i> Donations</div>
+                <div class="uk-space-medium"></div>
+                <div class="uk-grid-small uk-grid-match uk-flex-center" uk-grid>
+                    <?php foreach($this->donate_model->getDonations()->result() as $donateList) { ?>
+                        <div class="uk-width-1-4@s uk-text-center uk-transition-toggle" tabindex="0">
+                            <div class="uk-card uk-card-body uk-card-donate uk-card-donate uk-transition-scale-up uk-transition-opaque">
+                                <i class="fab fa-paypal"></i>
+                                <p>
+                                    <span class="uk-h2 uk-text-white"><span class="uk-text-bold"><?= $donateList->name ?></span><br>
+                                    <sup><?= $this->config->item('currencySymbol'); ?></sup><?= $donateList->price ?></span>
+                                </p>
+                                <p>
+                                    <span class="uk-h5 uk-text-white"><span uk-icon="icon: plus-circle"></span> Get <span class="uk-text-bold"><?= $donateList->points ?></span> <?= $this->lang->line('panel_dp') ?></span>
+                                </p>
+                                <form action="" method="post" accept-charset="utf-8">
+                                    <div class="uk-margin">
+                                        <button class="uk-button uk-button-secondary" type="submit" value="<?= $donateList->id ?>" name="donateNow"><span uk-icon="icon: heart"></span> <?= $this->lang->line('button_donate'); ?></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </section>
+                    <?php } ?>
                 </div>
             </div>
-            <div class="space-huge"></div>
+            <div class="uk-width-1-6@l"></div>
         </div>
-    </div>

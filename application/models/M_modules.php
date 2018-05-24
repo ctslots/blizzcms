@@ -10,165 +10,293 @@ class M_modules extends CI_Model {
 
     public function getStatusDiscordExperimental()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '1')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusDiscordClassic()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '2')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusRegister()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '3')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusLogin()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '4')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusRealmStatus()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '5')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusNews()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '6')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusChangelogs()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '7')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusForums()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '8')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusStore()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '9')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusSlides()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '10')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusEvents()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '11')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusLadPVP()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '12')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusUCP()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '13')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusGifts()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '14')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusLadArena()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '15')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getStatusLadBugtracker()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '16')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getCaptcha()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '17')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getMessages()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '18')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getDonation()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '19')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
     public function getInstallation()
     {
-        return $this->db->select('status')
+        $qq = $this->db->select('status')
                 ->where('id', '20')
                 ->get('fx_modules')
                 ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
     }
 
-    public function insertRealm($hostname, $username, $password, $database, $realm_id, $soapuser, $soappass, $soapport)
+    public function getArmory()
+    {
+        $qq = $this->db->select('status')
+                ->where('id', '21')
+                ->get('fx_modules')
+                ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
+    }
+
+    public function getVote()
+    {
+        $qq = $this->db->select('status')
+                ->where('id', '22')
+                ->get('fx_modules')
+                ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
+    }
+
+    public function getACP()
+    {
+        $qq = $this->db->select('status')
+                ->where('id', '23')
+                ->get('fx_modules')
+                ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
+    }
+
+    public function getFaq()
+    {
+        $qq = $this->db->select('status')
+                ->where('id', '24')
+                ->get('fx_modules')
+                ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
+    }
+
+    public function insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport, $red = '')
     {
         $data = array(
             'hostname' => $hostname,
@@ -176,6 +304,7 @@ class M_modules extends CI_Model {
             'password' => $password,
             'char_database' => $database,
             'realmID' => $realm_id,
+            'console_hostname' => $soaphost,
             'console_username' => $soapuser,
             'console_password' => $soappass,
             'console_port' => $soapport,
@@ -183,5 +312,9 @@ class M_modules extends CI_Model {
         );
 
         $this->db->insert('fx_realms', $data);
+
+        if ($red == '1') {
+            redirect(base_url('admin/managerealms'),'refresh');
+        }
     }
 }

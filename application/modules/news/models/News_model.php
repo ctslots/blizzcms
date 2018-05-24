@@ -24,12 +24,12 @@ class News_model extends CI_Model {
         redirect(base_url('news/'.$idlink),'refresh');
     }
 
-    public function removeComment($id)
+    public function removeComment($id, $link)
     {
         $this->db->where('id', $id)
             ->delete('fx_news_comments');
 
-        redirect(base_url('news/'.$id),'refresh');
+        redirect(base_url('news/'.$link),'refresh');
     }
 
     public function getComments($idlink)
@@ -61,6 +61,14 @@ class News_model extends CI_Model {
                 ->where('id', $id)
                 ->get('fx_news')
                 ->row_array()['description'];
+    }
+
+    public function getNewlogDate($id)
+    {
+        return $this->db->select('date')
+                ->where('id', $id)
+                ->get('fx_news')
+                ->row('date');
     }
 
     public function getCommentCount($id)

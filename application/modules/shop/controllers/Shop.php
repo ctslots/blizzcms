@@ -7,13 +7,17 @@ class Shop extends MX_Controller {
     {
         parent::__construct();
 
-        if ($this->m_modules->getStatusStore() != '1')
+        if (!ini_get('date.timezone'))
+           date_default_timezone_set($this->config->item('timezone'));
+
+        if (!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if ($this->config->item('maintenance_mode') == '1' && $this->m_data->isLogged() && $this->m_general->getPermissions($this->session->userdata('fx_sess_id')) != 1)
-        {
-            redirect(base_url('maintenance'),'refresh');
-        }
+        if (!$this->m_modules->getStatusStore())
+            redirect(base_url(),'refresh');
+
+        if (!$this->m_permissions->getMyPermissions('Permission_Store'))
+            redirect(base_url(),'refresh');
 
         $this->load->model('shop_model');
     }
@@ -23,6 +27,10 @@ class Shop extends MX_Controller {
         $data['idlink'] = $id;
 
         $this->load->config('store');
+
+        $data['fxtitle'] = $this->lang->line('nav_store');
+        
+        $this->load->view('header', $data);
 
         if($this->config->item('shopStyle') == 1)
             $this->load->view('index1', $data);
@@ -41,6 +49,9 @@ class Shop extends MX_Controller {
             redirect(base_url('store'),'refresh');
 
         $data['idlink'] = $id;
+        $data['fxtitle'] = $this->lang->line('nav_store');
+        
+        $this->load->view('header', $data);
 
         if (isset($_GET['tp']))
         {
@@ -68,7 +79,11 @@ class Shop extends MX_Controller {
         if (!$this->m_data->isLogged())
             redirect(base_url('login'),'refresh');
 
+        $data['fxtitle'] = $this->lang->line('nav_ticket');
+        
+        $this->load->view('header', $data);
         $this->load->view('ticket');
         $this->load->view('footer');
+        $this->load->view('modal');
     }
 }

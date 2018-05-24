@@ -1,298 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title><?= $this->config->item('ProjectName'); ?> | <?= $this->lang->line('button_admin_panel'); ?></title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>assets/images/favicon.ico">
-    <title><?= $this->config->item('ProjectName'); ?></title>
-    <!-- Bootstrap Core CSS -->
-    <link href="<?= base_url(); ?>core/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url(); ?>core/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url(); ?>core/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <!-- Menu CSS -->
-    <link href="<?= base_url(); ?>core/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <!-- toast CSS -->
-    <link href="<?= base_url(); ?>core/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
-    <!-- morris CSS -->
-    <link href="<?= base_url(); ?>core/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
-    <!-- chartist CSS -->
-    <link href="<?= base_url(); ?>core/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
-    <link href="<?= base_url(); ?>core/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
-    <!-- Calendar CSS -->
-    <link href="<?= base_url(); ?>core/plugins/bower_components/calendar/dist/fullcalendar.css" rel="stylesheet" />
-    <!-- animation CSS -->
-    <link href="<?= base_url(); ?>core/css/animate.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="<?= base_url(); ?>core/css/style.css" rel="stylesheet">
-    <!-- color CSS -->
-    <link href="<?= base_url(); ?>core/css/colors/dark.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="<?= base_url(); ?>core/css/blizzcms-admin.css">
+
+    <!-- UIkit -->
+    <link rel="stylesheet" href="<?= base_url(); ?>core/uikit/css/uikit.min.css"/>
+    <script src="<?= base_url(); ?>core/uikit/js/uikit.min.js"></script>
+    <script src="<?= base_url(); ?>core/uikit/js/uikit-icons.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?= base_url(); ?>core/fontawesome/css/fontawesome-all.css">
+
+    <!-- JQuery -->
+    <script src="<?= base_url(); ?>core/js/jquery-3.3.1.min.js"></script>
+    <script src="<?= base_url(); ?>core/js/jquery.transit.min.js"></script>
+
+    <!-- notify -->
+    <link rel="stylesheet" href="<?= base_url() ?>core/amaranjs/dist/css/amaran.min.css">
 </head>
 
-<body class="fix-header">
-    <!-- Wrapper -->
-    <div id="wrapper">
-        <!-- Topbar header - style you can find in pages.scss -->
-        <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header">
-                <div class="top-left-part">
-                    <!-- Logo -->
-                    <a class="logo" href="">
-                        <b>
-                            <img src="<?= base_url('assets/images/logo/blizzcms-icon.png'); ?>" alt="home" class="light-logo"/>
-                        </b>
-                        <span class="hidden-xs">
-                            <img src="<?= base_url('assets/images/logo/blizzcms.png'); ?>" alt="home" class="light-logo"/>
+<body>
+    <div class="uk-offcanvas-content">
+        <header id="top-head" class="uk-position-fixed">
+            <div class="uk-container uk-container-expand uk-background-primary" style="background:linear-gradient(to left, #28a5f5, #1e87f0);">
+                <nav class="uk-navbar uk-light" data-uk-navbar>
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-item uk-logo" href="<?= base_url('admin'); ?>">BlizzCMS</a>
+                    </div>
+                    <div class="uk-navbar-right">
+                        <ul class="uk-navbar-nav">
+                            <li>
+                                <a href="#" data-uk-icon="icon:user"></a>
+                                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li class="uk-nav-header uk-text-center">YOUR ACCOUNT</li>
+                                        <li><a href="<?= base_url('panel'); ?>"><span data-uk-icon="icon: settings"></span> <?= $this->lang->line('button_user_panel'); ?></a></li>
+                                        <li class="uk-nav-divider"></li>
+                                        <li><a href="<?= base_url('logout'); ?>"><span data-uk-icon="icon: sign-out"></span> <?= $this->lang->line('button_logout'); ?></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#mobilecanvas" uk-toggle></a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <aside id="left-col" class="uk-light uk-visible@m">
+            <div class="profile-bar">
+                <div class="uk-grid uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
+                    <div class="uk-width-auto">
+                        <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('fx_sess_id'))->num_rows()) { ?>
+                            <img class="uk-border-circle profile-img" src="<?= base_url('assets/images/profiles/').$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('fx_sess_id'))); ?>" alt="">
+                        <?php } else { ?>
+                            <img class="uk-border-circle profile-img" src="<?= base_url('assets/images/profiles/default.png'); ?>"  alt="">
+                        <?php } ?>
+                    </div>
+                    <div class="uk-width-expand">
+                        <span class="uk-text-small uk-text-muted">Welcome</span>
+                        <h4 class="uk-margin-remove-vertical text-light"><?= $this->session->userdata('fx_sess_username'); ?></h4>
+                        <span class="uk-label uk-text-small">
+                            <?php if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_id'))) { echo 'STAFF'; } ?>
                         </span>
-                    </a>
-                    <!-- /Logo -->
+                    </div>
                 </div>
-                <!-- Search input and Toggle icon -->
-                <ul class="nav navbar-top-links navbar-left">
-                    <li>
-                        <a href="javascript:void(0)" class="open-close waves-effect waves-light visible-xs">
-                            <i class="ti-close ti-menu"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="javascript:void(0)">
-                            <i class="fa fa-envelope-o"></i>
-                            <div class="notify">
-                                <span class="heartbit"></span>
-                                <span class="point"></span>
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu mailbox animated bounceInDown">
-                            <li>
-                                <div class="drop-title">You have 4 new messages</div>
-                            </li>
-                            <li>
-                                <div class="message-center">
-                                    <a href="#">
-                                        <div class="user-img">
-                                            <span class="profile-status online pull-right"></span>
-                                        </div>
-                                        <div class="mail-contnet">
-                                            <h5>Vipo</h5>
-                                            <span class="mail-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                                            <span class="time">9:30 AM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="user-img">
-                                            <span class="profile-status busy pull-right"></span>
-                                        </div>
-                                        <div class="mail-contnet">
-                                            <h5>Vipo</h5>
-                                            <span class="mail-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                                            <span class="time">9:10 AM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="user-img">
-                                            <span class="profile-status away pull-right"></span>
-                                        </div>
-                                        <div class="mail-contnet">
-                                            <h5>Vipo</h5>
-                                            <span class="mail-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                                            <span class="time">9:08 AM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="user-img">
-                                            <span class="profile-status offline pull-right"></span>
-                                        </div>
-                                        <div class="mail-contnet">
-                                            <h5>Vipo</h5>
-                                            <span class="mail-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                                            <span class="time">9:02 AM</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="text-center" href="javascript:void(0);">
-                                    <strong>See all notifications</strong> <i class="fa fa-angle-right"></i>
-                                </a>
-                            </li>
+            </div>
+            <div class="bar-content uk-position-relative">
+                <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
+                    <li class="uk-nav-header">SECTIONS</li>
+                    <li><a href="<?= base_url('admin'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: home"></span> <?= $this->lang->line('admin_dashboard'); ?></a></li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: settings"></span> <?= $this->lang->line('admin_settings'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/settings'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: cog"></span><?= $this->lang->line('admin_website_settings'); ?></a></li>
+                            <li><a href="<?= base_url('admin/managerealms'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: server"></span><?= $this->lang->line('admin_manage_realms'); ?></a></li>
+                            <li><a href="<?= base_url('admin/manageslides'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: image"></span><?= $this->lang->line('admin_manage_slides'); ?></a></li>
                         </ul>
-                        <!-- /.dropdown-messages -->
                     </li>
-                </ul>
-                <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="javascript:void(0)">
-                            <b class="hidden-xs">
-                                <i class="fa fa-user"></i> <?= $this->session->userdata('fx_sess_username'); ?>
-                            </b>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user animated flipInY">
-                            <li>
-                                <div class="dw-user-box">
-                                    <div class="u-text">
-                                        <h4><?= $this->session->userdata('fx_sess_username'); ?></h4>
-                                        <p class="text-muted"><?= $this->session->userdata('fx_sess_email'); ?></p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a href="<?= base_url('panel'); ?>">
-                                    <i class="fa fa-user-circle-o text-info"></i> <?= $this->lang->line('button_user_panel'); ?>
-                                </a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a href="<?= base_url('logout'); ?>">
-                                    <i class="fa fa-power-off text-danger"></i> <?= $this->lang->line('button_logout'); ?>
-                                </a>
-                            </li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: users"></span> <?= $this->lang->line('admin_users'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/accounts'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_users_list'); ?></a></li>
+                            <li><a href="<?= base_url('admin/characters'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_chars_list'); ?></a></li>
                         </ul>
-                        <!-- /.dropdown-user -->
                     </li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: thumbnails"></span> <?= $this->lang->line('admin_website'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/managenews'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: file-edit"></span><?= $this->lang->line('admin_news'); ?></a></li>
+                            <li><a href="<?= base_url('admin/managechangelogs'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: history"></span><?= $this->lang->line('admin_changelogs'); ?></a></li>
+                            <li><a href="<?= base_url('admin/managepages'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: file"></span><?= $this->lang->line('admin_pages'); ?></a></li>
+                        </ul>
+                    </li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: cart"></span> <?= $this->lang->line('admin_store'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/managegroups'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_manage_groups'); ?></a></li>
+                            <li><a href="<?= base_url('admin/manageitems'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_manage_items'); ?></a></li>
+                        </ul>
+                    </li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: grid"></span> <?= $this->lang->line('admin_points_system'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/donate'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: credit-card"></span><?= $this->lang->line('admin_manage_donations'); ?></a></li>
+                        </ul>
+                    </li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: comments"></span> <?= $this->lang->line('admin_forums'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/managecategories'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_manage_categories'); ?></a></li>
+                            <li><a href="<?= base_url('admin/manageforums'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_manege_forums'); ?></a></li>
+                        </ul>
+                    </li>
+                    <li class="uk-nav-header">FixCore</li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: bolt"></span> BlizzCMS</a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/manageapi'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: code"></span>API</a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li><a target="_blank" href="https://gitlab.com/BlizzCMS/BlizzCMS/issues"><span class="uk-margin-small-right" data-uk-icon="icon: lifesaver"></span>Issues</a></li>
+                        </ul>
+                    </li>
+                    <li class="uk-nav-divider"></li>
                 </ul>
             </div>
-            <!-- /.navbar-header -->
-            <!-- /.navbar-top-links -->
-            <!-- /.navbar-static-side -->
-        </nav>
-        <!-- End Top Navigation -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav">
-                <div class="sidebar-head">
-                    <h3>
-                        <span class="fa-fw open-close">
-                            <i class="ti-menu hidden-xs"></i>
-                            <i class="ti-close visible-xs"></i>
-                        </span>
-                        <span class="hide-menu"><?= $this->lang->line('admin_dashboard'); ?></span>
-                    </h3>
-                </div>
-                <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="<?= base_url('admin'); ?>" class="waves-effect active">
-                            <i class="fa fa-tachometer fa-fw"></i>
-                            <span class="hide-menu"><?= $this->lang->line('admin_dashboard'); ?></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" class="waves-effect">
-                            <i class="fa fa-users fa-fw text-danger"></i>
-                            <span class="hide-menu"><?= $this->lang->line('admin_users'); ?></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<?= base_url('admin/accounts'); ?>">
-                                    <i class="fa fa-list fa-fw"></i>
-                                    <span class="hide-menu"><?= $this->lang->line('admin_users_list'); ?></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('admin/characters'); ?>">
-                                    <i class="fa fa-list fa-fw"></i>
-                                    <span class="hide-menu"><?= $this->lang->line('admin_chars_list'); ?></span>
-                                </a>
-                            </li>
+        </aside>
+        <div id="mobilecanvas" data-uk-offcanvas="flip: true; overlay: true">
+            <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+                <button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
+                <ul class="uk-nav uk-nav-default">
+                    <li class="uk-nav-header">SECTIONS</li>
+                    <li><a href="<?= base_url('admin'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: home"></span> <?= $this->lang->line('admin_dashboard'); ?></a></li>
+                    <li class="uk-parent uk-open">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: users"></span> <?= $this->lang->line('admin_users'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/accounts'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_users_list'); ?></a></li>
+                            <li><a href="<?= base_url('admin/characters'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_chars_list'); ?></a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)" class="waves-effect">
-                            <i class="fa fa-mouse-pointer fa-fw text-info"></i>
-                            <span class="hide-menu"><?= $this->lang->line('admin_website'); ?></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<?= base_url('admin/managenews'); ?>" class="waves-effect">
-                                    <i class="fa fa-newspaper-o fa-fw"></i>
-                                    <span class="hide-menu"><?= $this->lang->line('admin_news'); ?></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('admin/managechangelogs'); ?>" class="waves-effect">
-                                    <i class="fa fa-history fa-fw"></i>
-                                    <span class="hide-menu"><?= $this->lang->line('admin_changelogs'); ?></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('admin/managepages'); ?>" class="waves-effect">
-                                    <i class="fa fa-file-text-o fa-fw"></i>
-                                    <span class="hide-menu"><?= $this->lang->line('admin_pages'); ?></span>
-                                </a>
-                            </li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: thumbnails"></span> <?= $this->lang->line('admin_website'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/managenews'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: file-edit"></span><?= $this->lang->line('admin_news'); ?></a></li>
+                            <li><a href="<?= base_url('admin/managechangelogs'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: history"></span><?= $this->lang->line('admin_changelogs'); ?></a></li>
+                            <li><a href="<?= base_url('admin/managepages'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: file"></span><?= $this->lang->line('admin_pages'); ?></a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)" class="waves-effect">
-                            <i class="fa fa-shopping-cart fa-fw text-success"></i>
-                            <span class="hide-menu"><?= $this->lang->line('admin_store'); ?></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<?= base_url('admin/manageitems'); ?>" class="waves-effect">
-                                    <i class="fa fa-cube fa-fw"></i>
-                                    <span class="hide-menu"><?= $this->lang->line('admin_items'); ?></span>
-                                </a>
-                            </li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: cart"></span> <?= $this->lang->line('admin_store'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/managegroups'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_manage_groups'); ?></a></li>
+                            <li><a href="<?= base_url('admin/manageitems'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_manage_items'); ?></a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)" class="waves-effect">
-                            <i class="fa fa-commenting fa-fw text-purple"></i>
-                            <span class="hide-menu"><?= $this->lang->line('admin_forums'); ?></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<?= base_url('admin/managecategories'); ?>" class="waves-effect">
-                                    <i class="fa fa-bookmark-o fa-fw"></i>
-                                    <span class="hide-menu"><?= $this->lang->line('admin_manage_categories'); ?></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('admin/manageforums'); ?>" class="waves-effect">
-                                    <i class="fa fa-comments-o fa-fw"></i>
-                                    <span class="hide-menu"><?= $this->lang->line('admin_manege_forums'); ?></span>
-                                </a>
-                            </li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: comments"></span> <?= $this->lang->line('admin_forums'); ?></a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/managecategories'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_manage_categories'); ?></a></li>
+                            <li><a href="<?= base_url('admin/manageforums'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: list"></span><?= $this->lang->line('admin_manege_forums'); ?></a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)" class="waves-effect">
-                            <i class="fa fa-bolt fa-fw text-warning"></i>
-                            <span class="hide-menu">BlizzCMS</span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<?= base_url('admin/manageapi'); ?>">
-                                    <i class="fa fa-microchip text-info"></i>
-                                    <span class="hide-menu">API</span>
-                                </a>
-                            </li>
-                            <li class="devider"></li>
-                            <li>
-                                <a target="_blank" href="https://fixcore.github.io">
-                                    <i class="fa fa-circle-o text-inverse"></i>
-                                    <span class="hide-menu">Wiki</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="https://github.com/fixcore/BlizzCMS/issues">
-                                    <i class="fa fa-circle-o text-danger"></i>
-                                    <span class="hide-menu">Issues</span>
-                                </a>
-                            </li>
+                    <li class="uk-nav-header">FixCore</li>
+                    <li class="uk-parent">
+                        <a href="javascript:void(0)"><span class="uk-margin-small-right" data-uk-icon="icon: bolt"></span> BlizzCMS</a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="<?= base_url('admin/manageapi'); ?>"><span class="uk-margin-small-right" data-uk-icon="icon: code"></span>API</a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li><a target="_blank" href="https://gitlab.com/BlizzCMS/BlizzCMS/issues"><span class="uk-margin-small-right" data-uk-icon="icon: lifesaver"></span>Issues</a></li>
                         </ul>
                     </li>
+                    <li class="uk-nav-divider"></li>
                 </ul>
             </div>
         </div>
-        <!-- End Left Sidebar -->
+    </div>

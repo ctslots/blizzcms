@@ -9,30 +9,6 @@ class M_data extends CI_Model {
         $this->auth = $this->load->database('auth', TRUE);
     }
 
-    public function encryptBattlenet($email, $password)
-    {
-        $sha_pass_hash_bnet = strtoupper(bin2hex(strrev(hex2bin(strtoupper(hash("sha256",strtoupper(hash("sha256", strtoupper($email)).":".strtoupper($password))))))));
-
-        return $sha_pass_hash_bnet;
-    }
-
-    public function encryptAccount($username, $password)
-    {
-        if (!is_string($username))
-        {
-            $username = "";
-        }
-
-        if (!is_string($password))
-        {
-            $password = "";
-        }
-
-        $sha_pass_hash = sha1(strtoupper($username).':'.strtoupper($password));
-
-        return strtoupper($sha_pass_hash);
-    }
-
     public function arraySession($id)
     {
         $data = array(
@@ -49,6 +25,13 @@ class M_data extends CI_Model {
         );
 
         return $this->sessionConnect($data);
+    }
+
+    public function getGmSpecify($id)
+    {
+        return $this->auth->select('id')
+                ->where('id', $id)
+                ->get('account_access');
     }
 
     public function getTag($id)
@@ -271,6 +254,18 @@ class M_data extends CI_Model {
                 ->get('fx_realms');
     }
 
+    public function getRealmConnectionData($id)
+    {
+        $data = $this->getRealm($id)->row_array();
+
+        return $this->realmConnection(
+            $data['username'],
+            $data['password'],
+            $data['hostname'],
+            $data['char_database']
+        );
+    }
+
     public function realmConnection($username, $password, $hostname, $database)
     {
         $dsn = 'mysqli://'.
@@ -280,5 +275,36 @@ class M_data extends CI_Model {
             $database.'?char_set=utf8&dbcollat=utf8_general_ci&cache_on=true&cachedir=/path/to/cache';
 
         return $this->load->database($dsn, TRUE);
+    }
+
+    public function getAccountExist($id)
+    {
+        return $this->auth->select('*')
+                ->where('id', $id)
+                ->get('account');
+    }
+
+    public function getUsers()
+    {
+        return $this->db->select('*')
+                ->get('fx_users');
+    }
+
+    public function Battlenet($email, $password)
+    {
+        return strtoupper(bin2hex(strrev(hex2bin(strtoupper(hash("sha256",strtoupper(hash("sha256", strtoupper($email)).":".strtoupper($password))))))));
+    }
+
+    public function Account($username, $password)
+    {
+        if (!is_string($username))
+            $username = "";
+
+        if (!is_string($password))
+            $password = "";
+
+        $sha_pass_hash = sha1(strtoupper($username).':'.strtoupper($password));
+
+        return strtoupper($sha_pass_hash);
     }
 }

@@ -47,6 +47,7 @@ $lang['oemail_not_match'] = 'El correo electrónico no es correcto';
 $lang['email_used'] = 'El Correo ya está en uso';
 $lang['expansion_not_found'] = 'Expansión no encontrada.';
 $lang['image_upload_error'] = 'Tu imagen debe estar en formato .jpg';
+$lang['changelog_not_found'] = 'El servidor no tiene registros de cambios para informar en este momento';
 
 $lang['char_newlevel'] = 'Recibe un nuevo nivel';
 $lang['char_oldlevel'] = 'Antes era';
@@ -67,3 +68,4 @@ $lang['shopping_cart'] = 'Comprar carrito';
 $lang['store_see'] = 'Ver la tienda';
 $lang['no_players'] = 'No hay jugadores online';
 $lang['users_on'] = 'Usuarios Online';
+$lang['realm_offline'] = 'Reino Offline';

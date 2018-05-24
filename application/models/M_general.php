@@ -9,21 +9,6 @@ class M_general extends CI_Model {
         $this->auth = $this->load->database('auth', TRUE);
     }
 
-    public function getGmSpecify($id)
-    {
-        return $this->auth->select('id')
-                ->where('id', $id)
-                ->get('account_access');
-    }
-
-    public function getGeneralCharactersSpecifyAcc($multiRealm, $id)
-    {
-        $this->multiRealm = $multiRealm;
-        return $this->multiRealm->select('*')
-                ->where('account', $id)
-                ->get('characters');
-    }
-
     public function getSpecifyQuestion($id)
     {
         return $this->db->select('question')
@@ -39,30 +24,6 @@ class M_general extends CI_Model {
                 ->get('fx_users');
     }
 
-    public function getAccountExist($id)
-    {
-        return $this->auth->select('*')
-                ->where('id', $id)
-                ->get('account');
-    }
-
-    public function getGeneralCharactersSpecifyGuid($id, $multirealm)
-    {
-        $this->multirealm = $multirealm;
-        return $this->multirealm->select('*')
-                ->where('guid', $id)
-                ->get('characters');
-    }
-
-    public function getNameCharacterSpecifyGuid($multirealm, $id)
-    {
-        $this->multirealm = $multirealm;
-        return $this->multirealm->select('name')
-                ->where('guid', $id)
-                ->get('characters')
-                ->row_array()['name'];
-    }
-
     public function getShopID($id)
     {
         return $this->db->select('*')
@@ -70,56 +31,9 @@ class M_general extends CI_Model {
                 ->get('fx_shop');
     }
 
-    public function getPermissions($id)
+    public function getXML($url)
     {
-        return $this->db->select('permission')
-                ->where('id', $id)
-                ->get('fx_ranks')
-                ->row('permission');
-    }
-
-    public function getCharNameAlreadyExist($name, $multirealm)
-    {
-        $this->multirealm = $multirealm;
-        return $this->multirealm->select('name')
-                ->where('name', $name)
-                ->get('characters');
-    }
-
-    public function getCharBanSpecifyGuid($id, $multirealm)
-    {
-        $this->multirealm = $multirealm;
-        return $this->multirealm->select('guid')
-                ->where('guid', $id)
-                ->where('active', '1')
-                ->get('character_banned');
-    }
-
-    public function getCharName($id, $multirealm)
-    {
-        $this->multirealm = $multirealm;
-        return $this->multirealm->select('name')
-                ->where('guid', $id)
-                ->get('characters')
-                ->row_array()['name'];
-    }
-
-    public function getCharLevel($id, $multirealm)
-    {
-        $this->multirealm = $multirealm;
-        return $this->multirealm->select('level')
-                ->where('guid', $id)
-                ->get('characters')
-                ->row('level');
-    }
-
-    public function getCharActive($id, $multirealm)
-    {
-        $this->multirealm = $multirealm;
-        return $this->multirealm->select('online')
-                ->where('guid', $id)
-                ->get('characters')
-                ->row('online');
+        return simplexml_load_file($url);
     }
 
     public function getCharDPTotal($id)
@@ -469,30 +383,6 @@ class M_general extends CI_Model {
         }
     }
 
-    public function getCharactersOnlineAlliance($multiRealm)
-    {
-        $this->multiRealm = $multiRealm;
-        $races = array('1','3','4','7','11','22','25');
-
-        return $this->multiRealm->select('guid')
-                ->where_in('race', $races)
-                ->where('online', '1')
-                ->get('characters')
-                ->num_rows();
-    }
-
-    public function getCharactersOnlineHorde($multiRealm)
-    {
-        $this->multiRealm = $multiRealm;
-        $races = array('2','5','6','8','10','9','26');
-
-        return $this->multiRealm->select('guid')
-                ->where_in('race', $races)
-                ->where('online', '1')
-                ->get('characters')
-                ->num_rows();
-    }
-
     public function getFaction($race)
     {
         switch ($race)
@@ -630,5 +520,49 @@ class M_general extends CI_Model {
         $this->pagination->initialize($config);
 
         return $config;
+    }
+
+    public function tinyEditor($plugin, $tool)
+    {
+        return "<script src=".base_url('core/tinymce/tinymce.min.js')."></script>
+                <script>tinymce.init({
+                    selector: '.tinyeditor',
+                    language: '".$this->config->item('tinymce_language')."',
+                    menubar: false,
+                    plugins: ['".$this->tinyEditorTools($plugin)."'],
+                    toolbar: '".$this->tinyEditorTools($tool)."'});
+                </script>";
+    }
+
+    public function tinyEditorTools($tool)
+    {
+        switch ($tool) {
+            case 'pluginsADM': return 'advlist autolink autosave link image lists charmap preview hr searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media table contextmenu directionality emoticons textcolor paste fullpage textcolor colorpicker textpattern'; break;
+            case 'pluginsUser': return 'advlist autolink autosave link lists charmap preview hr searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime contextmenu directionality emoticons textcolor paste fullpage textcolor colorpicker textpattern'; break;
+
+            case 'toolbarADM': return 'insert unlink emoticons | undo redo | formatselect fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | blockquote | removeformat'; break;
+            case 'toolbarUser': return 'emoticons | undo redo | fontselect fontsizeselect | bold italic | forecolor | bullist numlist outdent indent | link unlink | removeformat'; break;
+        }
+    }
+
+    public function realmGetHostname($id)
+    {
+        return $this->auth->select('address')
+                ->where('id', $id)
+                ->get('realmlist')
+                ->row_array()['address'];
+    }
+
+    public function getMenu()
+    {
+        return $this->db->select('*')
+                ->get('fx_menu');
+    }
+
+    public function getMenuSon($id)
+    {
+        return $this->db->select('*')
+                ->where('son', $id)
+                ->get('fx_menu');
     }
 }

@@ -34,9 +34,20 @@ $lang['nav_more'] = 'Más';
 $lang['nav_news'] = 'Noticias';
 $lang['nav_forums'] = 'Foros';
 $lang['nav_store'] = 'Tienda';
+$lang['nav_faq'] = 'Faq';
 $lang['nav_bugtracker'] = 'Bugtracker';
 $lang['nav_changelogs'] = 'Changelogs';
 $lang['nav_pvp_statistics'] = 'Estadísticas PvP';
 $lang['nav_arena_statistics'] = 'Estadísticas de Arena';
+
+$lang['nav_login'] = 'Iniciar sesión';
+$lang['nav_register'] = 'Registrar';
+$lang['nav_profile'] = 'Perfil';
+$lang['nav_ticket'] = 'Ticket';
+$lang['nav_messages'] = 'Mensajes';
+$lang['nav_home'] = 'Inicio';
+$lang['nav_donate'] = 'Donar';
+$lang['nav_armory'] = 'Armería';
+$lang['nav_vote'] = 'Votar';
 
 $lang['nav_account'] = 'Mi Cuenta';

@@ -1,81 +1,56 @@
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row bg-title">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title"><i class="fa fa-tachometer fa-fw"></i><?= $this->lang->line('admin_dashboard'); ?></h4>
+    <div id="content" data-uk-height-viewport="expand: true">
+        <div class="uk-container uk-container-expand">
+            <div class="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-2@l" data-uk-grid>
+                <div class="uk-text-center">
+                    <span class="uk-text-small"><span data-uk-icon="icon: users" class="uk-margin-small-right uk-text-primary"></span><?= $this->lang->line('account_count'); ?></span>
+                    <h1 class="uk-heading-primary uk-margin-remove  uk-text-success"><span class="counter" data-count="<?= $this->admin_model->getAccCreated(); ?>">0</span></h1>
+                    <div class="uk-text-small">
+                        <span class="uk-text-success" data-uk-icon="icon: info"></span> <?= $this->lang->line('total_account_registered'); ?>
+                    </div>
                 </div>
-            </div>
-            <!-- /.row -->
-            <!-- statistical data -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="white-box">
-                        <div class="row row-in">
-                            <div class="col-lg-3 col-sm-6 row-in-br">
-                            <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) { 
-                                $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
-                            ?>
-                                <ul class="col-in">
-                                    <li>
-                                        <span class="circle circle-md bg-info"><i class="fa fa-area-chart"></i></span>
-                                    </li>
-                                    <li class="col-last">
-                                        <h3 class="counter text-right m-t-15"><?= $this->admin_model->getCharOn($multiRealm); ?></h3>
-                                    </li>
-                                    <li class="col-middle">
-                                        <h4><?= $this->lang->line('players_count'); ?> - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4>
-                                    </li>
-                                </ul>
-                            <?php } ?>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 row-in-br b-r-none">
-                                <ul class="col-in">
-                                    <li>
-                                        <span class="circle circle-md bg-success"><i class="fa fa-globe"></i></span>
-                                    </li>
-                                    <li class="col-last">
-                                        <h3 class="counter text-right m-t-15"><?= $this->admin_model->getAccCreated(); ?></h3>
-                                    </li>
-                                    <li class="col-middle">
-                                        <h4><?= $this->lang->line('account_count'); ?></h4>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 row-in-br">
-                            <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) { 
-                                $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
-                            ?>
-                                <ul class="col-in">
-                                    <li>
-                                        <span class="circle circle-md bg-warning"><i class="fa fa-id-badge"></i></span>
-                                    </li>
-                                    <li class="col-last">
-                                        <h3 class="counter text-right m-t-15"><?= $this->admin_model->getGmCount($charsMultiRealm->realmID); ?></h3>
-                                    </li>
-                                    <li class="col-middle">
-                                        <h4><?= $this->lang->line('staff_count'); ?> - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4>
-                                    </li>
-                                </ul>
-                            <?php } ?>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 row-in-br b-0">
-                                <ul class="col-in">
-                                    <li>
-                                        <span class="circle circle-md bg-danger"><i class="fa fa-ban"></i></span>
-                                    </li>
-                                    <li class="col-last">
-                                        <h3 class="counter text-right m-t-15"><?= $this->admin_model->getBanCount(); ?></h3>
-                                    </li>
-                                    <li class="col-middle">
-                                        <h4><?= $this->lang->line('ban_count'); ?></h4>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="uk-text-center">
+                    <span class="uk-text-small"><span data-uk-icon="icon: ban" class="uk-margin-small-right uk-text-primary"></span><?= $this->lang->line('ban_count'); ?></span>
+                    <h1 class="uk-heading-primary uk-margin-remove uk-text-danger"><span class="counter" data-count="<?= $this->admin_model->getBanCount(); ?>">0</span></h1>
+                    <div class="uk-text-small">
+                        <span class="uk-text-danger" data-uk-icon="icon: info"></span> <?= $this->lang->line('total_account_banned'); ?>
                     </div>
                 </div>
             </div>
-            <!-- website tools -->
+            <hr>
+            <div class="uk-grid uk-grid-medium uk-grid-match" data-uk-grid>
+                <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) { 
+                    $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
+                ?>
+                    <div class="uk-width-1-1@l uk-width-1-1@xl">
+                        <div class="uk-card uk-card-default uk-card-small">
+                            <div class="uk-card-header uk-card-secondary">
+                                <div class="uk-grid uk-grid-small">
+                                    <div class="uk-width-auto"><h4 class="uk-margin-remove-bottom"><span data-uk-icon="icon: server"></span> Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4></div>
+                                    <div class="uk-width-expand uk-text-right">
+                                        <a href="<?= base_url('admin/managerealms'); ?>" class="uk-icon-link uk-margin-small-right" data-uk-icon="icon: cog"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-card-body">
+                                <div class="uk-column-1-2 uk-column-divider uk-text-center">
+                                    <p>
+                                        <span class="uk-text-small"><span data-uk-icon="icon: user" class="uk-margin-small-right uk-text-primary"></span><?= $this->lang->line('players_count'); ?></span>
+                                        <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><span class="counter" data-count="<?= $this->admin_model->getCharOn($multiRealm); ?>">0</span></h1>
+                                        <div class="uk-text-small">
+                                            <span class="uk-text-primary" data-uk-icon="icon: info"></span> <?= $this->lang->line('total_players_playing'); ?>
+                                        </div>
+                                    </p>
+                                    <p>
+                                        <span class="uk-text-small"><span data-uk-icon="icon: star" class="uk-margin-small-right uk-text-primary"></span><?= $this->lang->line('staff_count'); ?></span>
+                                        <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><span class="counter" data-count="<?= $this->admin_model->getGmCount($charsMultiRealm->realmID); ?>">0</span></h1>
+                                        <div class="uk-text-small">
+                                            <span class="uk-text-primary" data-uk-icon="icon: info"></span> <?= $this->lang->line('total_account_gm'); ?>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
-        <!-- /.container-fluid -->

@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
 */
-$autoload['packages'] = array();
+$autoload['packages'] = array(APPPATH . 'third_party/DevelBar');
 
 /*
 | -------------------------------------------------------------------
@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'form_validation');
+$autoload['libraries'] = array('database', 'session', 'form_validation', 'ci_chat', 'parser');
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'text','form');
+$autoload['helper'] = array('url', 'file', 'text','form', 'html');
 
 /*
 | -------------------------------------------------------------------
@@ -131,4 +131,4 @@ $autoload['language'] = array('general', 'menu', 'notification', 'admin');
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('m_general', 'm_soap', 'm_data', 'm_modules', 'm_permissions');
+$autoload['model'] = array('m_general', 'm_soap', 'm_data', 'm_modules', 'm_permissions', 'm_head', 'm_characters');

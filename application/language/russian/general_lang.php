@@ -63,9 +63,12 @@ $lang['button_reply'] = 'Reply';
 /*Footer Lang*/
 $lang['footer_language'] = 'English (EU)';
 $lang['footer_rights'] = 'ALL RIGHTS RESERVED.';
-$lang['footer_powered'] = ' Proudly powered by BlizzCMS';
 $lang['footer_privacy'] = 'Privacy';
 $lang['footer_terms'] = 'Terms';
+
+//armory
+$lang['playervsplayer'] = 'Player vs Player';
+$lang['notfound'] = 'Not found';
 
 /*Login Lang*/
 $lang['login_description'] = 'Enjoy all the options we have for you';
@@ -171,6 +174,9 @@ $lang['changelogs_list'] = 'Changelogs';
 /*Bugtracker Lang*/
 $lang['bugtracker_report_list'] = 'Report List';
 
+/*Message Lang*/
+$lang['message_header'] = 'Private Message';
+
 /*Forum Lang*/
 $lang['forum_welcome'] = 'Welcome to the official forums';
 $lang['forum_post_count'] = 'posts';
@@ -180,6 +186,7 @@ $lang['forum_comment_header'] = 'Join the Conversation';
 $lang['forum_not_authorized'] = 'Not Authorized';
 $lang['forum_code_conduct'] = 'Code of Conduct';
 $lang['forum_post_history'] = 'View Post History';
+$lang['forum_topic_list'] = 'Topic List';
 
 /*Race Lang*/
 $lang['race_human'] = 'Human';

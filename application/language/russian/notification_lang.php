@@ -47,6 +47,7 @@ $lang['oemail_not_match'] = 'The current email is not correct';
 $lang['email_used'] = 'Email in use';
 $lang['expansion_not_found'] = 'Expansion not found.';
 $lang['image_upload_error'] = 'Your image must be in .jpg format';
+$lang['changelog_not_found'] = 'The server does not have changelogs to inform at this time';
 
 $lang['char_newlevel'] = 'Receive a new level';
 $lang['char_oldlevel'] = 'Before it was';
@@ -67,3 +68,4 @@ $lang['shopping_cart'] = 'Shopping Cart';
 $lang['store_see'] = 'See the Store';
 $lang['no_players'] = 'No players Online';
 $lang['users_on'] = 'Users Online';
+$lang['realm_offline'] = 'Realm Offline';

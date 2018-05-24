@@ -1,80 +1,40 @@
-<!DOCTYPE html>
-<html>
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<head>
-    <title><?= $this->config->item('ProjectName'); ?></title>
-    <script src="<?= base_url(); ?>assets/js/9013706011.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <div class="uk-container">
+        <div class="uk-space-xlarge"></div>
+        <div class="uk-grid uk-grid-large" data-uk-grid>
+            <div class="uk-width-1-5@l"></div>
+            <div class="uk-width-3-5@l">
+                <h2 class="uk-text-primary uk-text-center"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></h2>
+                <p class="uk-text-center uk-text-white"><?= $this->lang->line('login_description'); ?></p>
 
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/blizzcms-general.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/blizzcms-app.css">
-    <link rel="stylesheet" type="text/css" media="all" href="<?= base_url('assets/css/blizzcms-template.css') ?>"/>
-    <link rel="stylesheet" type="text/css" media="all" href="<?= base_url('theme/'); ?><?= $this->config->item('theme_name'); ?>/css/<?= $this->config->item('theme_name'); ?>.css"/>
-    <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>assets/images/favicon.ico">
-    <!-- UiKit Start -->
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="<?= base_url(); ?>core/uikit/css/uikit.min.css" />
+                <?php if(isset($_GET['password'])) {
+                    echo '<div class="uk-alert-warning" uk-alert><a class="uk-alert-close" uk-close></a><p class="uk-text-center"><i class="fas fa-exclamation-circle"></i> '.$this->lang->line('password_error').'</p></div>';
+                } ?>
 
-    <!-- UIkit JS -->
-    <script src="<?= base_url(); ?>core/uikit/js/uikit.min.js"></script>
-    <script src="<?= base_url(); ?>core/uikit/js/uikit-icons.min.js"></script>
-    <!-- UiKit end -->
-    <!-- font-awesome Start -->
-    <link rel="stylesheet" href="<?= base_url(); ?>core/font-awesome/css/font-awesome.min.css">
-    <!-- font-awesome End -->
+                <?php if(isset($_GET['account'])) {
+                    echo '<div class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p class="uk-text-center"><i class="fas fa-exclamation-circle"></i> '.$this->lang->line('account_error').'</p></div>';
+                } ?>
 
-    <!-- custom footer -->
-    <script src="<?= base_url(); ?>core/js/jquery-3.3.1.min.js"></script>
-    <!-- custom footer -->
-</head>
-
-<body class="en-us <?= $this->config->item('theme_name'); ?> glass-header preload" lang="en" data-locale="en-gb" data-device="desktop" data-name="index">
-    <!-- header -->
-    <?php $this->load->view('general/icons'); ?>
-    </div>
-    </div>
-    </div>
-    <!-- submenu -->
-    <div class="Page-container">
-        <div class="Page-content en-US">
-            <div class="Pane Pane--adaptiveHg Pane--adaptiveSpaceLarge Home-storiesPane">
-                <div class="Pane-content">
-                    <div class="Grid row Home-storiesEventsGrid">
-                        <div class="GridItem col-md-3"></div>
-                        <div class="GridItem col-md-6">
-                            <h2 class="uk-text-primary uk-text-center"><i class="fa fa-sign-in" aria-hidden="true"></i> <?= $this->lang->line('button_login'); ?></h2>
-                            <p class="uk-text-center" style="color: #fff;"><?= $this->lang->line('login_description'); ?></p>
-
-                            <?php if(isset($_GET['password'])) {
-                                echo '<div class="uk-alert-warning" uk-alert><a class="uk-alert-close" uk-close></a><p class="uk-text-center"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> '.$this->lang->line('password_error').'</p></div>';
-                            } ?>
-
-                            <?php if(isset($_GET['account'])) {
-                                echo '<div class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p class="uk-text-center"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> '.$this->lang->line('account_error').'</p></div>';
-                            } ?>
-
-                            <?= form_open(base_url('user/verify2')); ?>
-                                <div uk-grid uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-inline; delay: 500; repeat: true">
-                                    <div class="uk-margin">
-                                        <div class="uk-inline">
-                                            <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                            <?= form_input($email_form); ?>
-                                        </div>
-                                        <div class="uk-inline">
-                                            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                                            <?= form_input($password_form); ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?= form_submit($submit_form); ?>
-                            <?= form_close(); ?>
-                            <br>
-                            <a href="<?= base_url('register'); ?>">
-                                    <button class="uk-button uk-button-secondary uk-width-1-1" name="<?= $this->lang->line('no_account'); ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> <?= $this->lang->line('button_account_create'); ?></button>
-                            </a>
+                <?= form_open(base_url('user/verify2')); ?>
+                    <div class="uk-margin" uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-inline; delay: 300; repeat: true">
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                <?= form_input($email_form); ?>
+                            </div>
                         </div>
-                        <div class="GridItem col-md-3"></div>
                     </div>
-                </div>
+                    <div class="uk-margin" uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-inline; delay: 300; repeat: true">
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                <?= form_input($password_form); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?= form_submit($submit_form); ?>
+                <?= form_close(); ?>
+                <hr>
+                <a href="<?= base_url('register'); ?>" class="uk-button uk-button-secondary uk-width-1-1" name="<?= $this->lang->line('no_account'); ?>"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_account_create'); ?></a>
             </div>
+            <div class="uk-width-1-5@l"></div>
         </div>

@@ -1,57 +1,55 @@
-<?php if (isset($_POST['button_delChan'])) {
-    $this->admin_model->delPage($_POST['button_delChan']);
+<?php if (isset($_POST['button_delPage'])) {
+    $this->admin_model->delPage($_POST['button_delPage']);
 } ?>
 
-<?php if(isset($_POST['button_createNew'])) {
-    $desc = $_POST['page_description'];
-    $title  = $_POST['page_title'];
-
-    $this->admin_model->insertPage($title, $desc);
-} ?>
-
-    <script src="<?= base_url(); ?>core/ckeditor_admin/ckeditor.js"></script>
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row bg-title">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title"><i class="fa fa-mouse-pointer fa-fw"></i><?= $this->lang->line('admin_website'); ?> - <?= $this->lang->line('panel_admin_pages_list'); ?></h4>
-                </div>
-                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                    <a href="#" data-toggle="modal" data-target="#createpag-modal">
-                        <button class="waves-effect waves-light btn btn-success pull-right m-l-20"><i class="fa fa-pencil fa-fw"></i><?= $this->lang->line('button_create'); ?></button>
-                    </a>
-                </div>
-            </div>
-            <!-- /row -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <?php if (isset($_GET['newpage'])) { ?>
-                        <div class="alert alert-info">
-                            <?= $this->lang->line('panel_admin_new_page_url'); ?>: <b><a href="<?= base_url('pages/').$_GET['newpage']; ?>"><?= base_url('pages/').$_GET['newpage']; ?></a></b>
+    <script src="<?= base_url(); ?>core/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({
+        selector: '.tinyeditor',
+        language: '<?= $this->config->item('tinymce_language'); ?>',
+        menubar: false,
+        plugins: ['advlist autolink autosave link image lists charmap preview hr searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media table contextmenu directionality emoticons textcolor paste fullpage textcolor colorpicker textpattern'],
+        toolbar: 'insert unlink emoticons | undo redo | formatselect fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | blockquote | removeformat'});
+    </script>
+    <div id="content" data-uk-height-viewport="expand: true">
+        <div class="uk-container uk-container-expand">
+            <div class="uk-grid uk-grid-medium uk-grid-match" data-uk-grid>
+                <?php if (isset($_GET['newpage'])) { ?>
+                    <div class="uk-width-1-1@l uk-width-1-1@xl">
+                        <div class="uk-alert-primary" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p><?= $this->lang->line('panel_admin_new_page_url'); ?>: <b><a href="<?= base_url('pages/').$_GET['newpage']; ?>"><?= base_url('pages/').$_GET['newpage']; ?></a></b></p>
                         </div>
-                    <?php } ?>
-                    <div class="white-box">
-                        <div class="table-responsive">
-                            <table id="myTable" class="table color-table info-table table-striped">
+                    </div>
+                <?php } ?>
+                <div class="uk-width-1-1@l uk-width-1-1@xl">
+                    <div class="uk-card uk-card-default uk-card-small">
+                        <div class="uk-card-header uk-card-secondary">
+                            <div class="uk-grid uk-grid-small">
+                                <div class="uk-width-auto"><h4 class="uk-margin-remove-bottom"><span data-uk-icon="icon: list"></span> <?= $this->lang->line('panel_admin_pages_list'); ?></h4></div>
+                                <div class="uk-width-expand uk-text-right">
+                                    <a href="" class="uk-icon-link uk-margin-small-right" data-uk-icon="icon: pencil" uk-toggle="target: #newPage"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-card-body">
+                            <table class="uk-table uk-table-justify uk-table-divider">
                                 <thead>
                                     <tr>
                                         <th><?= $this->lang->line('form_title'); ?></th>
-                                        <th><?= $this->lang->line('column_date'); ?></th>
-                                        <th class="text-center"><?= $this->lang->line('column_action'); ?></th>
+                                        <th class="uk-text-center"><?= $this->lang->line('column_date'); ?></th>
+                                        <th class="uk-text-center"><?= $this->lang->line('column_action'); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach($this->admin_model->getPages() as $pages) { ?>
                                         <tr>
                                             <td><?= $pages->title ?></td>
-                                            <td><?= $pages->date ?></td>
-                                            <td class="text-center">
-                                                <a href="">
-                                                    <button class="btn btn-warning btn-circle btn-lg m-r-5"><i class="fa fa-pencil-square-o fa-fw" type="submit"></i></button>
-                                                </a>
+                                            <td class="uk-text-center"><?= $pages->date ?></td>
+                                            <td class="uk-text-center" uk-margin>
+                                                <a href="<?= base_url(); ?>admin/editpages/<?= $pages->id ?>" class="uk-button uk-button-primary"><i class="far fa-edit"></i></a>
+                                                <span class="" style="display:inline-block; width: 5px;"></span>
                                                 <form action="" method="post" accept-charset="utf-8" style="display: inline;">
-                                                    <button class="btn btn-danger btn-circle btn-lg m-r-5" name="button_delChan" value="<?= $pages->id ?>" type="submit"><i class="fa fa-trash fa-fw"></i></button>
+                                                    <button class="uk-button uk-button-danger" name="button_delPage" value="<?= $pages->id ?>" type="submit"><i class="fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -62,37 +60,4 @@
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
-
-        <div id="createpag-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title"><i class="fa fa-list-alt fa-fw"></i> <?= $this->lang->line('form_create_pages'); ?></h4>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label class="control-label"><?= $this->lang->line('form_title'); ?></label>
-                                <input name="page_title" type="text" class="form-control" placeholder="<?= $this->lang->line('expr_title'); ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><?= $this->lang->line('form_description'); ?></label>
-                                <textarea required="" name="page_description" id="adminPanelCK" rows="10" cols="80"></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?= $this->lang->line('button_close'); ?></button>
-                                <button type="submit" name="button_createNew" class="btn btn-success waves-effect waves-light"><i class="fa fa-pencil fa-fw"></i><?= $this->lang->line('button_create'); ?></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            CKEDITOR.replace('adminPanelCK');
-        </script>
