@@ -419,6 +419,21 @@ class Admin extends MX_Controller {
         $this->load->view('shop/modal');
     }
 
+    public function edititems($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getItemSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data['idlink'] = $id;
+
+        $this->load->view('general/header');
+        $this->load->view('shop/edititems', $data);
+        $this->load->view('general/footer');
+    }
+
     public function managetickets()
     {
         $this->load->view('general/header');
