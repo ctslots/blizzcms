@@ -212,6 +212,97 @@ class Admin_model extends CI_Model {
                 ->get('fx_shop');
     }
 
+    public function getItemSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('fx_shop')
+                ->num_rows();
+    }
+
+    public function getItemSpecifyName($id)
+    {
+        return $this->db->select('name')
+                ->where('id', $id)
+                ->get('fx_shop')
+                ->row('name');
+    }
+
+    public function getItemSpecifyDpPrice($id)
+    {
+        return $this->db->select('price_dp')
+                ->where('id', $id)
+                ->get('fx_shop')
+                ->row_array()['price_dp'];
+    }
+
+    public function getItemSpecifyVpPrice($id)
+    {
+        return $this->db->select('price_vp')
+                ->where('id', $id)
+                ->get('fx_shop')
+                ->row_array()['price_vp'];
+    }
+
+    public function getItemSpecifyId($id)
+    {
+        return $this->db->select('itemid')
+                ->where('id', $id)
+                ->get('fx_shop')
+                ->row_array()['itemid'];
+    }
+
+    public function getItemSpecifyIcon($id)
+    {
+        return $this->db->select('iconname')
+                ->where('id', $id)
+                ->get('fx_shop')
+                ->row_array()['iconname'];
+    }
+
+    public function getItemSpecifyImg($id)
+    {
+        return $this->db->select('image')
+                ->where('id', $id)
+                ->get('fx_shop')
+                ->row_array()['image'];
+    }
+
+    public function getItemSpecifyGroup($id)
+    {
+        return $this->db->select('groups')
+                ->where('id', $id)
+                ->get('fx_shop')
+                ->row_array()['groups'];
+    }
+
+    public function getItemSpecifyType($id)
+    {
+        return $this->db->select('type')
+                ->where('id', $id)
+                ->get('fx_shop')
+                ->row_array()['type'];
+    }
+
+    public function updateSpecifyItem($id, $name, $group, $type, $pricedp, $pricevp, $itemid, $icon, $image)
+    {
+        $update = array(
+            'name' => $name,
+            'groups' => $group,
+            'type' => $type,
+            'price_dp' => $pricedp,
+            'price_vp' => $pricevp,
+            'itemid' => $itemid,
+            'iconname' => $icon,
+            'image' => $image
+        );
+
+        $this->db->where('id', $id)
+                ->update('fx_shop', $update);
+
+        redirect(base_url('admin/manageitems'),'refresh');
+    }
+
     public function getChangelogs()
     {
         return $this->db->select('*')
