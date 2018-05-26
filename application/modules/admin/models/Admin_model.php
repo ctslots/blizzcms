@@ -357,13 +357,15 @@ class Admin_model extends CI_Model {
         return ($qq+1);
     }
 
-    public function deleteNewAjax($id)
+    public function delSpecifyNew($id)
     {
         $this->db->where('id', $id)
                 ->delete('fx_news');
 
         $this->db->where('id_new', $id)
                 ->delete('fx_news_top');
+
+        redirect(base_url('admin/managenews'),'refresh');
     }
 
     public function getNewsSpecifyName($id)
@@ -595,13 +597,6 @@ class Admin_model extends CI_Model {
                 ->update('fx_donate');
     }
 
-     public function updateNewAjax($id, $name, $column)
-    {
-        $this->db->set($column, $name)
-                ->where('id', $id)
-                ->update('fx_news');
-    }
-
     public function delSpecifyDonation($id)
     {
         $this->db->where('id', $id)
@@ -624,9 +619,9 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/donate'),'refresh');
     }
 
-    public function getAdminNewsListAjax()
+    public function getAdminNewsList()
     {
-        return $this->db->select('*')
+        return $this->db->select('id, title, date')
             ->order_by('id', 'ASC')
             ->get('fx_news');
     }
@@ -674,9 +669,40 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/managenews'),'refresh');
     }
 
+    public function updateSpecifyNews($id, $title, $image, $description, $type)
+    {
+        $unlink = $this->getFileNameImage($id);
+        unlink('./assets/images/news/'.$unlink);
+
+        $date = $this->m_data->getTimestamp();
+
+        $update1 = array(
+            'title' => $title,
+            'image' => $image,
+            'description' => $description,
+            'date' => $date
+        );
+
+        $this->db->where('id', $id)
+                ->update('fx_news', $update1);
+
+        $this->db->where('id_new', $id)
+                ->delete('fx_news_top');
+
+        if ($type == 2)
+        {
+            $data['id_new'] = $id;
+
+            $this->db->insert('fx_news_top', $data);
+        }
+
+        redirect(base_url('admin/managenews'),'refresh');
+    }
+
     public function getNewIDperDate($date)
     {
-        return $this->db->select('id')            ->where('date', $date)
+        return $this->db->select('id')
+            ->where('date', $date)
             ->get('fx_news')
             ->row('id');
     }
