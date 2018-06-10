@@ -1,9 +1,22 @@
 # BlizzCMS
 
-Welcome to a new CMS for World of Warcraft, this website is compatible with TrinityCore and all the versions of the game (from vanilla to legion)
+BlizzCMS is a Open Source CMS developed by ProjectCMS for World of Warcraft based on CodeIgniter Framework and clean PHP code. The main functionalities of this CMS are to facilitate the use of a website, store and forum in a single application for your players and administrators.
 
-## [DEMO](http://blizzcms.projectcms.net/)
+## Changelogs & New Features
 
-## [FORUMS](http://projectcms.net/)
+You can find a list of all changes on our [Website](http://projectcms.net/news/)
 
-## [DISCORD](https://discord.gg/WGGGVgX)
+## Requirements
+
+PHP version 5.6 or newer is recommended to execute the CMS without any inconvenience.
+
+## Useful Links
+
+- [Website](http://projectcms.net/)
+- [Forum](http://projectcms.net/forum/)
+- [Discord](https://discord.gg/WGGGVgX)
+- [CMS Demo](http://blizzcms.projectcms.net/)
+
+## License
+
+BlizzCMS is available freely under the MIT [License](/LICENSE).
