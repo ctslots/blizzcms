@@ -59,7 +59,7 @@ class Bugtracker extends MX_Controller {
                     'name' => 'button_createIssue',
                     'value' => $this->lang->line('button_create'),
                     'class' => 'uk-button uk-button-primary'),
-                'fxtitle' => $this->lang->line('nav_changelogs'),
+                'fxtitle' => $this->lang->line('nav_bugtracker'),
                 'tiny' => $tiny,
                 'fx_adds' => '<div class="uk-container">'
             );
