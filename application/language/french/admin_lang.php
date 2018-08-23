@@ -92,6 +92,8 @@ $lang['panel_admin_news_list'] = 'Nouvelle liste';
 $lang['panel_admin_edit_news'] = 'Editer les nouveautés';
 $lang['panel_admin_edit_pages'] = 'Editer les pages';
 $lang['panel_admin_edit_changelogs'] = 'Editez Changelogs';
+$lang['panel_admin_edit_item'] = 'Edit Item';
+$lang['panel_admin_edit_group'] = 'Edit Group';
 
 /*Column Lang*/
 $lang['column_race'] = 'Race';
