@@ -30,7 +30,7 @@
                                                 <input type="text" class="uk-input" value="<?= $list->name; ?>" disabled>
                                             </td>
                                             <td class="uk-text-center" uk-margin>
-                                                <a href="#" class="uk-button uk-button-primary"><i class="far fa-edit"></i></a>
+                                                <a href="<?= base_url('admin/editgroups/')?><?= $list->id ?>" class="uk-button uk-button-primary"><i class="far fa-edit"></i></a>
                                                 <span class="" style="display:inline-block; width: 5px;"></span>
                                                 <form action="" method="post" accept-charset="utf-8" style="display: inline;">
                                                     <button class="uk-button uk-button-danger" name="button_deleteGroup" value="<?= $list->id ?>" type="submit"><i class="fas fa-trash-alt"></i></button>
