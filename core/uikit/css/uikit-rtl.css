@@ -1,4 +1,4 @@
-/*! UIkit 3.0.0-rc.2 | http://www.getuikit.com | (c) 2014 - 2017 YOOtheme | MIT License */
+/*! UIkit 3.0.0-rc.5 | http://www.getuikit.com | (c) 2014 - 2017 YOOtheme | MIT License */
 /* ========================================================================
    Component: Base
  ========================================================================== */
@@ -878,12 +878,6 @@ a.uk-link-reset:hover,
   text-align: right;
   color: #999;
 }
-/* Row
- ========================================================================== */
-.uk-table > tr.uk-active,
-.uk-table tbody tr.uk-active {
-  background: #ffd;
-}
 /* Alignment modifier
  ========================================================================== */
 .uk-table-middle,
@@ -914,6 +908,12 @@ a.uk-link-reset:hover,
  */
 .uk-table-hover > tr:hover,
 .uk-table-hover tbody tr:hover {
+  background: #ffd;
+}
+/* Active state
+ ========================================================================== */
+.uk-table > tr.uk-active,
+.uk-table tbody tr.uk-active {
   background: #ffd;
 }
 /* Size modifier
@@ -2777,7 +2777,7 @@ select.uk-form-width-xsmall {
 }
 /* Hover modifier
  ========================================================================== */
-.uk-card-hover:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary):not(.uk-card-donate):not(.uk-card-theme):hover {
+.uk-card-hover:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary):not(.uk-card-donate):not(.uk-card-vote):hover {
   background: #fff;
   box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
 }
@@ -2857,24 +2857,24 @@ select.uk-form-width-xsmall {
   border-top: 1px solid #e5e5e5;
 }
 /*
- * Theme
+ * Vote
  */
-.uk-card-theme {
+.uk-card-vote {
   background: #fff;
   color: #666;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
-.uk-card-theme .uk-card-title {
+.uk-card-vote .uk-card-title {
   color: #333;
 }
-.uk-card-theme.uk-card-hover:hover {
+.uk-card-vote.uk-card-hover:hover {
   background-color: #fff;
   box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
 }
-.uk-card-theme .uk-card-header {
+.uk-card-vote .uk-card-header {
   border-bottom: 1px solid #e5e5e5;
 }
-.uk-card-theme .uk-card-footer {
+.uk-card-vote .uk-card-footer {
   border-top: 1px solid #e5e5e5;
 }
 /* Size modifier
@@ -7440,8 +7440,13 @@ iframe.uk-cover {
 }
 /* Attachment
  ========================================================================== */
+/*
+ * 1. Fix bug introduced in Chrome 67: the background image is not visible if any element on the page uses `translate3d`
+ */
 .uk-background-fixed {
   background-attachment: fixed;
+  /* 1 */
+  backface-visibility: hidden;
 }
 /*
  * Exclude touch devices because `fixed` doesn't work on iOS and Android

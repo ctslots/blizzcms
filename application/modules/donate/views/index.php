@@ -13,7 +13,7 @@
                     <?php foreach($this->donate_model->getDonations()->result() as $donateList) { ?>
                         <div class="uk-width-1-4@s uk-text-center uk-transition-toggle" tabindex="0">
                             <div class="uk-card uk-card-body uk-card-donate uk-card-donate uk-transition-scale-up uk-transition-opaque">
-                                <i class="fab fa-paypal"></i>
+                                <i class="fab fa-paypal fa-3x"></i>
                                 <p>
                                     <span class="uk-h2 uk-text-white"><span class="uk-text-bold"><?= $donateList->name ?></span><br>
                                     <sup><?= $this->config->item('currencySymbol'); ?></sup><?= $donateList->price ?></span>

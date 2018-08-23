@@ -1,6 +1,3 @@
-<!-- Page loader -->
-<link href="<?= base_url(); ?>core/pageloader/pace-theme-minimal.tmpl.css" rel="stylesheet" />
-<script src="<?= base_url(); ?>core/pageloader/pace.min.js"></script>
 <div class="uk-position-top uk-width-1-1">
     <div class="uk-navbar-container uk-navbar-transparent" style="position: relative; z-index: 10;">
         <div class="uk-container">

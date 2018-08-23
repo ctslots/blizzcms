@@ -203,6 +203,10 @@ $lang['race_worgen'] = 'Worgen';
 $lang['race_panda_neutral'] = 'Pandaren Neutral';
 $lang['race_panda_alli'] = 'Pandaren Alliance';
 $lang['race_panda_horde'] = 'Pandaren Horde';
+$lang['race_nightborde'] = 'Nightborne';
+$lang['race_void_elf'] = 'Void Elf';
+$lang['race_lightforged_draenei'] = 'Lightforged Draenei';
+$lang['race_highmountain_tauren'] = 'Highmountain Tauren';
 
 /*Class Lang*/
 $lang['class_warrior'] = 'Warrior';

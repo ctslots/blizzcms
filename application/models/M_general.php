@@ -288,6 +288,18 @@ class M_general extends CI_Model {
             case 26:
                 return $this->lang->line('race_panda_horde');
                 break;
+            case 27:
+                return $this->lang->line('race_nightborne');
+                break;
+            case 28:
+                return $this->lang->line('race_highmountain_tauren');
+                break;
+            case 29:
+                return $this->lang->line('race_void_elf');
+                break;
+            case 30:
+                return $this->lang->line('race_lightforged_draenei');
+                break;
         }
     }
 
@@ -336,6 +348,19 @@ class M_general extends CI_Model {
                 break;
             case 26:
                 return 'pandaren_female.jpg';
+                break;
+            // Legion Support Race Allied (BFA)
+            case 27:
+                return 'nightborne.jpg';
+                break;
+            case 28:
+                return 'highmountain.jpg';
+                break;
+            case 29:
+                return 'voidelf.jpg';
+                break;
+            case 30:
+                return 'lightforged.jpg';
                 break;
         }
     }
@@ -408,6 +433,12 @@ class M_general extends CI_Model {
             case '25':
                 return 'Alliance';
                 break;
+            case '29':
+                return 'Alliance';
+                break;
+            case '30':
+                return 'Alliance';
+                break;
             case '2':
                 return 'Horde';
                 break;
@@ -429,12 +460,18 @@ class M_general extends CI_Model {
             case '26':
                 return 'Horde';
                 break;
+            case '27':
+                return 'Horde';
+                break;
+            case '28':
+                return 'Horde';
+                break;
         }
     }
 
     public function getNameClass($class)
     {
-        switch ($class) 
+        switch ($class)
         {
             case 1:
                 return $this->lang->line('class_warrior');
@@ -477,7 +514,7 @@ class M_general extends CI_Model {
 
     public function getGender($gender)
     {
-        switch ($gender) 
+        switch ($gender)
         {
             case 0:
                 return $this->lang->line('gender_male');

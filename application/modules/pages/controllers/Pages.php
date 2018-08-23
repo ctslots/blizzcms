@@ -25,7 +25,7 @@ class Pages extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data['idlink'] = $id;
-        $data['fxtitle'] = '';
+        $data['fxtitle'] = $this->pages_model->getName($id);
         
         $this->load->view('header', $data);
         $this->load->view('page', $data);

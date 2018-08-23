@@ -7,6 +7,7 @@
 /*!-----------------------------------------------------------------
                             UI MOD
 -------------------------------------------------------------------*/
+html {overflow-y: scroll;background: transparent;}
 @font-face{font-family:'Lobster';font-style:normal;font-weight:400;src:local("Lobster Regular"),local("Lobster-Regular"),url("../../core/fonts/Lobster-Regular.ttf") format("truetype")}
 .uk-text-center .uk-button-secondary{border-radius: 40px;}
 .uk-form-controls .uk-button-secondary{border-radius: 40px;}
