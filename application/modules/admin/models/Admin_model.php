@@ -41,7 +41,7 @@ class Admin_model extends CI_Model {
         );
 
         $this->db->insert('fx_shop', $data);
-        
+
         redirect(base_url('admin/manageitems'),'refresh');
     }
 
@@ -276,6 +276,16 @@ class Admin_model extends CI_Model {
                 ->row_array()['groups'];
     }
 
+
+    public function getGroupName($id)
+    {
+        return $this->db->select('name')
+                    ->where('id', $id)
+                    ->get('fx_shop_groups')
+                    ->row_array()['name'];
+
+    }
+
     public function getItemSpecifyType($id)
     {
         return $this->db->select('type')
@@ -301,6 +311,18 @@ class Admin_model extends CI_Model {
                 ->update('fx_shop', $update);
 
         redirect(base_url('admin/manageitems'),'refresh');
+    }
+
+    public function updateSpecifyGroup($idlink, $group)
+    {
+        $update = array(
+            'name' => $group,
+        );
+
+        $this->db->where('id', $idlink)
+                ->update('fx_shop_groups', $update);
+
+        redirect(base_url('admin/managegroups'),'refresh');
     }
 
     public function getChangelogs()
@@ -989,7 +1011,7 @@ class Admin_model extends CI_Model {
     public function getCharOn($multirealm)
     {
         $this->multirealm = $multirealm;
-        
+
         return $this->multirealm->select('*')
             ->where('online', '1')
             ->get('characters')
@@ -1420,7 +1442,7 @@ class Admin_model extends CI_Model {
     {
         $this->db->where('id', $id)
                 ->delete('fx_realms');
-                
+
         redirect(base_url('admin/settings'),'refresh');
     }
 
