@@ -109,7 +109,7 @@ class Bugtracker_model extends CI_Model {
                             <span class="uk-label uk-label-warning">'.$this->bugtracker_model->getPriority($row->priority).'</span>
                         </a>
                     </td>
-                <tr>
+                </tr>
             ';
         }
 
@@ -134,15 +134,22 @@ class Bugtracker_model extends CI_Model {
 
         $this->db->insert('fx_bugtracker', $data);
 
-        redirect(base_url('bugtracker'),'refresh');
+        $getIDPost = $this->getIDPostPerDate($date);
+
+        redirect(base_url('bugtracker/post/').$getIDPost,'refresh');
+    }
+
+    public function getIDPostPerDate($date)
+    {
+        return $this->db->select('id')
+                ->where('date', $date)
+                ->get('fx_bugtracker')
+                ->row('id');
     }
 
     public function getTypes()
     {
-        return $this->db->select('id, title')
-                ->order_by('id', 'ASC')
-                ->get('fx_bugtracker_type')
-                ->result();
+        return $this->db->select('*')->get('fx_bugtracker_type');
     }
 
     public function getType($id)

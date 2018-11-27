@@ -32,37 +32,10 @@ class Bugtracker extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
 
         $data = array(
-                "classDrop" => array(
-                    'class' => 'uk-select',
-                    'id' => 'form-stacked-select'),
-
-                "title_from" => array(
-                    'id' => 'bug_title',
-                    'name' => 'bug_title',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('expr_title'),
-                    'type' => 'text'),
-
-                "url_form" => array(
-                    'id' => 'bug_url',
-                    'name' => 'bug_url',
-                    'class' => 'uk-input',
-                    'placeholder' => 'URL',
-                    'type' => 'url'),
-
-                "close_form" => array(
-                    'class' => 'uk-button uk-button-default uk-modal-close'),
-
-                "submit_form" => array(
-                    'id' => 'button_createIssue',
-                    'name' => 'button_createIssue',
-                    'value' => $this->lang->line('button_create'),
-                    'class' => 'uk-button uk-button-primary'),
-                'fxtitle' => $this->lang->line('nav_bugtracker'),
-                'tiny' => $tiny,
-                'fx_adds' => '<div class="uk-container">'
-            );
+            'fxtitle' => $this->lang->line('nav_bugtracker'),
+            'tiny' => $tiny,
+            'fx_adds' => '<div class="uk-container">'
+        );
 
         $this->load->view('header', $data);
         $this->load->view('index', $data);
@@ -105,12 +78,11 @@ class Bugtracker extends MX_Controller {
 
     public function create()
     {
-        $title = $this->input->post('bug_title');
-        $type = $this->input->post('type_Bug');
-        $desc = $this->input->post('bug_description');
-        $url = $this->input->post('bug_url');
+        $title = $_POST['bug_title'];
+        $type = $_POST['bug_type'];
+        $desc = $_POST['bug_description'];
+        $url = $_POST['bug_url'];
 
         $this->bugtracker_model->insertIssue($title, $type, $desc, $url);
     }
-
 }
