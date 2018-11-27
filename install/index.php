@@ -130,7 +130,7 @@
     <script src="../core/uikit/js/uikit-icons.min.js"></script>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../core/fontawesome/css/fontawesome-all.css">
+    <script defer src="../core/fontawesome/js/all.js"></script>
 
     <!-- JQuery -->
     <script src="../core/js/jquery-3.3.1.min.js"></script>
