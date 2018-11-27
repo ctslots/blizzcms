@@ -172,6 +172,7 @@ $lang['changelogs_list'] = 'Changelogs';
 
 /*Bugtracker Lang*/
 $lang['bugtracker_report_list'] = 'Lista de informes';
+$lang['bugtracker_report_notfound'] = 'Reportes no encontrados';
 
 /*Chat Lang*/
 $lang['chat_header'] = 'Mensaje Privado';
