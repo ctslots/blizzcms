@@ -300,6 +300,12 @@ class M_general extends CI_Model {
             case 30:
                 return $this->lang->line('race_lightforged_draenei');
                 break;
+            case 34:
+                return $this->lang->line('race_dark_iron_dwarf');
+                break;
+            case 36:
+                return $this->lang->line('race_maghar_orc');
+                break;
         }
     }
 
@@ -351,16 +357,22 @@ class M_general extends CI_Model {
                 break;
             // Legion Support Race Allied (BFA)
             case 27:
-                return 'nightborne.jpg';
+                return 'nightborne.png';
                 break;
             case 28:
-                return 'highmountain.jpg';
+                return 'highmountain.png';
                 break;
             case 29:
-                return 'voidelf.jpg';
+                return 'voidelf.png';
                 break;
             case 30:
-                return 'lightforged.jpg';
+                return 'lightforged.png';
+                break;
+            case 34:
+                return 'irondwarf.png';
+                break;
+            case 36:
+                return 'magharorc.png';
                 break;
         }
     }
@@ -439,6 +451,9 @@ class M_general extends CI_Model {
             case '30':
                 return 'Alliance';
                 break;
+            case '34':
+                return 'Alliance';
+                break;
             case '2':
                 return 'Horde';
                 break;
@@ -464,6 +479,9 @@ class M_general extends CI_Model {
                 return 'Horde';
                 break;
             case '28':
+                return 'Horde';
+                break;
+            case '36':
                 return 'Horde';
                 break;
         }

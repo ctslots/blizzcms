@@ -208,6 +208,8 @@ $lang['race_nightborde'] = 'Nocheterna';
 $lang['race_void_elf'] = 'Elfo del Vacío';
 $lang['race_lightforged_draenei'] = 'Draenei forjado por la Luz';
 $lang['race_highmountain_tauren'] = 'Tauren monte alto';
+$lang['race_dark_iron_dwarf'] = 'Enano Hierro Negro';
+$lang['race_maghar_orc'] = 'Orco Maghar';
 
 /*Class Lang*/
 $lang['class_warrior'] = 'Guerrero';

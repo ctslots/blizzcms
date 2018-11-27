@@ -208,6 +208,8 @@ $lang['race_nightborde'] = 'Nightborne';
 $lang['race_void_elf'] = 'Void Elf';
 $lang['race_lightforged_draenei'] = 'Lightforged Draenei';
 $lang['race_highmountain_tauren'] = 'Highmountain Tauren';
+$lang['race_dark_iron_dwarf'] = 'Dark Iron Dwarf';
+$lang['race_maghar_orc'] = 'Maghar Orc';
 
 /*Class Lang*/
 $lang['class_warrior'] = 'Warrior';
