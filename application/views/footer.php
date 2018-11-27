@@ -5,7 +5,7 @@
 					    <div></div>
 					    <div>
 					        <p class="uk-text-white">Copyright &copy; <?= date('Y'); ?> <span class="uk-text-bold"><?= $this->config->item('ProjectName'); ?></span>. <?= $this->lang->line('footer_rights'); ?></p>
-		                    <span><a target="_blank" href="https://gitlab.com/BlizzCMS/BlizzCMS" class="uk-button uk-button-link uk-text-white"><i class="fab fa-gitlab fa-2x" aria-hidden="true"></i></a></span>
+		                    <span><a target="_blank" href="https://gitlab.com/ProjectCMS/BlizzCMS" class="uk-button uk-button-link uk-text-white"><i class="fab fa-gitlab fa-2x" aria-hidden="true"></i></a></span>
 		                    <span class="uk-h6 uk-text-white uk-text-bold uk-text-uppercase">Proudly powered by BlizzCMS with <span class="heartbeat"><i class="fas fa-heart" aria-hidden="true"></i></span></span>
 					    </div>
 					    <div>
