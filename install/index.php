@@ -8,14 +8,14 @@ $core = new Core;
 $check = $core->init($config);
 
 if ($_POST):
-	$core->setInput($_POST);
-	
-	if ($core->checkDB()):
-		$core->createTables();
+    $core->setInput($_POST);
 
-		if ($core->reWrite())
+    if ($core->checkDB()):
+        $core->createTables();
+
+        if ($core->reWrite())
             $isCompleted = TRUE;
-	endif;
+    endif;
 endif;
 
 if (isset($_POST['delete_install'])):
@@ -51,15 +51,15 @@ endif;
             <p class="uk-text-center">We are pleased to present a new <strong>Free CMS</strong> for <strong>World of Warcraft</strong>! this cms is in constant development based on the <strong>CodeIgniter</strong> Framework and clean <strong>PHP</strong> code. For now the main functionalities are concentrated in an integrated forum, store, user panel and more...</p>
             <div class="uk-card uk-card-body">
                 <form id="form_install" action="" method="POST" accept-charset="utf-8" autocomplete="off">
-					<?php
-						if ($core->getError()):
-							echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>";
-							foreach ($core->getError() as $item):
-								echo "<li>$item</li>";
-							endforeach;
-							echo "</ul></div>";
-						endif;
-					?>
+                    <?php
+                        if ($core->getError()):
+                            echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>";
+                            foreach ($core->getError() as $item):
+                                echo "<li>$item</li>";
+                            endforeach;
+                            echo "</ul></div>";
+                        endif;
+                    ?>
                     <h2 class="uk-h2 uk-text-uppercase uk-text-bold uk-text-center uk-light"><i class="fas fa-wrench"></i> Required Settings</h2>
                     <div class="uk-text-center">
                         <button class="uk-button uk-button-primary" type="button" uk-toggle="target: #requirements"><i class="fas fa-question-circle"></i> What do I need to run this <strong>website</strong>?</button>
@@ -70,11 +70,11 @@ endif;
                         echo "<div class='uk-alert-success' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='far fa-check-circle'></i> Successful</h3>The installation was successful, Now press the button <strong>Continue with installation</strong> for delete install folder and continue</div><div class='uk-margin'><button class='uk-button uk-button-primary uk-width-1-1' type='submit' name='delete_install'><i class='fas fa-cog fa-spin'></i> Continue with the installation</button></div>";
                     else:
                     if ($check):
-						echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>";
-						foreach ($check as $item) :
-							echo "<li>$item</li>";
-						endforeach;
-						echo "</ul></div>";
+                        echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>";
+                        foreach ($check as $item) :
+                            echo "<li>$item</li>";
+                        endforeach;
+                        echo "</ul></div>";
                     else:
                     ?>
                     <div class="uk-grid uk-child-width-1-1 uk-child-width-1-2@s" data-uk-grid>
