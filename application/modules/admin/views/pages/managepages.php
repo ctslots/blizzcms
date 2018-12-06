@@ -44,7 +44,7 @@
                                     <?php foreach($this->admin_model->getPages() as $pages) { ?>
                                         <tr>
                                             <td><?= $pages->title ?></td>
-                                            <td class="uk-text-center"><?= $pages->date ?></td>
+                                            <td class="uk-text-center"><?= date('Y-m-d', $pages->date); ?></td>
                                             <td class="uk-text-center" uk-margin>
                                                 <a href="<?= base_url(); ?>admin/editpages/<?= $pages->id ?>" class="uk-button uk-button-primary"><i class="far fa-edit"></i></a>
                                                 <span class="" style="display:inline-block; width: 5px;"></span>
