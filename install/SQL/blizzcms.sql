@@ -260,6 +260,35 @@ CREATE TABLE `fx_events` (
 
 /*Data for the table `fx_events` */
 
+/*Table structure for table `fx_faq` */
+
+DROP TABLE IF EXISTS `fx_faq`;
+
+CREATE TABLE `fx_faq` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `type` int(1) NOT NULL DEFAULT '1',
+  `description` text NOT NULL,
+  `date` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `fx_faq` */
+
+/*Table structure for table `fx_faq_type` */
+
+DROP TABLE IF EXISTS `fx_faq_type`;
+
+CREATE TABLE `fx_faq_type` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `fx_faq_type` */
+
+insert  into `fx_faq_type`(`id`,`title`) values (1,'General'),(2,'Server'),(3,'Website');
+
 /*Table structure for table `fx_forum_category` */
 
 DROP TABLE IF EXISTS `fx_forum_category`;

@@ -41,6 +41,7 @@ $lang['admin_website'] = 'Website';
 $lang['admin_news'] = 'News';
 $lang['admin_changelogs'] = 'Changelogs';
 $lang['admin_pages'] = 'Pages';
+$lang['admin_faq'] = 'Faq';
 $lang['admin_store'] = 'Store';
 $lang['admin_points_system'] = 'Points System';
 $lang['admin_manage_donations'] = 'Manage Donations';
@@ -97,6 +98,7 @@ $lang['panel_admin_edit_pages'] = 'Edit Pages';
 $lang['panel_admin_edit_changelogs'] = 'Edit Changelogs';
 $lang['panel_admin_edit_item'] = 'Edit Item';
 $lang['panel_admin_edit_group'] = 'Edit Group';
+$lang['panel_admin_faq_list'] = 'Faq List';
 
 /*Column Lang*/
 $lang['column_race'] = 'Race';
@@ -110,6 +112,7 @@ $lang['column_realm_name'] = 'Realm Name';
 $lang['column_realm_char_database'] = 'Character Database Name';
 $lang['column_tax'] = 'Tax';
 $lang['column_points'] = 'Points';
+$lang['column_type'] = 'Type';
 
 /*Form Lang*/
 $lang['form_create_changelog'] = 'Create a new Changelog';
@@ -133,6 +136,8 @@ $lang['form_store_item_id'] = 'Item Id';
 $lang['form_store_image_name'] = 'Image File Name';
 $lang['form_create_group'] = 'Create Group';
 $lang['form_group_title'] = 'Title of the Group';
+$lang['form_create_faq'] = 'Create faq';
+$lang['form_faq_title'] = 'Title of the faq';
 
 /*Placeholder Lang*/
 $lang['panel_admin_reason'] = 'Reason';

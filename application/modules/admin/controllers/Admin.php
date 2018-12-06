@@ -344,6 +344,29 @@ class Admin extends MX_Controller {
         $this->load->view('general/footer');
     }
 
+    public function managefaq()
+    {
+        $this->load->view('general/header');
+        $this->load->view('faq/managefaq');
+        $this->load->view('general/footer');
+        $this->load->view('faq/modal');
+    }
+
+    public function editfaq($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getFaqSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data['idlink'] = $id;
+
+        $this->load->view('general/header');
+        $this->load->view('faq/editfaq', $data);
+        $this->load->view('general/footer');
+    }
+
     public function managegroups()
     {
         $this->load->view('general/header');

@@ -5,66 +5,39 @@
             <div class="uk-width-3-5@l">
                 <div class="uk-principal-title uk-text-uppercase uk-text-white"><i class="far fa-question-circle"></i> <?= $this->lang->line('nav_faq'); ?></div>
                 <div class="uk-space-medium"></div>
+                <?php if($this->faq_model->getAll()->num_rows()) { ?>
                 <div uk-grid>
                     <div class="uk-width-auto@m">
                         <ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
-                            <li>
-                                <a href="#" class="uk-text-white"> Menu1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="uk-text-white"> Menu2</a>
-                            </li>
+                            <?php foreach($this->faq_model->getFaqType() as $type) { ?>
+                            <li><a href="#" class="uk-text-white"><?= $type->title ?></a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                     <div class="uk-width-expand@m">
                         <ul id="component-tab-left" class="uk-switcher">
+                            <?php foreach($this->faq_model->getFaqType() as $type) { ?>
                             <li class="uk-text-white">
                                 <ul uk-accordion="multiple: true">
+                                    <?php foreach($this->faq_model->getFaqList($type->id) as $list) { ?>
                                     <li>
-                                        <a class="uk-accordion-title uk-text-white" href="#"><i class="fas fa-info-circle"></i> Title 1</a>
+                                        <a class="uk-accordion-title uk-text-white" href="#"><i class="fas fa-info-circle"></i> <?= $list->title ?></a>
                                         <div class="uk-accordion-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            <?= $list->description ?>
                                         </div>
                                     </li>
-                                    <li>
-                                        <a class="uk-accordion-title uk-text-white" href="#"><i class="fas fa-info-circle"></i> Title 2</a>
-                                        <div class="uk-accordion-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="uk-accordion-title uk-text-white" href="#"><i class="fas fa-info-circle"></i> Title 3</a>
-                                        <div class="uk-accordion-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        </div>
-                                    </li>
+                                    <?php } ?>
                                 </ul>
                             </li>
-                            <li class="uk-text-white">
-                                <ul uk-accordion="multiple: true">
-                                    <li>
-                                        <a class="uk-accordion-title uk-text-white" href="#"><i class="fas fa-info-circle"></i> Title 1</a>
-                                        <div class="uk-accordion-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="uk-accordion-title uk-text-white" href="#"><i class="fas fa-info-circle"></i> Title 2</a>
-                                        <div class="uk-accordion-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="uk-accordion-title uk-text-white" href="#"><i class="fas fa-info-circle"></i> Title 3</a>
-                                        <div class="uk-accordion-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
+                <?php } else { ?>
+                <div class="uk-alert-warning" uk-alert>
+                    <p class="uk-text-center"><i class="fas fa-exclamation-triangle"></i> <?= $this->lang->line('faq_not_found'); ?></p>
+                </div>
+                <?php } ?>
             </div>
             <div class="uk-width-1-5@l"></div>
         </div>

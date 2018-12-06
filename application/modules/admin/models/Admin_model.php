@@ -1472,4 +1472,99 @@ class Admin_model extends CI_Model {
             ->order_by('id', 'ASC')
             ->get('fx_slides');
     }
+
+    public function delSpecifyFaq($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('fx_faq');
+
+        redirect(base_url('admin/managefaq'),'refresh');
+    }
+
+    public function getFaqSpecifyName($id)
+    {
+        return $this->db->select('title')
+                ->where('id', $id)
+                ->get('fx_faq')
+                ->row_array()['title'];
+    }
+
+    public function getFaqSpecifyType($id)
+    {
+        return $this->db->select('type')
+                ->where('id', $id)
+                ->get('fx_faq')
+                ->row_array()['type'];
+    }
+
+    public function getFaqSpecifyDesc($id)
+    {
+        return $this->db->select('description')
+                ->where('id', $id)
+                ->get('fx_faq')
+                ->row_array()['description'];
+    }
+
+    public function getFaqSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('fx_faq')
+                ->num_rows();
+    }
+
+    public function getFaqTypeList()
+    {
+        return $this->db->select('*')
+            ->order_by('id', 'ASC')
+            ->get('fx_faq_type');
+    }
+
+    public function getFaq()
+    {
+        return $this->db->select('*')
+                ->get('fx_faq')
+                ->result();
+    }
+
+    public function getFaqTypeName($type)
+    {
+        return $this->db->select('title')
+                ->where('id', $type)
+                ->get('fx_faq_type')
+                ->row_array()['title'];
+    }
+
+    public function insertFaq($title, $type, $description)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $data = array(
+            'title' => $title,
+            'type' => $type,
+            'description' => $description,
+            'date' => $date,
+        );
+
+        $this->db->insert('fx_faq', $data);
+
+        redirect(base_url('admin/managefaq'),'refresh');
+    }
+
+    public function updateSpecifyFaq($id, $title, $type, $description)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $update = array(
+            'title' => $title,
+            'type' => $type,
+            'description' => $description,
+            'date' => $date
+        );
+
+        $this->db->where('id', $id)
+                ->update('fx_faq', $update);
+
+        redirect(base_url('admin/managefaq'),'refresh');
+    }
 }

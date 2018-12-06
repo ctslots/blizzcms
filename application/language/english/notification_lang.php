@@ -48,6 +48,7 @@ $lang['email_used'] = 'Email in use';
 $lang['expansion_not_found'] = 'Expansion not found.';
 $lang['image_upload_error'] = 'Your image must be in .jpg format';
 $lang['changelog_not_found'] = 'The server does not have changelogs to inform at this time';
+$lang['faq_not_found'] = 'The server does not have frequently asked questions to show';
 
 $lang['char_newlevel'] = 'Receive a new level';
 $lang['char_oldlevel'] = 'Before it was';
