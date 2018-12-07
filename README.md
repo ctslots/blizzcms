@@ -20,20 +20,15 @@ BlizzCMS is a Open Source CMS developed by ProjectCMS for World of Warcraft base
 
 PHP version 5.6 or newer is recommended to execute the CMS without any inconvenience.
 
-## Changelogs & New Features
-
-You can find a list of all changes on our [Website](http://projectcms.net/news/)
-
 ## Supported Browsers
 
 BlizzCMS is developed to be compatible with any modern browser.
 
 ## Useful Links
 
-- [Website](http://projectcms.net/)
-- [Forum](http://projectcms.net/forum/)
-- [Discord](https://discord.gg/WGGGVgX)
-- [CMS Demo](http://blizzcms.projectcms.net/)
+- [ProjectCMS Website](https://projectcms.net)
+- [ProjectCMS Discord](https://discord.gg/7QcXfJE)
+- [BlizzCMS Demo](https://blizzcms.projectcms.net)
 
 ## License
 
