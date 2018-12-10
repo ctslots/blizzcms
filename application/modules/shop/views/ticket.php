@@ -18,46 +18,48 @@
     </script>
 <?php } ?>
 
-    <div class="uk-container">
-        <div class="uk-space-xlarge"></div>
-        <div class="uk-grid uk-grid-large" data-uk-grid>
-            <div class="uk-width-1-6@l"></div>
-            <div class="uk-width-4-6@l">
-                <div class="uk-principal-title uk-text-uppercase uk-text-center"><i class="fas fa-question-circle"></i> <?= $this->lang->line('store_support'); ?></div>
-                <p class="uk-text-uppercase uk-text-bold uk-text-center"><?= $this->lang->line('store_support_description'); ?></p>
-                <table class="uk-table uk-table-divider">
-                    <thead>
-                        <tr>
-                            <th><i class="fas fa-book"></i> <?= $this->lang->line('column_id'); ?></th>
-                            <th class="uk-text-center"><i class="fas fa-bookmark"></i> <?= $this->lang->line('form_title'); ?></th>
-                            <th class="uk-text-center"><i class="far fa-clock"></i> <?= $this->lang->line('column_date'); ?></th>
-                            <th class="uk-text-center"><i class="fas fa-info-circle"></i> <?= $this->lang->line('column_status'); ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href=""><span class="uk-light">1</span></a>
-                            </td>
-                            <td class="uk-text-center">
-                                <a href=""><span class="uk-light">test</span></a>
-                            </td>
-                            <td class="uk-text-center">
-                                <a href=""><span class="uk-light">01-02-2018</span></a>
-                            </td>
-                            <td class="uk-text-center">
-                                <a href=""><span class="uk-label">Open</span></a>
-                            </td>
-                        <tr>
-                    </tbody>
-                </table>
-                <div class="uk-space-small"></div>
-                <?php if ($this->m_data->isLogged()) { ?>
-                    <div class="space-adaptive-small"></div>
-                    <div class="uk-margin uk-text-center">
-                        <a class="uk-button uk-button-primary" uk-toggle="target: #newTicket"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_create_ticket'); ?></a>
-                    </div>
-                <?php } ?>
+    <section class="uk-section uk-section-small" data-uk-height-viewport="expand: true">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small" data-uk-grid>
+          <div class="uk-width-expand">
+            <h3 class="uk-h3 uk-text-bold uk-text-uppercase"><i class="fas fa-question-circle"></i> <?= $this->lang->line('store_support'); ?></h3>
+            <p class="uk-text-uppercase uk-text-bold"><?= $this->lang->line('store_support_description'); ?></p>
+          </div>
+          <div class="uk-width-auto">
+            <?php if ($this->m_data->isLogged()) { ?>
+            <div class="uk-text-center uk-text-right@s">
+              <a href="#" class="uk-button uk-button-default" uk-toggle="target: #newTicket"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_create_ticket'); ?></a>
             </div>
-            <div class="uk-width-1-6@l"></div>
+            <?php } ?>
+          </div>
         </div>
+        <div class="uk-overflow-auto uk-width-1-1 uk-margin-small">
+          <table class="uk-table uk-table-divider">
+            <thead>
+              <tr>
+                <th><i class="fas fa-book"></i> <?= $this->lang->line('column_id'); ?></th>
+                <th class="uk-text-center"><i class="fas fa-bookmark"></i> <?= $this->lang->line('form_title'); ?></th>
+                <th class="uk-text-center"><i class="far fa-clock"></i> <?= $this->lang->line('column_date'); ?></th>
+                <th class="uk-text-center"><i class="fas fa-info-circle"></i> <?= $this->lang->line('column_status'); ?></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="uk-table-link">
+                  <a href="" class="uk-link-reset"><span class="uk-light">1</span></a>
+                </td>
+                <td class="uk-table-link uk-text-center">
+                  <a href="" class="uk-link-reset"><span class="uk-light">test</span></a>
+                </td>
+                <td class="uk-text-center">
+                  <span class="uk-light">01-02-2018</span>
+                </td>
+                <td class="uk-text-center">
+                  <span class="uk-label">Open</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div> 
+      </div>
+    </section>

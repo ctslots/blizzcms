@@ -24,7 +24,7 @@
                 </div>
               </div>
               <?= form_open(base_url('vote/votenow/'.$voteList->id)); ?>
-                <button class="uk-button uk-button-primary uk-width-1-1"><?= $this->lang->line('nav_vote'); ?></button>
+                <button class="uk-button uk-button-default uk-width-1-1"><?= $this->lang->line('nav_vote'); ?></button>
               <?= form_close(); ?>
               <!-- COUNTDOWN -->
             </div>

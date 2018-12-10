@@ -28,7 +28,7 @@
 
     <section class="uk-section uk-section-small" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <h3 class="uk-h3 uk-text-bold uk-text-uppercase"><i class="fas fa-shopping-bag"></i> </h3>
+        <h3 class="uk-h3 uk-text-bold uk-text-uppercase"><i class="fas fa-shopping-bag"></i> <?= $this->lang->line('nav_cart'); ?></h3>
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-1-6@m"></div>
           <div class="uk-width-2-3@m">

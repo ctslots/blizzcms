@@ -71,7 +71,7 @@
                 <form class="Form uk-align-center" method="post" action="" data-post-form="true" accept-charset="utf-8">
                   <textarea class="tinyeditor" tabindex="1" spellcheck="true" name="reply_comment" rows="10" cols="80"></textarea>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="button_addcommentary" id="submit-button"><i class="fas fa-reply"></i> <?= $this->lang->line('button_add_reply'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="button_addcommentary" id="submit-button"><i class="fas fa-reply"></i> <?= $this->lang->line('button_add_reply'); ?></button>
                   </div>
                 </form>
               </div>
