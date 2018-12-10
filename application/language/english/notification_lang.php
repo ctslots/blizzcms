@@ -69,7 +69,9 @@ $lang['shopping_cart'] = 'Shopping Cart';
 $lang['store_see'] = 'See the Store';
 $lang['no_players'] = 'No players Online';
 $lang['users_on'] = 'Users Online';
-$lang['realm_offline'] = 'Realm Offline';
+$lang['realm_notification'] = 'Currently the realm is';
+$lang['offline'] = 'Offline';
+$lang['online'] = 'Online';
 
 /*Notify Title Lang*/
 $lang['notify_title_success'] = 'Success!';

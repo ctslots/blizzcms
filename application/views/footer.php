@@ -1,24 +1,14 @@
-<div class="uk-grid uk-grid-large" data-uk-grid>
-            <div class="uk-width-1-1@l">
-                <div class="uk-text-center">
-                    <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center" uk-grid>
-					    <div></div>
-					    <div>
-					        <p class="uk-text-white">Copyright &copy; <?= date('Y'); ?> <span class="uk-text-bold"><?= $this->config->item('ProjectName'); ?></span>. <?= $this->lang->line('footer_rights'); ?></p>
-		                    <span><a target="_blank" href="https://gitlab.com/ProjectCMS/BlizzCMS" class="uk-button uk-button-link uk-text-white"><i class="fab fa-gitlab fa-2x" aria-hidden="true"></i></a></span>
-		                    <span class="uk-h6 uk-text-white uk-text-bold uk-text-uppercase">Proudly powered by BlizzCMS with <span class="heartbeat"><i class="fas fa-heart" aria-hidden="true"></i></span></span>
-					    </div>
-					    <div>
-					        <div class="uk-card-body uk-text-right uk-visible@m">
-		                        <a id="social_fb_fx" target="_blank" href="<?= $this->config->item('social_facebook'); ?>" class="uk-icon-button"><i class="fab fa-facebook-f"></i></a>
-		                        <a id="social_tw_fx" target="_blank" href="<?= $this->config->item('social_twitter'); ?>" class="uk-icon-button"><i class="fab fa-twitter"></i></a>
-		                    </div>
-					    </div>
-					</div>
-                    <!-- asd -->
-                </div>
-            </div>
+    <section class="uk-section footer-section">
+      <div class="uk-container uk-text-center">
+        <p class="uk-margin-small">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= $this->config->item('ProjectName'); ?></span>. <?= $this->lang->line('footer_rights'); ?></p>
+        <span class="uk-text-small">World of Warcraft® and Blizzard Entertainment® are all trademarks or registered trademarks of Blizzard Entertainment in the United States and/or other countries. These terms and all related materials, logos, and images are copyright © Blizzard Entertainment. This site is in no way associated with or endorsed by Blizzard Entertainment®.</span>
+        <p class="uk-h6 uk-text-bold uk-text-uppercase uk-margin-small">Proudly powered by <a target="_blank" href="https://gitlab.com/ProjectCMS/BlizzCMS">BlizzCMS</a></p>
+        <div class="uk-visible@m uk-light">
+          <a target="_blank" href="<?= $this->config->item('social_facebook'); ?>" class="uk-icon-button uk-margin-small-right"><i class="fab fa-facebook-f"></i></a>
+          <a target="_blank" href="<?= $this->config->item('social_twitter'); ?>" class="uk-icon-button uk-margin-small-right"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" href="<?= $this->config->item('social_youtube'); ?>" class="uk-icon-button"><i class="fab fa-youtube"></i></a>
         </div>
-    </div>
-</body>
+      </div>
+    </section>
+  </body>
 </html>

@@ -1,14 +1,20 @@
-/*!-----------------------------------------------------------------
-    General CSS
-    Version: 0.0.1
-    Author: BlizzCMS
-    Copyright 2018
--------------------------------------------------------------------*/
-/*!-----------------------------------------------------------------
-                            UI MOD
--------------------------------------------------------------------*/
+/*!
+ * BlizzCMS
+ *
+ * An Open Source CMS for "World of Warcraft"
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * @css  General
+ * @author  ProjectCMS
+ * @copyright  Copyright (c) 2017 - 2018, ProjectCMS.
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @link    https://projectcms.net
+ * @since   Version 1.0
+ * @filesource
+ */
+
 html {overflow-y: scroll;background: transparent;}
-body{margin:0;background-color:#0f2a48;background-image:url(../../assets/images/backgrounds/fx_background.jpg);background-position:center -200px;background-repeat:no-repeat;font-size:1.0625rem}
 
 .uk-mod-divider{height:1px;background-color:rgba(255,255,255,.3)}
 .uk-mod-divider-thick{height:2px}
@@ -40,11 +46,9 @@ body{margin:0;background-color:#0f2a48;background-image:url(../../assets/images/
 .uk-text-quality-bind {color: #ffd100;}
 .uk-text-quality-heirloom {color: #71d5ff;}
 
-.custom-parallax-header{background-image:url(../../assets/images/backgrounds/fx-glass.jpg)}
-
-/*!-----------------------------------------------------------------
-                            Donate
--------------------------------------------------------------------*/
+/*
+ * Donate
+ */
 .uk-card-donate{background: linear-gradient(-45deg,#248bff,#b64eff);border-radius: 15px;color:#fff;box-shadow: 0 10px 15px rgba(0,0,0,.1);}
 .uk-card-donate .fab{color:#fff;font-size: 60px;width: 100px;height: 100px;border-radius: 50%;text-align: center;line-height: 100px;-webkit-box-shadow: 0 10px 10px rgba(0,0,0,.1);box-shadow: 0 10px 10px rgba(0,0,0,.1);}
 .uk-card-donate .uk-card-title{color:#fff}
@@ -52,9 +56,9 @@ body{margin:0;background-color:#0f2a48;background-image:url(../../assets/images/
 .uk-card-donate .uk-input{border-radius: 10px;}
 .uk-card-donate .uk-button-secondary{border-radius: 40px;}
 
-/*!-----------------------------------------------------------------
-                            Armory
--------------------------------------------------------------------*/
+/*
+ * Armory
+ */
 .fx-gap,.fx-gap-1,.fx-gap-2,.fx-gap-3,.fx-gap-4,.fx-gap-5,.fx-gap-6{display: block;height: 15px;}
 .fx-gap:after, .fx-gap:before,.fx-gap-1:after,.fx-gap-1:before,.fx-gap-2:after,.fx-gap-2:before,.fx-gap-3:after,.fx-gap-3:before,.fx-gap-4:after,.fx-gap-4:before,.fx-gap-5:after,.fx-gap-5:before,.fx-gap-6:after,.fx-gap-6:before{content: '';display: table;clear: both;}
 .fx-gap-1{height: 20px;}
@@ -64,9 +68,9 @@ body{margin:0;background-color:#0f2a48;background-image:url(../../assets/images/
 .fx-gap-5{height: 90px;}
 .fx-gap-6{height: 110px;}
 
-/*!-----------------------------------------------------------------
-                            Forum
--------------------------------------------------------------------*/
+/*
+ * Forum
+ */
 .ForumCard-state,.Icon,.Navbar-modalContent .menu-content .menu-item .Icon-profileLink,.PatchNotes-statusTagContent .checkmark,.PatchNotes-statusTagContent .thumbsup,.Post-rank:before,.TopicPost-rank:before,.TopicPost-statusTagContent .checkmark,.TopicPost-statusTagContent .thumbsup,.User-menu .Icon-profileLink{background-repeat:no-repeat;display:inline-block}
 .Cards,.ForumCards{border-top:1px solid rgba(255,255,255,.15);display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}
 @media only screen and (min-width:641px){.Card,.Characters .Author,.ForumCard{border-width:1px}
@@ -187,9 +191,9 @@ body{margin:0;background-color:#0f2a48;background-image:url(../../assets/images/
 .topicplaceholder-message.LogIn-message--center{-ms-flex-align:center;align-items:center;display:block;-ms-flex-pack:center;justify-content:center;margin:auto 15px}
 .LoginPlaceholder-content .Form,.TopicForm-content .Form{display:-ms-flexbox;-ms-flex-wrap:wrap;flex-wrap:wrap}
 
-/*!-----------------------------------------------------------------
-                            Resize
--------------------------------------------------------------------*/
+/*
+ * Resize
+ */
 @media (min-width:320px)  {
 /* smartphones, iPhone, portrait 480x320 phones OK*/
 .ForumCard{margin:1.25rem .625rem 0;width:calc(100% - 3rem)}
@@ -237,16 +241,4 @@ body{margin:0;background-color:#0f2a48;background-image:url(../../assets/images/
 .ForumCard-heading{font-size:1.25rem;font-weight:100;color: #fff;line-height:1.25;max-height:3.125rem;overflow:hidden;width:100%}
 .ForumCard-image{height:60px;width:60px}
 .ForumCard-details{margin-left:15px}
-}
-
-/*!-----------------------------------------------------------------
-                            Footer
--------------------------------------------------------------------*/
-.heartbeat{position: absolute;width: 26px;height: 26px;animation: heartbeat 1s infinite;margin: (-26px/2) 0px 0px (-26px/2);text-align: center;line-height: 26px;font-size: 26px;color: #a335ee;cursor: default;}
-@keyframes heartbeat{
-0% { transform: scale(.75, .75); }
-16% { transform: scale(1, 1); }
-33% { transform: scale(.75, .75); }
-49% { transform: scale(1, 1); }
-100% { transform: scale(.75, .75); }
 }

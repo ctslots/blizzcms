@@ -138,7 +138,7 @@ $lang['panel_chars_list'] = 'Lista de Personajes';
 /*Home Lang*/
 $lang['home_server_status'] = 'Estado del Servidor';
 $lang['home_latest_news'] = 'Últimas Noticias';
-$lang['home_all_news'] = 'Todas las Noticias';
+$lang['home_view_all_news'] = 'Ver todas las noticias';
 $lang['home_up_events'] = 'Próximos Eventos';
 $lang['home_discord'] = 'Discord';
 $lang['home_store_top'] = 'Mejores artículos de la tienda';

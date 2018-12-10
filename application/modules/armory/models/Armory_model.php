@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Armory_model extends CI_Model {
@@ -48,7 +48,7 @@ class Armory_model extends CI_Model {
             return '0';
     }
 
-	public function getCharInvNeck($id, $multirealm)
+    public function getCharInvNeck($id, $multirealm)
     {
         $this->multirealm = $multirealm;
         $qq = $this->multirealm->select('item')
@@ -317,6 +317,4 @@ class Armory_model extends CI_Model {
         else
             return '0';
     }
-
-    
 }

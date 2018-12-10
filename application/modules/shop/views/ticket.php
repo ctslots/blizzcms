@@ -23,15 +23,15 @@
         <div class="uk-grid uk-grid-large" data-uk-grid>
             <div class="uk-width-1-6@l"></div>
             <div class="uk-width-4-6@l">
-                <div class="uk-principal-title uk-text-uppercase uk-text-center uk-text-white"><i class="fas fa-question-circle"></i> <?= $this->lang->line('store_support'); ?></div>
-                <p class="uk-text-uppercase uk-text-bold uk-text-center uk-text-white"><?= $this->lang->line('store_support_description'); ?></p>
+                <div class="uk-principal-title uk-text-uppercase uk-text-center"><i class="fas fa-question-circle"></i> <?= $this->lang->line('store_support'); ?></div>
+                <p class="uk-text-uppercase uk-text-bold uk-text-center"><?= $this->lang->line('store_support_description'); ?></p>
                 <table class="uk-table uk-table-divider">
                     <thead>
                         <tr>
-                            <th class="uk-text-white"><i class="fas fa-book"></i> <?= $this->lang->line('column_id'); ?></th>
-                            <th class="uk-text-center uk-text-white"><i class="fas fa-bookmark"></i> <?= $this->lang->line('form_title'); ?></th>
-                            <th class="uk-text-center uk-text-white"><i class="far fa-clock"></i> <?= $this->lang->line('column_date'); ?></th>
-                            <th class="uk-text-center uk-text-white"><i class="fas fa-info-circle"></i> <?= $this->lang->line('column_status'); ?></th>
+                            <th><i class="fas fa-book"></i> <?= $this->lang->line('column_id'); ?></th>
+                            <th class="uk-text-center"><i class="fas fa-bookmark"></i> <?= $this->lang->line('form_title'); ?></th>
+                            <th class="uk-text-center"><i class="far fa-clock"></i> <?= $this->lang->line('column_date'); ?></th>
+                            <th class="uk-text-center"><i class="fas fa-info-circle"></i> <?= $this->lang->line('column_status'); ?></th>
                         </tr>
                     </thead>
                     <tbody>

@@ -27,22 +27,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Installation | <?= $this->config->item('ProjectName'); ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
+    <title>Installation | <?= $this->config->item('ProjectName'); ?></title>
     <!-- UIkit -->
     <link rel="stylesheet" href="<?= base_url('core/uikit/css/uikit.min.css'); ?>"/>
     <script src="<?= base_url('core/uikit/js/uikit.min.js'); ?>"></script>
     <script src="<?= base_url('core/uikit/js/uikit-icons.min.js'); ?>"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="<?= base_url('core/css/blizzcms-install.css'); ?>">
     <!-- Font Awesome -->
     <script src="<?= base_url('core/fontawesome/js/all.min.js'); ?>"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="<?= base_url('core/css/install.css'); ?>">
     <!-- JQuery -->
     <script src="<?= base_url('core/js/jquery-3.3.1.min.js'); ?>"></script>
 </head>
-
 <body>
     <div class="uk-section uk-section-xsmall uk-flex" uk-height-viewport="offset-top: true; offset-bottom: true">
         <div class="uk-container">

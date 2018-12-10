@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Armory extends MX_Controller {
@@ -19,7 +19,7 @@ class Armory extends MX_Controller {
         if (!$this->m_permissions->getMyPermissions('Permission_Armory'))
             redirect(base_url(),'refresh');
 
-        $this->load->config('armory');
+        $this->config->load('armory');
         $this->load->model('armory_model');
     }
 
@@ -233,7 +233,7 @@ class Armory extends MX_Controller {
             'view_ChatInvTrinketOne' => $this->armory_model->getView($idrealm, $idplayer, $getCharInvTrinketOne),
             'view_ChatInvTrinketTwo' => $this->armory_model->getView($idrealm, $idplayer, $getCharInvTrinketTwo),
         );
-
+        
         $this->load->view('header', $data);
         $this->parser->parse('index', $data);
         $this->load->view('footer');
@@ -254,7 +254,6 @@ class Armory extends MX_Controller {
 
         $this->load->view('header', $data);
         $this->load->view('item');
-        $this->load->view('footer'); 
+        $this->load->view('footer');
     }
-
 }

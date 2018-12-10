@@ -26,65 +26,63 @@
         $result_explode[0]);
 } ?>
 
-    <div class="uk-container">
-        <div class="uk-space-xlarge"></div>
-        <div class="uk-grid uk-grid-large" data-uk-grid>
-            <div class="uk-width-1-5@l"></div>
-            <div class="uk-width-3-5@l">
-                <form action="" method="post" accept-charset="utf-8" class="uk-text-white">
-                    <h2 class="uk-text-white"><i class="fas fa-shopping-cart"></i> <?=$this->lang->line('store_cart_description');?>: <a rel="item=<?= $this->shop_model->getItem($idlink); ?>"><?= $this->shop_model->getName($idlink); ?></a></h2>
-                    <div class="uk-space-small"></div>
-                    <div class="uk-margin uk-text-center">
-                        <div class="uk-inline">
-                            <a rel="item=<?= $this->shop_model->getItem($idlink); ?>">
-                                <img class="uk-border-rounded" src="//wow.zamimg.com/images/wow/icons/large/<?= $this->shop_model->getIcon($idlink) ?>.jpg" />
-                            </a>
-                        </div>
-                        <p><i class="fas fa-info-circle"></i> <?=$this->lang->line('store_item_name');?>: <?= $this->shop_model->getName($idlink); ?></p>
-                    </div>
-                    <div class="uk-margin uk-text-center">
-                        <p><i class="fas fa-list-ul"></i> <?=$this->lang->line('store_select_character');?>:</p>
-                        <div class="uk-inline">
-                            <div class="uk-form-controls">
-                                <select class="uk-select uk-form-width-medium uk-form-small" name="charSelects">
-                                    <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) { 
-                                        $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
-                                    ?>
-                                        <?php foreach($this->m_characters->getGeneralCharactersSpecifyAcc($multiRealm ,$this->session->userdata('fx_sess_id'))->result() as $listchar) { ?>
-                                            <option value="<?= $charsMultiRealm->id ?>|<?= $listchar->guid ?>"><?= $listchar->name ?> - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></option>
-                                        <?php } ?>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-margin uk-text-center">
-                        <p><i class="fas fa-money-bill-alt"></i> <?=$this->lang->line('store_item_price');?>:</p>
-                        <div class="uk-inline">
-                            <h4>
-                                <?php if($_GET['tp'] == "dp"): ?>
-                                    <img class="uk-border-circle" src="<?= base_url('assets/images/dp.jpg'); ?>" title="<?=$this->lang->line('panel_dp');?>" width="30px" height="30px" uk-tooltip="pos: bottom">
-                                <?php else: ?>
-                                    <img class="uk-border-circle" src="<?= base_url('assets/images/vp.jpg'); ?>" title="<?=$this->lang->line('panel_vp');?>" width="30px" height="30px" uk-tooltip="pos: bottom">
-                                <?php endif; ?>
-                                <span class="uk-badge"><?= $this->shop_model->getPriceType($idlink, $_GET['tp']); ?></span>
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="uk-margin uk-text-center">
-                        <?php if ($_GET['tp'] == "dp")
-                            $qqs = $this->m_general->getCharDPTotal($this->session->userdata('fx_sess_id'));
-                        else
-                            $qqs = $this->m_general->getCharVPTotal($this->session->userdata('fx_sess_id'));
+    <section class="uk-section uk-section-small" data-uk-height-viewport="expand: true">
+      <div class="uk-container">
+        <h3 class="uk-h3 uk-text-bold uk-text-uppercase"><i class="fas fa-shopping-bag"></i> </h3>
+        <div class="uk-grid uk-grid-small" data-uk-grid>
+          <div class="uk-width-1-6@m"></div>
+          <div class="uk-width-2-3@m">
+            <div class="uk-grid uk-grid-small" data-uk-grid>
+              <div class="uk-width-1-3@m">
+                <div class="uk-flex-center uk-text-center">
+                  <p><a rel="item=<?= $this->shop_model->getItem($idlink); ?>" class="uk-link-reset"><span class="uk-text-large uk-text-capitalize uk-text-break"><?= $this->shop_model->getName($idlink); ?></span></a></p>
+                  <a rel="item=<?= $this->shop_model->getItem($idlink); ?>">
+                    <img class="uk-border-rounded wow-icon-border" src="//wow.zamimg.com/images/wow/icons/large/<?= $this->shop_model->getIcon($idlink) ?>.jpg" />
+                  </a>
+                  <p>
+                    <span class="uk-text-bold uk-margin-small-right"><i class="fas fa-coins"></i> <?=$this->lang->line('store_item_price');?>:</span>
+                    <?php if($_GET['tp'] == "dp"): ?>
+                    <img class="uk-border-circle" src="<?= base_url('assets/images/dp.jpg'); ?>" title="<?=$this->lang->line('panel_dp');?>" width="30px" height="30px" uk-tooltip="pos: bottom">
+                    <?php else: ?>
+                    <img class="uk-border-circle" src="<?= base_url('assets/images/vp.jpg'); ?>" title="<?=$this->lang->line('panel_vp');?>" width="30px" height="30px" uk-tooltip="pos: bottom">
+                    <?php endif; ?>
+                    <span class="uk-badge"><?= $this->shop_model->getPriceType($idlink, $_GET['tp']); ?></span>
+                  </p>
+                </div>
+              </div>
+              <div class="uk-width-expand@m">
+                <form action="" method="post" accept-charset="utf-8">
+                  <div class="uk-margin-small uk-light">
+                    <label class="uk-form-label uk-text-uppercase"><i class="fas fa-list-ul"></i> <?=$this->lang->line('store_select_character');?></label>
+                    <div class="uk-form-controls">
+                      <select class="uk-select uk-width-1-1" name="charSelects">
+                        <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) { 
+                          $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                         ?>
-                        <?php if ($qqs >= $this->shop_model->getPriceType($idlink, $_GET['tp'])) { ?>
-                            <button type="submit" name="buyNowGetItem" class="uk-button uk-button-primary uk-button-large" title="<?= $this->lang->line('button_buy'); ?>"><i class="fas fa-shopping-cart"></i> <?= $this->lang->line('button_buy'); ?></button>
-                        <?php } else { ?>
-                            <div class="uk-alert-warning" uk-alert><p><i class="fas fa-exclamation-triangle"></i> <?=$this->lang->line('points_insuff');?></p></div>
+                          <?php foreach($this->m_characters->getGeneralCharactersSpecifyAcc($multiRealm ,$this->session->userdata('fx_sess_id'))->result() as $listchar) { ?>
+                          <option value="<?= $charsMultiRealm->id ?>|<?= $listchar->guid ?>"><?= $listchar->name ?> - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></option>
+                          <?php } ?>
                         <?php } ?>
-                        <!--<button class="button" title=""><i class="fas fa-gift"></i> Gift</button>-->
+                      </select>
                     </div>
+                  </div>
+                  <div class="uk-margin-small">
+                    <?php if ($_GET['tp'] == "dp")
+                      $qqs = $this->m_general->getCharDPTotal($this->session->userdata('fx_sess_id'));
+                    else
+                      $qqs = $this->m_general->getCharVPTotal($this->session->userdata('fx_sess_id'));
+                    ?>
+                    <?php if ($qqs >= $this->shop_model->getPriceType($idlink, $_GET['tp'])) { ?>
+                    <button type="submit" name="buyNowGetItem" class="uk-button uk-button-primary uk-width-1-1" title="<?= $this->lang->line('button_buy'); ?>"><i class="fas fa-shopping-cart"></i> <?= $this->lang->line('button_buy'); ?></button>
+                    <?php } else { ?>
+                    <div class="uk-alert-warning" uk-alert><p><i class="fas fa-exclamation-triangle"></i> <?=$this->lang->line('points_insuff');?></p></div>
+                    <?php } ?>
+                  </div>
                 </form>
+              </div>
             </div>
-            <div class="uk-width-1-5@l"></div>
+          </div>
+          <div class="uk-width-1-6@m"></div>
         </div>
+      </div>
+    </section>

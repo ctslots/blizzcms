@@ -1,12 +1,19 @@
-/*!-----------------------------------------------------------------
-    Install CSS
-    Version: 0.1.0
-    Author: BlizzCMS
-    Copyright 2018
--------------------------------------------------------------------*/
-/*!-----------------------------------------------------------------
-                            UI MOD
--------------------------------------------------------------------*/
+/*!
+ * BlizzCMS
+ *
+ * An Open Source CMS for "World of Warcraft"
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * @css  Install
+ * @author  ProjectCMS
+ * @copyright  Copyright (c) 2017 - 2018, ProjectCMS.
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @link    https://projectcms.net
+ * @since   Version 1.0
+ * @filesource
+ */
+
 @font-face{font-family:'Lobster';font-style:normal;font-weight:400;src:local("Lobster Regular"),local("Lobster-Regular"),url("../../core/fonts/Lobster-Regular.ttf") format("truetype")}
 html {overflow-y: scroll;background: transparent;color: #f3f3f3;}
 body {margin:0;background-color:#0f2a48;background-image:url(../../assets/images/backgrounds/fx_background.jpg);background-position:center -200px;background-repeat:no-repeat;font-size:1.0625rem}

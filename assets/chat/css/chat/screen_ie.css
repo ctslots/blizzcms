@@ -4,15 +4,6 @@
  * Written by Ryan Yonzon
  * http://ryan.rawswift.com/
  */
- 
-/*
- * IE hack 
- */
-html, body {
-	margin:0px;
-	overflow:hidden; /* hide browser's main scrollbar */
-	height:100%; /* make sure we'll use 100% of the page's height */
-}
 
 #main_container {
 	width:100%; /* make sure we'll use 100% of page's width */

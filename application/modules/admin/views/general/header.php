@@ -1,30 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= $this->config->item('ProjectName'); ?> | <?= $this->lang->line('button_admin_panel'); ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="<?= base_url('core/css/blizzcms-admin.css'); ?>">
-
+    <title><?= $this->config->item('ProjectName'); ?> | <?= $this->lang->line('button_admin_panel'); ?></title>
     <!-- UIkit -->
     <link rel="stylesheet" href="<?= base_url('core/uikit/css/uikit.min.css'); ?>"/>
     <script src="<?= base_url('core/uikit/js/uikit.min.js'); ?>"></script>
     <script src="<?= base_url('core/uikit/js/uikit-icons.min.js'); ?>"></script>
-
     <!-- Font Awesome -->
     <script defer src="<?= base_url('core/fontawesome/js/all.js'); ?>"></script>
-
+    <!-- CSS -->
+    <link rel="stylesheet" href="<?= base_url('core/css/admin.css'); ?>">
     <!-- JQuery -->
     <script src="<?= base_url('core/js/jquery-3.3.1.min.js'); ?>"></script>
     <script src="<?= base_url('core/js/jquery.transit.min.js'); ?>"></script>
-
     <!-- notify -->
     <link rel="stylesheet" href="<?= base_url('core/amaranjs/dist/css/amaran.min.css') ?>">
 </head>
-
 <body>
     <div class="uk-offcanvas-content">
         <header id="top-head" class="uk-position-fixed">
