@@ -43,7 +43,6 @@ $lang['button_change_avatar'] = 'Cambiar Avatar';
 $lang['button_add_personal_info'] = 'Añadir información personal';
 $lang['button_change_password'] = 'Cambiar contraseña';
 $lang['button_change_email'] = 'Cambiar correo';
-$lang['button_private_message'] = 'Enviar un mensaje privado';
 $lang['button_create_report'] = 'Crear informe';
 $lang['button_new_topic'] = 'Nuevo tema';
 $lang['button_edit_topic'] = 'Editar tema';
@@ -59,9 +58,10 @@ $lang['button_create'] = 'Crear';
 $lang['button_save'] = 'Guardar';
 $lang['button_close'] = 'Cerrar';
 $lang['button_reply'] = 'Responder';
+$lang['button_donate'] = 'Donar';
 
 /*Footer Lang*/
-$lang['footer_language'] = 'Español (ES)';
+$lang['footer_rights'] = 'Todos los derechos reservados.';
 $lang['footer_privacy'] = 'Privacidad';
 $lang['footer_terms'] = 'Legal';
 
@@ -172,9 +172,10 @@ $lang['changelogs_list'] = 'Changelogs';
 
 /*Bugtracker Lang*/
 $lang['bugtracker_report_list'] = 'Lista de informes';
+$lang['bugtracker_report_notfound'] = 'Reportes no encontrados';
 
-/*Message Lang*/
-$lang['message_header'] = 'Mensaje Privado';
+/*Chat Lang*/
+$lang['chat_header'] = 'Mensaje Privado';
 
 /*Forum Lang*/
 $lang['forum_welcome'] = 'Bienvenido al foro oficial';
@@ -203,6 +204,12 @@ $lang['race_worgen'] = 'Huargen';
 $lang['race_panda_neutral'] = 'Pandaren Neutral';
 $lang['race_panda_alli'] = 'Pandaren Alianza';
 $lang['race_panda_horde'] = 'Pandaren Horda';
+$lang['race_nightborde'] = 'Nocheterna';
+$lang['race_void_elf'] = 'Elfo del Vacío';
+$lang['race_lightforged_draenei'] = 'Draenei forjado por la Luz';
+$lang['race_highmountain_tauren'] = 'Tauren monte alto';
+$lang['race_dark_iron_dwarf'] = 'Enano Hierro Negro';
+$lang['race_maghar_orc'] = 'Orco Maghar';
 
 /*Class Lang*/
 $lang['class_warrior'] = 'Guerrero';

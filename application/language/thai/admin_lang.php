@@ -99,6 +99,8 @@ $lang['panel_admin_donation_list'] = 'รายการบริจาค';
 $lang['panel_admin_edit_news'] = 'แก้ไขข่าว';
 $lang['panel_admin_edit_pages'] = 'แก้ไขหน้าเพจ';
 $lang['panel_admin_edit_changelogs'] = 'แก้ไขการอัปเดทและแก้ไข';
+$lang['panel_admin_edit_item'] = 'Edit Item';
+$lang['panel_admin_edit_group'] = 'Edit Group';
 
 /*Column Lang*/
 $lang['column_race'] = 'ฝ่าย';

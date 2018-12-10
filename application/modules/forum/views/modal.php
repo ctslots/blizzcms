@@ -19,7 +19,7 @@
                         <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>
                         <div class="uk-form-controls">
                             <div class="uk-width-1-1">
-                                <textarea class="tinyeditor" name="topic_description" rows="10" cols="80"></textarea>
+                                <textarea class="uk-textarea tinyeditor" name="topic_description" rows="10" cols="80"></textarea>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                         <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>
                         <div class="uk-form-controls">
                             <div class="uk-width-1-1">
-                                <textarea class="tinyeditor" name="edittopic_description" rows="10" cols="80"><?= $this->forum_model->getTopicDescription($idlink); ?></textarea>
+                                <textarea class="uk-textarea tinyeditor" name="edittopic_description" rows="10" cols="80"><?= $this->forum_model->getTopicDescription($idlink); ?></textarea>
                             </div>
                         </div>
                     </div>

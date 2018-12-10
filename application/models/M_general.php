@@ -300,6 +300,12 @@ class M_general extends CI_Model {
             case 30:
                 return $this->lang->line('race_lightforged_draenei');
                 break;
+            case 34:
+                return $this->lang->line('race_dark_iron_dwarf');
+                break;
+            case 36:
+                return $this->lang->line('race_maghar_orc');
+                break;
         }
     }
 
@@ -351,16 +357,22 @@ class M_general extends CI_Model {
                 break;
             // Legion Support Race Allied (BFA)
             case 27:
-                return 'nightborne.jpg';
+                return 'nightborne.png';
                 break;
             case 28:
-                return 'highmountain.jpg';
+                return 'highmountain.png';
                 break;
             case 29:
-                return 'voidelf.jpg';
+                return 'voidelf.png';
                 break;
             case 30:
-                return 'lightforged.jpg';
+                return 'lightforged.png';
+                break;
+            case 34:
+                return 'irondwarf.png';
+                break;
+            case 36:
+                return 'magharorc.png';
                 break;
         }
     }
@@ -439,6 +451,9 @@ class M_general extends CI_Model {
             case '30':
                 return 'Alliance';
                 break;
+            case '34':
+                return 'Alliance';
+                break;
             case '2':
                 return 'Horde';
                 break;
@@ -464,6 +479,9 @@ class M_general extends CI_Model {
                 return 'Horde';
                 break;
             case '28':
+                return 'Horde';
+                break;
+            case '36':
                 return 'Horde';
                 break;
         }
@@ -523,40 +541,6 @@ class M_general extends CI_Model {
                 return $this->lang->line('gender_female');
                 break;
         }
-    }
-
-    public function getStylesPagination($perpage, $count)
-    {
-        $this->load->library("pagination");
-
-        $config = array(
-            'base_url'          => "#",
-            'total_rows'        => $count,
-            'per_page'          => $perpage,
-            'uri_segment'       => 3,
-            'use_page_numbers'  => TRUE,
-            'full_tag_open'     => '<ul class="pagination uk-pagination uk-flex-right edium>-top" uk-margin">',
-            'full_tag_close'    => '</ul>',
-            'first_tag_open'    => '<li>',
-            'first_tag_close'   => '</li>',
-            'last_tag_open'     => '<li>',
-            'last_tag_close'    => '</li>',
-            'next_link'         => '&gt;',
-            'next_tag_open'     => '<li>',
-            'next_tag_close'    => '</li>',
-            'prev_link'         => "&lt;",
-            'prev_tag_open'     => "<li>",
-            'prev_tag_close'    => "</li>",
-            'cur_tag_open'      => "<li class='active'><a href='#'>",
-            'cur_tag_close'     => "</a></li>",
-            'num_tag_open'      => "<li>",
-            'num_tag_close'     => "</li>",
-            'num_links'          => 1,
-        );
-
-        $this->pagination->initialize($config);
-
-        return $config;
     }
 
     public function tinyEditor($plugin, $tool)

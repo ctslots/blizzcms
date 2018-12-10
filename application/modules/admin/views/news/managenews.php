@@ -55,7 +55,7 @@
                                     <?php foreach($this->admin_model->getAdminNewsList()->result() as $news) { ?>
                                         <tr>
                                             <td><?= $news->title ?></td>
-                                            <td class="uk-text-center"><?= $news->date ?></td>
+                                            <td class="uk-text-center"><?= date('Y-m-d', $news->date); ?></td>
                                             <td class="uk-text-center" uk-margin>
                                                 <a href="<?= base_url(); ?>admin/editnews/<?= $news->id ?>" class="uk-button uk-button-secondary"><i class="far fa-edit"></i></a>
                                                 <span class="" style="display:inline-block; width: 5px;"></span>

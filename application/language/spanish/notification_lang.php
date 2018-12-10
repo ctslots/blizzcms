@@ -48,6 +48,7 @@ $lang['email_used'] = 'El Correo ya está en uso';
 $lang['expansion_not_found'] = 'Expansión no encontrada.';
 $lang['image_upload_error'] = 'Tu imagen debe estar en formato .jpg';
 $lang['changelog_not_found'] = 'El servidor no tiene registros de cambios para informar en este momento';
+$lang['faq_not_found'] = 'El servidor no tiene preguntas frecuentes para mostrar';
 
 $lang['char_newlevel'] = 'Recibe un nuevo nivel';
 $lang['char_oldlevel'] = 'Antes era';
@@ -69,3 +70,28 @@ $lang['store_see'] = 'Ver la tienda';
 $lang['no_players'] = 'No hay jugadores online';
 $lang['users_on'] = 'Usuarios Online';
 $lang['realm_offline'] = 'Reino Offline';
+
+/*Notify Title Lang*/
+$lang['notify_title_success'] = 'Éxito!';
+$lang['notify_title_warning'] = 'Advertencia!';
+$lang['notify_title_error'] = 'Error!';
+
+/*Notify Message Lang*/
+$lang['notify_donation_added'] = 'Donación agregada';
+$lang['notify_donation_deleted'] = 'Donación eliminada';
+$lang['notify_donation_updated'] = 'Donación actualizada';
+$lang['notify_name_empty'] = 'El nombre esta vacio';
+$lang['notify_points_empty'] = 'Puntos esta vacio';
+$lang['notify_tax_empty'] = 'El impuesto esta vacio';
+$lang['notify_price_empty'] = 'El precio esta vacio';
+$lang['notify_incorrect_update'] = 'Actualización inesperada';
+$lang['notify_news_deleted'] = 'Noticias eliminadas';
+$lang['notify_news_updated'] = 'Noticias actualizadas';
+$lang['notify_title_empty'] = 'El título está vacío';
+$lang['notify_description_empty'] = 'La descripción está vacía';
+$lang['notify_category_added'] = 'Categoría añadida';
+$lang['notify_category_deleted'] = 'Categoría eliminada';
+$lang['notify_category_updated'] = 'Categoría actualizada';
+$lang['notify_username_empty'] = 'El nombre de usuario está vacío';
+$lang['notify_password_empty'] = 'La contraseña esta vacia';
+$lang['notify_connecting'] = 'Conectando...!';

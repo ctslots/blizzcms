@@ -3,6 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Bugtracker_model extends CI_Model {
 
+    private $_limit;
+    private $_pageNumber;
+    private $_offset;
+
     public function __construct()
     {
         parent::__construct();
@@ -51,70 +55,34 @@ class Bugtracker_model extends CI_Model {
         redirect(base_url('bugtracker/post/').$id,'refresh');
     }
 
-    public function count_all()
+    public function setLimit($limit)
     {
-        return $this->db->get("fx_bugtracker")->num_rows();
+        $this->_limit = $limit;
+    }
+ 
+    public function setPageNumber($pageNumber)
+    {
+        $this->_pageNumber = $pageNumber;
+    }
+ 
+    public function setOffset($offset)
+    {
+        $this->_offset = $offset;
     }
 
-    public function fetch_details($limit, $start)
+    public function getAllBugs()
     {
-        $output = '';
+        $this->db->from('fx_bugtracker');
+        return $this->db->count_all_results();
+    }
 
-        $query = $this->db->select('*')
-                ->where('close', '0')
-                ->order_by('id', 'ASC')
-                ->limit($limit, $start)
-                ->get('fx_bugtracker');
-
-        $output .= '
-            <table class="uk-table uk-table-divider">
-                <thead>
-                    <tr>
-                        <th class="uk-text-white"><i class="fas fa-book"></i> '.$this->lang->line("column_id").'</th>
-                        <th class="uk-text-center uk-text-white"><i class="fas fa-bookmark"></i> '.$this->lang->line("form_title").'</th>
-                        <th class="uk-text-center uk-text-white"><i class="fas fa-list"></i> '.$this->lang->line("form_type").'</th>
-                        <th class="uk-text-center uk-text-white"><i class="fas fa-info-circle"></i> '.$this->lang->line("column_status").'</th>
-                        <th class="uk-text-center uk-text-white"><i class="fas fa-exclamation-circle"></i> '.$this->lang->line("column_priority").'</th>
-                    </tr>
-                </thead>
-                <tbody>
-        ';
-
-        foreach ($query->result() as $row)
-        {
-            $output .= '
-                <tr>
-                    <td>
-                        <a href="'.base_url('bugtracker/post/').$row->id.'">
-                            <span class="uk-light">'.$row->id.'</span>
-                        </a>
-                    </td>
-                    <td class="uk-text-center">
-                        <a href="'.base_url('bugtracker/post/').$row->id.'">
-                            <span class="uk-light">'.$row->title.'</span>
-                        </a>
-                    </td>
-                    <td class="uk-text-center">
-                        <a href="'.base_url('bugtracker/post/').$row->id.'">
-                            <span class="uk-label">'.$this->bugtracker_model->getType($row->type).'</span>
-                        </a>
-                    </td>
-                    <td class="uk-text-center">
-                        <a href="'.base_url('bugtracker/post/').$row->id.'">
-                            <span class="uk-label uk-label-success">'.$this->bugtracker_model->getStatus($row->status).'</span>
-                        </a>
-                    </td>
-                    <td class="uk-text-center">
-                        <a href="'.base_url('bugtracker/post/').$row->id.'">
-                            <span class="uk-label uk-label-warning">'.$this->bugtracker_model->getPriority($row->priority).'</span>
-                        </a>
-                    </td>
-                <tr>
-            ';
-        }
-
-        $output .= '</tbody> </table>';
-        return $output;
+    public function bugtrackerList()
+    {
+        return $this->db->select('*')
+                        ->where('close', '0')
+                        ->limit($this->_pageNumber, $this->_offset)
+                        ->get('fx_bugtracker')
+                        ->result();
     }
 
     public function insertIssue($title, $type, $desc, $url)
@@ -134,15 +102,22 @@ class Bugtracker_model extends CI_Model {
 
         $this->db->insert('fx_bugtracker', $data);
 
-        redirect(base_url('bugtracker'),'refresh');
+        $getIDPost = $this->getIDPostPerDate($date);
+
+        redirect(base_url('bugtracker/post/').$getIDPost,'refresh');
+    }
+
+    public function getIDPostPerDate($date)
+    {
+        return $this->db->select('id')
+                ->where('date', $date)
+                ->get('fx_bugtracker')
+                ->row('id');
     }
 
     public function getTypes()
     {
-        return $this->db->select('id, title')
-                ->order_by('id', 'ASC')
-                ->get('fx_bugtracker_type')
-                ->result();
+        return $this->db->select('*')->get('fx_bugtracker_type');
     }
 
     public function getType($id)

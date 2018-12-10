@@ -41,6 +41,7 @@ $lang['admin_website'] = 'Sitio Web';
 $lang['admin_news'] = 'Noticias';
 $lang['admin_changelogs'] = 'Changelogs';
 $lang['admin_pages'] = 'Páginas';
+$lang['admin_faq'] = 'Preguntas Frecuentes';
 $lang['admin_store'] = 'Tienda';
 $lang['admin_points_system'] = 'Sistema de Puntos';
 $lang['admin_manage_donations'] = 'Gestionar Donaciones';
@@ -95,6 +96,9 @@ $lang['panel_admin_news_list'] = 'Lista de Novedades';
 $lang['panel_admin_edit_news'] = 'Editar Noticia';
 $lang['panel_admin_edit_pages'] = 'Editar Página';
 $lang['panel_admin_edit_changelogs'] = 'Editar Changelog';
+$lang['panel_admin_edit_item'] = 'Editar Artículo';
+$lang['panel_admin_edit_group'] = 'Editar Grupo';
+$lang['panel_admin_faq_list'] = 'Lista de Preguntas Frecuentes';
 
 /*Column Lang*/
 $lang['column_race'] = 'Raza';
@@ -108,6 +112,7 @@ $lang['column_realm_name'] = 'Nombre Reino';
 $lang['column_realm_char_database'] = 'Character Database Name';
 $lang['column_tax'] = 'Impuestos';
 $lang['column_points'] = 'Puntos';
+$lang['column_type'] = 'Tipo';
 
 /*Form Lang*/
 $lang['form_create_changelog'] = 'Crear nuevo Changelog';
@@ -131,6 +136,8 @@ $lang['form_store_item_id'] = 'ID del Artículo';
 $lang['form_store_image_name'] = 'Nombre del archivo de Imagen';
 $lang['form_create_group'] = 'Crear Grupo';
 $lang['form_group_title'] = 'Título del Grupo';
+$lang['form_create_faq'] = 'Crear nueva FAQ';
+$lang['form_faq_title'] = 'Título de la pregunta frecuente';
 
 /*Placeholder Lang*/
 $lang['panel_admin_reason'] = 'Motivo';

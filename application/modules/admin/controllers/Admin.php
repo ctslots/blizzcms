@@ -16,7 +16,7 @@ class Admin extends MX_Controller {
 
         if (!$this->m_permissions->getMyPermissions('Permission_ACP'))
             redirect(base_url(),'refresh');
-        
+
         if ($this->admin_model->getBanSpecify($this->session->userdata('fx_sess_id'))->num_rows())
             redirect(base_url(),'refresh');
     }
@@ -259,7 +259,7 @@ class Admin extends MX_Controller {
         if (is_null($realm) || empty($realm))
             redirect(base_url(),'refresh');
 
-        foreach ($this->m_data->getRealm($realm)->result() as $charsMultiRealm) { 
+        foreach ($this->m_data->getRealm($realm)->result() as $charsMultiRealm) {
             $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
         }
 
@@ -344,6 +344,29 @@ class Admin extends MX_Controller {
         $this->load->view('general/footer');
     }
 
+    public function managefaq()
+    {
+        $this->load->view('general/header');
+        $this->load->view('faq/managefaq');
+        $this->load->view('general/footer');
+        $this->load->view('faq/modal');
+    }
+
+    public function editfaq($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getFaqSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data['idlink'] = $id;
+
+        $this->load->view('general/header');
+        $this->load->view('faq/editfaq', $data);
+        $this->load->view('general/footer');
+    }
+
     public function managegroups()
     {
         $this->load->view('general/header');
@@ -372,6 +395,21 @@ class Admin extends MX_Controller {
 
         $this->load->view('general/header');
         $this->load->view('shop/edititems', $data);
+        $this->load->view('general/footer');
+    }
+
+    public function editgroups($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getItemSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data['idlink'] = $id;
+
+        $this->load->view('general/header');
+        $this->load->view('shop/editgroups', $data);
         $this->load->view('general/footer');
     }
 
@@ -422,7 +460,7 @@ class Admin extends MX_Controller {
 
     public function checkSoap()
     {
-        foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) { 
+        foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) {
 
             echo $this->m_soap->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
         }
@@ -439,7 +477,7 @@ class Admin extends MX_Controller {
         $maxitemid = 160000;
 
         echo 'count starting to: '.$startitem;
-        
+
         echo 'max item id: '.$maxitemid;
 
         for ($i = $startitem; $i < $maxitemid; $i++) {
@@ -472,7 +510,7 @@ class Admin extends MX_Controller {
                     'inventorySlot_id' => $xml_en->item->inventorySlot['id'],
                     'icon_name' => $xml_en->item->icon
                 );
-                
+
                 $this->db->insert('fx_head_items', $items);
 
                 $data = array(
@@ -567,7 +605,7 @@ class Admin extends MX_Controller {
                     'json_cn' => $xml_cn->item->json,
                     'jsonEquip_cn' => $xml_cn->item->jsonEquip,
                 );
-                
+
                 $this->db->insert('fx_head_items_local', $data);
 
                 echo $xml_en->item->name.'<br>';

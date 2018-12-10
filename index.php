@@ -1,14 +1,3 @@
-<?php 
-/**
- * Automatic Redirection
- */
-if (!file_exists("application/config/config.php") && !file_exists("application/config/fixcore.php"))
-{
-    header("Location: install");
-    die();
-}
-?>
-
 <?php
 /**
  * CodeIgniter
@@ -46,6 +35,12 @@ if (!file_exists("application/config/config.php") && !file_exists("application/c
  * @since	Version 1.0.0
  * @filesource
  */
+
+/* Check if index on install folder exist */
+if (file_exists("install/index.php")):
+    header("Location: install");
+    die();
+endif;
 
 /*
  *---------------------------------------------------------------

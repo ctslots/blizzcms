@@ -6,6 +6,7 @@ class Bugtracker extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('pagination');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -32,37 +33,31 @@ class Bugtracker extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
 
         $data = array(
-                "classDrop" => array(
-                    'class' => 'uk-select',
-                    'id' => 'form-stacked-select'),
+            'fxtitle' => $this->lang->line('nav_bugtracker'),
+            'tiny' => $tiny,
+            'fx_adds' => '<div class="uk-container">'
+        );
 
-                "title_from" => array(
-                    'id' => 'bug_title',
-                    'name' => 'bug_title',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('expr_title'),
-                    'type' => 'text'),
+        $config['total_rows'] = $this->bugtracker_model->getAllBugs();
+        $data['total_count'] = $config['total_rows'];
+        $config['suffix'] = '';
+ 
+        if ($config['total_rows'] > 0)
+        {
+            $page_number = $this->uri->segment(3);
+            $config['base_url'] = base_url().'bugtracker/index/';
 
-                "url_form" => array(
-                    'id' => 'bug_url',
-                    'name' => 'bug_url',
-                    'class' => 'uk-input',
-                    'placeholder' => 'URL',
-                    'type' => 'url'),
+            if (empty($page_number))
+                $page_number = 1;
 
-                "close_form" => array(
-                    'class' => 'uk-button uk-button-default uk-modal-close'),
+            $offset = ($page_number - 1) * $this->pagination->per_page;
+            $this->bugtracker_model->setPageNumber($this->pagination->per_page);
+            $this->bugtracker_model->setOffset($offset);
+            $this->pagination->initialize($config);
 
-                "submit_form" => array(
-                    'id' => 'button_createIssue',
-                    'name' => 'button_createIssue',
-                    'value' => $this->lang->line('button_create'),
-                    'class' => 'uk-button uk-button-primary'),
-                'fxtitle' => $this->lang->line('nav_bugtracker'),
-                'tiny' => $tiny,
-                'fx_adds' => '<div class="uk-container">'
-            );
+            $data['pagination_links'] = $this->pagination->create_links();
+            $data['bugtrackerList'] = $this->bugtracker_model->bugtrackerList();
+        }
 
         $this->load->view('header', $data);
         $this->load->view('index', $data);
@@ -86,31 +81,13 @@ class Bugtracker extends MX_Controller {
         $this->load->view('footer');
     }
 
-    public function pagination()
-    {
-        $this->load->model('bugtracker_model');
-
-        $config = $this->m_general->getStylesPagination(10, $this->bugtracker_model->count_all());
-
-        $page = $this->uri->segment(3);
-        $start = ($page - 1) * $config["per_page"];
-
-        $output = array(
-            'pagination_link'  => $this->pagination->create_links(),
-            'bugtracker_table'   => $this->bugtracker_model->fetch_details($config["per_page"], $start)
-        );
-
-        echo json_encode($output);
-    }
-
     public function create()
     {
-        $title = $this->input->post('bug_title');
-        $type = $this->input->post('type_Bug');
-        $desc = $this->input->post('bug_description');
-        $url = $this->input->post('bug_url');
+        $title = $_POST['bug_title'];
+        $type = $_POST['bug_type'];
+        $desc = $_POST['bug_description'];
+        $url = $_POST['bug_url'];
 
         $this->bugtracker_model->insertIssue($title, $type, $desc, $url);
     }
-
 }
