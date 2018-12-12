@@ -467,7 +467,7 @@ CREATE TABLE `fx_menu` (
 
 /*Data for the table `fx_menu` */
 
-insert  into `fx_menu`(`id`,`name`,`url`,`icon`,`permissions`,`extras`,`father`,`son`) values (1,'Menu','#','','Permission_FREE',NULL,1,0),(2,'News','../../news','','Permission_News',NULL,0,0),(3,'Faq','../../faq','ra ra-uncertainty','Permission_FREE',NULL,0,1),(4,'Bugtracker','../../bugtracker','ra ra-book','Permission_Bugtracker',NULL,0,1),(5,'Changelogs','../../changelogs','ra ra-clockwork','Permission_Changelogs',NULL,0,1),(6,'PvP','../../pvp','ra ra-axe','Permission_PVPStats',NULL,0,1),(7,'Arena','../../arena','ra ra-arena','Permission_ArenaStats',NULL,0,1),(8,'Forums','../../forums',NULL,'Permission_Forums',NULL,0,0),(9,'Store','../../store',NULL,'Permission_Store',NULL,0,0);
+insert  into `fx_menu`(`id`,`name`,`url`,`icon`,`permissions`,`extras`,`father`,`son`) values (1,'Menu','#','','Permission_FREE',NULL,1,0),(2,'News','news','','Permission_News',NULL,0,0),(3,'Faq','faq','ra ra-uncertainty','Permission_FREE',NULL,0,1),(4,'Bugtracker','bugtracker','ra ra-book','Permission_Bugtracker',NULL,0,1),(5,'Changelogs','changelogs','ra ra-clockwork','Permission_Changelogs',NULL,0,1),(6,'PvP','pvp','ra ra-axe','Permission_PVPStats',NULL,0,1),(7,'Arena','arena','ra ra-arena','Permission_ArenaStats',NULL,0,1),(8,'Forums','forums',NULL,'Permission_Forums',NULL,0,0),(9,'Store','store',NULL,'Permission_Store',NULL,0,0);
 
 /*Table structure for table `fx_modules` */
 

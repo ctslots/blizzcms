@@ -21,12 +21,12 @@
     <!-- JQuery -->
     <script src="<?= base_url('core/js/jquery-3.3.1.min.js'); ?>"></script>
 
-    <?php if($this->m_data->isLogged()) { ?>
-        <link type="text/css" rel="stylesheet" media="all" href="<?= base_url('assets/chat/css/chat.css'); ?>" />
-        <link type="text/css" rel="stylesheet" media="all" href="<?= base_url('assets/chat/css/screen.css'); ?>" />
-        <script type="text/javascript" src="<?= base_url('assets/chat/js/jquery.js'); ?>"></script>
-        <script type="text/javascript" src="<?= base_url('assets/chat/js/chat.js'); ?>"></script>
-    <?php } ?>
+    <?php if($this->m_data->isLogged()): ?>
+    <link type="text/css" rel="stylesheet" media="all" href="<?= base_url('assets/chat/css/chat.css'); ?>" />
+    <link type="text/css" rel="stylesheet" media="all" href="<?= base_url('assets/chat/css/screen.css'); ?>" />
+    <script type="text/javascript" src="<?= base_url('assets/chat/js/jquery.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/chat/js/chat.js'); ?>"></script>
+    <?php endif ?>
 
     <!-- Notify -->
     <link rel="stylesheet" href="<?= base_url('core/amaranjs/dist/css/amaran.min.css'); ?>">
