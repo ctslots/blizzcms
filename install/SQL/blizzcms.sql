@@ -545,20 +545,6 @@ CREATE TABLE `fx_pages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `fx_questions` */
-
-DROP TABLE IF EXISTS `fx_questions`;
-
-CREATE TABLE `fx_questions` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `question` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `fx_questions` */
-
-insert  into `fx_questions`(`id`,`question`) values (1,'What was the first car you owned?'),(2,'What was the street you lived on in high school?'),(3,'Where was the first place you flew?'),(4,'What was the first video game you beat?'),(5,'What was the name of your second pet?'),(6,'What is the name of your favorite sports team or player?');
-
 /*Table structure for table `fx_ranks_default` */
 
 DROP TABLE IF EXISTS `fx_ranks_default`;
@@ -719,15 +705,8 @@ DROP TABLE IF EXISTS `fx_users`;
 
 CREATE TABLE `fx_users` (
   `id` int(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `surname` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `question` int(10) NOT NULL,
-  `answer` varchar(100) NOT NULL,
-  `year` int(10) NOT NULL,
-  `month` int(10) NOT NULL,
-  `day` int(10) NOT NULL,
   `date` int(10) NOT NULL,
   `profile` int(10) NOT NULL DEFAULT '1',
   `location` int(1) DEFAULT NULL,

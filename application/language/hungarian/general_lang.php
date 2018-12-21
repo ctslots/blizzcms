@@ -82,13 +82,7 @@ $lang['form_email'] = 'Email';
 $lang['form_password'] = 'Jelszó';
 $lang['form_re_password'] = 'Jelszó Megerősítés';
 $lang['form_user_info'] = 'Információk';
-$lang['form_first_name'] = 'Keresztnév';
-$lang['form_last_name'] = 'Vezetéknév';
-$lang['form_birth_date'] = 'Születésnap';
-$lang['form_year'] = 'Év';
 $lang['form_login_info'] = 'Belépési Információk';
-$lang['form_security_question'] = 'Titkos Kérdés';
-$lang['form_secret_answer'] = 'Válasz';
 $lang['form_old_password'] = 'Régi Jelszó';
 $lang['form_new_password'] = 'Új Jelszó';
 $lang['form_old_email'] = 'Régi Email';
@@ -225,17 +219,3 @@ $lang['gender_female'] = 'Female';
 /*Faction Lang*/
 $lang['faction_alliance'] = 'Alliance';
 $lang['faction_horde'] = 'Horde';
-
-/*Months Lang*/
-$lang['month_january'] = 'Január';
-$lang['month_february'] = 'Február';
-$lang['month_march'] = 'Március';
-$lang['month_april'] = 'Április';
-$lang['month_may'] = 'Május';
-$lang['month_june'] = 'Június';
-$lang['month_july'] = 'Július';
-$lang['month_august'] = 'Augusztus';
-$lang['month_september'] = 'Szeptember';
-$lang['month_october'] = 'Október';
-$lang['month_november'] = 'November';
-$lang['month_december'] = 'December';

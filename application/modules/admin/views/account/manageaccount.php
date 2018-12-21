@@ -142,26 +142,16 @@
                             <table class="uk-table uk-table-justify uk-table-divider">
                                 <thead>
                                     <tr>
-                                        <th><?= $this->lang->line('form_first_name'); ?></th>
-                                        <th><?= $this->lang->line('form_last_name'); ?></th>
                                         <th><?= $this->lang->line('form_username'); ?></th>
                                         <th><?= $this->lang->line('form_email'); ?></th>
-                                        <th><?= $this->lang->line('form_security_question'); ?></th>
-                                        <th><?= $this->lang->line('form_secret_answer'); ?></th>
-                                        <th><?= $this->lang->line('form_birth_date'); ?></th>
                                         <th><?= $this->lang->line('panel_member'); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($this->m_general->getUserInfoGeneral($idlink)->result() as $ginfo) { ?>
                                         <tr>
-                                            <td><?= $ginfo->name ?></td>
-                                            <td><?= $ginfo->surname ?></td>
                                             <td><?= $ginfo->username ?></td>
                                             <td><?= $ginfo->email ?></td>
-                                            <td><?= $this->m_general->getSpecifyQuestion($ginfo->question); ?></td>
-                                            <td><?= $ginfo->answer ?></td>
-                                            <td><?= $ginfo->year.'-'.$ginfo->month.'-'.$ginfo->day ?></td>
                                             <td><?= date('Y-m-d', $ginfo->date); ?></td>
                                         </tr>
                                     <?php } ?>

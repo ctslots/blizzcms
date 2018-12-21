@@ -81,13 +81,7 @@ $lang['form_email'] = 'อีเมล';
 $lang['form_password'] = 'รหัสผ่าน';
 $lang['form_re_password'] = 'ยืนยันรหัสผ่าน';
 $lang['form_user_info'] = 'ข้อมูลผู้ใช้งาน';
-$lang['form_first_name'] = 'ชื่อจริง';
-$lang['form_last_name'] = 'นามสกุล';
-$lang['form_birth_date'] = 'วันที่เกิด';
-$lang['form_year'] = 'ปี';
 $lang['form_login_info'] = 'ข้อมูลการเข้าสู่ระบบ';
-$lang['form_security_question'] = 'คำถามเพื่อความปลอดภัย';
-$lang['form_secret_answer'] = 'คำตอบ';
 $lang['form_old_password'] = 'รหัสผ่านเก่า';
 $lang['form_new_password'] = 'รหัสผ่านใหม่';
 $lang['form_old_email'] = 'อีเมลเก่า';
@@ -225,17 +219,3 @@ $lang['gender_female'] = 'Female';
 /*Faction Lang*/
 $lang['faction_alliance'] = 'Alliance';
 $lang['faction_horde'] = 'Horde';
-
-/*Months Lang*/
-$lang['month_january'] = 'มกราคม';
-$lang['month_february'] = 'กุมภาพันธ์';
-$lang['month_march'] = 'มีนาคม';
-$lang['month_april'] = 'เมษายน';
-$lang['month_may'] = 'พฤษภาคม';
-$lang['month_june'] = 'มิถุนายน';
-$lang['month_july'] = 'กรกฎาคม';
-$lang['month_august'] = 'สิงหาคม';
-$lang['month_september'] = 'กันยายน';
-$lang['month_october'] = 'ตุลาคม';
-$lang['month_november'] = 'พฤศจิกายน';
-$lang['month_december'] = 'ธันวาคม';
