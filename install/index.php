@@ -90,7 +90,7 @@ endif;
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label uk-text-uppercase">Expansion</label>
                       <div class="uk-form-controls">
-                        <select name="expansion_id" class="uk-select" id="expansion_id" style="background-color: rgba(0,0,0,0.15);">
+                        <select name="expansion_id" class="uk-select" id="expansion_id" style="background-color: rgba(0,0,0,.15);">
                           <option value="1">Vanilla</option>
                           <option value="2">The Burning Crusade</option>
                           <option value="3">Wrath of the Lich King</option>
@@ -105,7 +105,7 @@ endif;
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label uk-text-uppercase">Language</label>
                       <div class="uk-form-controls">
-                        <select name="language" class="uk-select" id="language" style="background-color: rgba(0,0,0,0.15);">
+                        <select name="language" class="uk-select" id="language" style="background-color: rgba(0,0,0,.15);">
                           <option value="english">English</option>
                           <option value="french">French</option>
                           <option value="german">German</option>
@@ -221,7 +221,7 @@ endif;
       <div class="uk-container uk-container-expand uk-text-center uk-position-relative">
         <div class="uk-flex-inline uk-flex-center uk-margin-small">
           <a target="_blank" href="https://gitlab.com/ProjectCMS/BlizzCMS" class="uk-icon-button uk-light uk-margin-small-right"><i class="fab fa-gitlab"></i></a>
-          <a target="_blank" href="https://discord.gg/SZteAfB" class="uk-icon-button  uk-light uk-margin-small-right"><i class="fab fa-discord"></i></a>
+          <a target="_blank" href="https://discord.gg/7QcXfJE" class="uk-icon-button  uk-light uk-margin-small-right"><i class="fab fa-discord"></i></a>
         </div>
         <h5 class="uk-h5 uk-margin-remove">Proudly powered by <span class="uk-text-bold">ProjectCMS</span></h5>
       </div>
