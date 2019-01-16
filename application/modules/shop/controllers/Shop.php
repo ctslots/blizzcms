@@ -49,7 +49,7 @@ class Shop extends MX_Controller {
             redirect(base_url('store'),'refresh');
 
         $data['idlink'] = $id;
-        $data['fxtitle'] = $this->lang->line('nav_store');
+        $data['fxtitle'] = $this->lang->line('nav_cart');
         
         $this->load->view('header', $data);
 

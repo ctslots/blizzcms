@@ -34,8 +34,7 @@ class Bugtracker extends MX_Controller {
 
         $data = array(
             'fxtitle' => $this->lang->line('nav_bugtracker'),
-            'tiny' => $tiny,
-            'fx_adds' => '<div class="uk-container">'
+            'tiny' => $tiny
         );
 
         $config['total_rows'] = $this->bugtracker_model->getAllBugs();

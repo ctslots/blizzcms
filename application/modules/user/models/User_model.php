@@ -100,22 +100,15 @@ class User_model extends CI_Model {
                 ->get('fx_users');
     }
 
-    public function updateInformation($id, $name, $surname, $username, $email, $question, $answer, $year, $month, $day, $country)
+    public function updateInformation($id, $username, $email, $country)
     {
         $this->db->where('id', $id)
              ->delete('fx_users');
 
         $data = array(
             'id' => $id,
-            'name' => $name,
-            'surname' => $surname,
             'username' => $username,
             'email' => $email,
-            'question' => $question,
-            'answer' => $answer,
-            'year' => $year,
-            'month' => $month,
-            'day' => $day,
             'location' => $country,
             );
 
@@ -169,7 +162,7 @@ class User_model extends CI_Model {
             return 'Unknow';
     }
 
-    public function insertRegister($name, $surname, $username, $email, $question, $password, $answer, $year, $month, $day, $country)
+    public function insertRegister($username, $email, $password, $country)
     {
         $date       = $this->m_data->getTimestamp();
         $expansion  = $this->m_general->getRealExpansionDB();
@@ -219,15 +212,8 @@ class User_model extends CI_Model {
 
         $data3 = array(
             'id' => $id,
-            'name' => $name,
-            'surname' => $surname,
             'username' => $username,
             'email' => $email,
-            'question' => $question,
-            'answer' => $answer,
-            'year' => $year,
-            'month' => $month,
-            'day' => $day,
             'date' => $date,
             'location' => $country,
             );
@@ -260,11 +246,6 @@ class User_model extends CI_Model {
                 ->where('id', $qq)
                 ->get('fx_country')
                 ->row_array()['country_name'];
-    }
-
-    public function getQuestion()
-    {
-        return $this->db->select('*')->get('fx_questions');
     }
 
     public function getLastIp($id)

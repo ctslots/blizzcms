@@ -129,3 +129,4 @@ $config['tinymce_language'] = '';
 */
 $config['social_facebook'] = "";
 $config['social_twitter'] = "";
+$config['social_youtube'] = "";

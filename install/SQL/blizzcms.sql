@@ -467,7 +467,7 @@ CREATE TABLE `fx_menu` (
 
 /*Data for the table `fx_menu` */
 
-insert  into `fx_menu`(`id`,`name`,`url`,`icon`,`permissions`,`extras`,`father`,`son`) values (1,'Menu','#','','Permission_FREE',NULL,1,0),(2,'News','../../news','','Permission_News',NULL,0,0),(3,'Faq','../../faq','ra ra-uncertainty','Permission_FREE',NULL,0,1),(4,'Bugtracker','../../bugtracker','ra ra-book','Permission_Bugtracker',NULL,0,1),(5,'Changelogs','../../changelogs','ra ra-clockwork','Permission_Changelogs',NULL,0,1),(6,'PvP','../../pvp','ra ra-axe','Permission_PVPStats',NULL,0,1),(7,'Arena','../../arena','ra ra-arena','Permission_ArenaStats',NULL,0,1),(8,'Forums','../../forums',NULL,'Permission_Forums',NULL,0,0),(9,'Store','../../store',NULL,'Permission_Store',NULL,0,0);
+insert  into `fx_menu`(`id`,`name`,`url`,`icon`,`permissions`,`extras`,`father`,`son`) values (1,'Menu','#','','Permission_FREE',NULL,1,0),(2,'News','news','','Permission_News',NULL,0,0),(3,'Faq','faq','ra ra-uncertainty','Permission_FREE',NULL,0,1),(4,'Bugtracker','bugtracker','ra ra-book','Permission_Bugtracker',NULL,0,1),(5,'Changelogs','changelogs','ra ra-clockwork','Permission_Changelogs',NULL,0,1),(6,'PvP','pvp','ra ra-axe','Permission_PVPStats',NULL,0,1),(7,'Arena','arena','ra ra-arena','Permission_ArenaStats',NULL,0,1),(8,'Forums','forums',NULL,'Permission_Forums',NULL,0,0),(9,'Store','store',NULL,'Permission_Store',NULL,0,0);
 
 /*Table structure for table `fx_modules` */
 
@@ -544,20 +544,6 @@ CREATE TABLE `fx_pages` (
   `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Table structure for table `fx_questions` */
-
-DROP TABLE IF EXISTS `fx_questions`;
-
-CREATE TABLE `fx_questions` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `question` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `fx_questions` */
-
-insert  into `fx_questions`(`id`,`question`) values (1,'What was the first car you owned?'),(2,'What was the street you lived on in high school?'),(3,'Where was the first place you flew?'),(4,'What was the first video game you beat?'),(5,'What was the name of your second pet?'),(6,'What is the name of your favorite sports team or player?');
 
 /*Table structure for table `fx_ranks_default` */
 
@@ -719,15 +705,8 @@ DROP TABLE IF EXISTS `fx_users`;
 
 CREATE TABLE `fx_users` (
   `id` int(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `surname` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `question` int(10) NOT NULL,
-  `answer` varchar(100) NOT NULL,
-  `year` int(10) NOT NULL,
-  `month` int(10) NOT NULL,
-  `day` int(10) NOT NULL,
   `date` int(10) NOT NULL,
   `profile` int(10) NOT NULL DEFAULT '1',
   `location` int(1) DEFAULT NULL,

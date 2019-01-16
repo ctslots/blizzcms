@@ -1,59 +1,52 @@
-    <div class="uk-container">
-        <div class="uk-space-xlarge"></div>
+    <section class="uk-section uk-section-small" data-uk-height-viewport="expand: true">
+      <div class="uk-container">
+        <h3 class="uk-h3 uk-text-bold uk-text-uppercase"><i class="ra ra-clockwork"></i> <?= $this->lang->line('nav_changelogs'); ?></h3>
         <?php if($this->changelogs_model->getAll()->num_rows()) { ?>
-            <div class="uk-grid uk-grid-large" data-uk-grid>
-                <div class="uk-width-1-6@l"></div>
-                <div class="uk-width-4-6@l">
-                    <div class="uk-h3 uk-text-uppercase uk-text-white"><i class="fas fa-spinner fa-pulse"></i> <?= $this->lang->line('changelogs_recent_article'); ?></div>
-                    <div class="uk-mod-divider uk-mod-divider-light"></div>
-                    <div class="uk-card uk-card-default uk-card-hover uk-grid-collapse uk-child-width-1-2@s uk-margin uk-animation-fade" uk-grid>
-                        <div class="uk-card-media-left uk-cover-container uk-overflow-hidden">
-                            <img src="<?= base_url(); ?>assets/images/changelogs/<?= $this->changelogs_model->getChanglogImage($this->changelogs_model->getLastID()); ?>" alt="" uk-cover>
-                            <canvas width="50" height="50"></canvas>
-                        </div>
-                        <div>
-                            <div class="uk-card-body">
-                                <h3 class="uk-card-title uk-text-uppercase uk-text-break"><?= $this->changelogs_model->getChanglogTitle($this->changelogs_model->getLastID()); ?></h3>
-                                <p><?= substr(ucfirst(strtolower(strip_tags($this->changelogs_model->getChanglogDesc($this->changelogs_model->getLastID())))), 0, 260).' ...'; ?></p>
-                                <p><i class="far fa-clock"></i> <?= date('d-m-Y', $this->changelogs_model->getChanglogDate($this->changelogs_model->getLastID())); ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-h3 uk-text-uppercase uk-text-center uk-text-white"><span uk-icon="icon: cog; ratio: 2"></span> <?= $this->lang->line('changelogs_list'); ?></div>
-                    <div class="uk-space-medium"></div>
-                    <div uk-slider>
-                        <div class="uk-position-relative uk-visible-toggle uk-light">
-                            <ul class="uk-slider-items uk-child-width-1-4@s uk-grid">
-                                <?php foreach($this->changelogs_model->getChangelogs()->result() as $changelogsList) { ?>
-                                    <li>
-                                        <div class="uk-card uk-card-secondary">
-                                            <div class="uk-card-media-top">
-                                                <img src="<?= base_url(); ?>assets/images/changelogs/<?= $changelogsList->image ?>" alt="">
-                                            </div>
-                                            <div class="uk-card-body uk-text-center">
-                                                <h4 class="uk-card-title"><?= $changelogsList->title ?></h4>
-                                                <p><i class="far fa-clock"></i> <?= date('d-m-Y', $changelogsList->date); ?></p>
-                                                <p><a href="<?= base_url('changelogs/'); ?><?= $changelogsList->id ?>" class="uk-button uk-button-primary uk-width-1-1"><i class="fas fa-eye"></i> <?= $this->lang->line('button_learn_more'); ?></a></p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-                            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
-                        </div>
-                    </div>
+        <h5 class="uk-h5 uk-text-uppercase"><?= $this->lang->line('changelogs_recent_article'); ?></h5>
+        <a href="<?= base_url('changelogs/'.$this->changelogs_model->getLastID()); ?>">
+          <div class="uk-card uk-card-default uk-card-hover card-article">
+            <div class="uk-card-body">
+              <div class="uk-grid uk-grid-medium" data-uk-grid>
+                <div class="uk-width-2-5 uk-width-1-4@s">
+                  <div class="image-card uk-margin-small" style="background-image: url(<?= base_url('assets/images/changelogs/'.$this->changelogs_model->getChanglogImage($this->changelogs_model->getLastID())); ?>);"></div>
                 </div>
-                <div class="uk-width-1-6@l"></div>
+                <div class="uk-width-3-5 uk-width-3-4@s">
+                  <h4 class="uk-h4 uk-text-uppercase uk-margin-small uk-text-break"><?= $this->changelogs_model->getChanglogTitle($this->changelogs_model->getLastID()); ?></h4>
+                  <div class="uk-margin-smal uk-visible@s"><?= substr(ucfirst(strtolower(strip_tags($this->changelogs_model->getChanglogDesc($this->changelogs_model->getLastID())))), 0, 260).' ...'; ?></div>
+                  <p class="uk-text-small uk-margin-small"><i class="far fa-clock"></i> <?= date('d-m-Y', $this->changelogs_model->getChanglogDate($this->changelogs_model->getLastID())); ?></p>
+                </div>
+              </div>
             </div>
+          </div>
+        </a>
+        <h5 class="uk-h5 uk-text-uppercase"><i class="fas fa-spinner fa-pulse"></i> <?= $this->lang->line('changelogs_list'); ?></h5>
+        <div uk-slider>
+          <div class="uk-position-relative uk-visible-toggle uk-light">
+            <ul class="uk-slider-items uk-child-width-1-4@s uk-grid uk-grid-medium">
+              <?php foreach($this->changelogs_model->getChangelogs()->result() as $changelogsList) { ?>
+                <li>
+                  <a href="<?= base_url('changelogs/'.$changelogsList->id); ?>">
+                    <div class="uk-card uk-card-default uk-card-hover">
+                      <div class="uk-card-media-top">
+                        <img src="<?= base_url('assets/images/changelogs/'.$changelogsList->image); ?>" alt="<?= $changelogsList->title ?>">
+                      </div>
+                      <div class="uk-card-body">
+                        <h5 class="uk-h5 uk-text-uppercase uk-text-bold uk-margin-small"><?= $changelogsList->title ?></h5>
+                        <p class="uk-text-small uk-margin-small"><i class="far fa-clock"></i> <?= date('d-m-Y', $changelogsList->date); ?></p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              <?php } ?>
+            </ul>
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+          </div>
+        </div>
         <?php } else { ?>
-            <div class="uk-grid uk-grid-large" data-uk-grid>
-                <div class="uk-width-1-6@l"></div>
-                <div class="uk-width-4-6@l">
-                    <div class="uk-alert-warning" uk-alert>
-                        <p class="uk-text-center"><i class="fas fa-exclamation-triangle"></i> <?= $this->lang->line('changelog_not_found'); ?></p>
-                    </div>
-                </div>
-                <div class="uk-width-1-6@l"></div>
-            </div>
+        <div class="uk-alert-warning" uk-alert>
+          <p class="uk-text-center"><i class="fas fa-exclamation-triangle"></i> <?= $this->lang->line('changelog_not_found'); ?></p>
+        </div>
         <?php } ?>
+      </div>
+    </section>

@@ -1,14 +1,10 @@
-    <div class="uk-container">
-        <div class="uk-space-xlarge"></div>
-        <div class="uk-grid uk-grid-large" data-uk-grid>
-            <div class="uk-width-1-5@l"></div>
-            <div class="uk-width-3-5@l">
-                <article class="uk-article uk-text-white">
-                    <h1 class="uk-article-title uk-text-uppercase uk-text-white"><a class="uk-link-reset" href=""><i class="far fa-file-alt"></i> <?= $this->pages_model->getName($idlink) ?></a></h1>
-                    <p class="uk-article-meta uk-text-white"><?= $this->lang->line('news_article_published'); ?> | <i class="far fa-clock"></i> <?= date('Y-m-d', $this->pages_model->getDate($idlink)); ?></p>
-                    <p class="uk-text-break"><?= $this->pages_model->getDesc($idlink); ?></p>
-                    <hr>
-                </article>
-            </div>
-            <div class="uk-width-1-5@l"></div>
-        </div>
+    <section class="uk-section uk-section-small" data-uk-height-viewport="expand: true">
+      <div class="uk-container">
+        <h4 class="uk-h4 uk-text-bold uk-text-uppercase uk-margin-small"><i class="fas fa-newspaper"></i> <?=$this->lang->line('nav_news');?></h4>
+        <article class="uk-article uk-text-break">
+          <h1 class="uk-h1 uk-text-uppercase"><i class="far fa-file-alt"></i> <?= $this->pages_model->getName($idlink) ?></h1>
+          <p class="uk-article-meta"><?= $this->lang->line('news_article_published'); ?> | <i class="far fa-clock"></i> <?= date('Y-m-d', $this->pages_model->getDate($idlink)); ?></p>
+          <?= $this->pages_model->getDesc($idlink); ?>
+        </article>
+      </div>
+    </section>

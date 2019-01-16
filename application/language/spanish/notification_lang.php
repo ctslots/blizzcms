@@ -69,7 +69,9 @@ $lang['shopping_cart'] = 'Comprar carrito';
 $lang['store_see'] = 'Ver la tienda';
 $lang['no_players'] = 'No hay jugadores online';
 $lang['users_on'] = 'Usuarios Online';
-$lang['realm_offline'] = 'Reino Offline';
+$lang['realm_notification'] = 'Actualmente el reino esta';
+$lang['offline'] = 'Offline';
+$lang['online'] = 'Online';
 
 /*Notify Title Lang*/
 $lang['notify_title_success'] = 'Éxito!';

@@ -81,13 +81,7 @@ $lang['form_email'] = 'Email';
 $lang['form_password'] = 'Senha';
 $lang['form_re_password'] = 'Repetir Senha';
 $lang['form_user_info'] = 'Informação do Usuario';
-$lang['form_first_name'] = 'Primeiro Nome';
-$lang['form_last_name'] = 'Sobrenome';
-$lang['form_birth_date'] = 'Data de Nascimento';
-$lang['form_year'] = 'Ano';
 $lang['form_login_info'] = 'Informação de Login';
-$lang['form_security_question'] = 'Pergunta de Segurança';
-$lang['form_secret_answer'] = 'Resposta Secreta';
 $lang['form_old_password'] = 'Senha Antiga';
 $lang['form_new_password'] = 'Senha Nova';
 $lang['form_old_email'] = 'Antigo Email';
@@ -225,17 +219,3 @@ $lang['gender_female'] = 'Mulher';
 /*Faction Lang*/
 $lang['faction_alliance'] = 'Aliança';
 $lang['faction_horde'] = 'Horda';
-
-/*Months Lang*/
-$lang['month_january'] = 'Janeiro';
-$lang['month_february'] = 'Fevereiro';
-$lang['month_march'] = 'March';
-$lang['month_april'] = 'April';
-$lang['month_may'] = 'May';
-$lang['month_june'] = 'June';
-$lang['month_july'] = 'July';
-$lang['month_august'] = 'August';
-$lang['month_september'] = 'September';
-$lang['month_october'] = 'October';
-$lang['month_november'] = 'November';
-$lang['month_december'] = 'December';

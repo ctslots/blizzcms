@@ -89,7 +89,7 @@ function createChatBox(chatboxtitle,chatuserName, minimizeChatBox) {
 
 	$(" <div />" ).attr("id","chatbox_"+chatboxtitle)
 	.addClass("chatbox")
-	.html('<div class="chatboxhead"><div class="chatboxtitle">'+getTitle( chatuserName )+'</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\''+chatboxtitle+'\')">-</a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\''+chatboxtitle+'\')">X</a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><div class="uk-margin"><textarea class="uk-textarea chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\''+chatboxtitle+'\',\''+chatuserName+'\');"></textarea></div></div>')
+	.html('<div class="chatboxhead"><div class="chatboxtitle">'+getTitle( chatuserName )+'</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\''+chatboxtitle+'\')">-</a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\''+chatboxtitle+'\')">X</a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><div class="uk-margin-small"><textarea class="uk-textarea chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\''+chatboxtitle+'\',\''+chatuserName+'\');" placeholder="Message"></textarea></div></div>')
 	.appendTo($( "body" ));
 			   
 	$("#chatbox_"+chatboxtitle).css('bottom', '0px');

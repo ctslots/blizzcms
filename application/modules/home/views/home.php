@@ -1,175 +1,115 @@
-    <header id="top-head">
-        <?php if($this->m_modules->getStatusSlides()): ?>
-            <?php if($this->home_model->getSlides()->num_rows()): ?>
-                <div class="uk-position-relative uk-visible-toggle uk-light" uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 5000; min-height: 200; max-height: 400;">
-                    <ul class="uk-slideshow-items">
-                        <?php foreach ($slides as $slides): ?>
-                            <li>
-                                <img src="{slide_url}<?= $slides->image; ?>" alt="" uk-cover>
-                                <div class="uk-position-center-left uk-position-medium uk-text-center uk-light">
-                                    <h2 class="uk-margin-medium-left"><?= $slides->title ?></h2>
-                                </div>
-                            </li>
-                        <?php endforeach ?>
-                    </ul>
-                    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-                    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
-                </div>
-            <?php endif ?>
-        <?php endif ?>
-    </header>
-    <br>
-    <div class="uk-container">
-        <div class="uk-grid uk-grid-large" data-uk-grid>
-            <?php if ($this->m_modules->getStatusNews()): ?>
-                <div class="uk-width-2-3@l">
-                    <p class="uk-h3 uk-text-white"><i class="far fa-newspaper"></i> {home_latest_news}</p>
-                    <div class="uk-mod-divider uk-mod-divider-light"></div>
-                    <?php foreach ($principalNew as $principalNew): ?>
-                        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
-                            <div class="uk-card-media-left uk-cover-container">
-                                <img src="{news_url}<?= $principalNew->image; ?>" alt="" uk-cover>
-                                <canvas width="500" height="250"></canvas>
-                            </div>
-                            <div>
-                                <div class="uk-card-body">
-                                    <h3 class="uk-card-title uk-text-break"><?= $principalNew->title; ?></h3>
-                                    <p><?= substr(ucfirst(strtolower(strip_tags($principalNew->description))), 0, 260).' ...'; ?></p>
-                                    <p class="uk-text-right"><a href="<?= base_url() ;?>news/<?= $principalNew->id ?>"><button  class="uk-button uk-button-primary">{button_learn_more}</button></a></p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach ?>
-                    <div uk-slider>
-                        <div class="uk-position-relative uk-visible-toggle uk-light">
-                            <ul class="uk-slider-items uk-child-width-1-3@s uk-grid">
-                                <?php foreach ($threeNews as $newstree): ?>
-                                    <li>
-                                        <div class="uk-text-center">
-                                            <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
-                                                <img src="{news_url}<?= $newstree->image ?>" alt="">
-                                                <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-                                                    <p class="uk-h4 uk-margin-remove uk-text-truncate"><?= $newstree->title ?></p>
-                                                    <p><a href="<?= base_url('news/') ;?><?= $newstree->id ?>" class="uk-button uk-button-primary uk-button-small">{button_learn_more}</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                <?php endforeach ?>
-                            </ul>
-                            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-                            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
-                        </div>
-                    </div>
-                </div>
-            <?php endif ?>
-            <div class="uk-width-1-3@l">
-                <?php if($this->m_modules->getStatusRealmStatus()): ?>
-                    <p class="uk-h3 uk-text-white"><i class="fas fa-server"></i> {home_server_status}</p>
-                    <div class="label uk-text-center">
-                        <h4 class="uk-text-white">
-                            <?php if ($this->m_general->getExpansionAction() == 1): ?>
-                                <i class="fas fa-gamepad"></i> Set Realmlist {conf_realmlist}
-                            <?php else: ?>
-                                <i class="fas fa-gamepad"></i> Set Portal "{conf_realmlist}"
-                            <?php endif ?>
-                        </h4>
-                    </div>
-                    <div class="uk-mod-divider uk-mod-divider-light"></div>
-                    <ul uk-accordion="multiple: true">
-                        <?php foreach ($realmsList as $charsMultiRealm): 
-                            $multiRealm = $this->m_data->getRealmConnectionData($charsMultiRealm->id);
-                        ?>
-                            <li class="uk-open">
-                                <a class="uk-accordion-title uk-text-white" href="#">
-                                    <?php if ($this->m_data->realm_status($charsMultiRealm->realmID, $charsMultiRealm->hostname)): ?>
-                                        <span class="uk-text-success uk-text-bold" uk-icon="icon: chevron-up; ratio: 1.5"></span>
-                                    <?php else: ?>
-                                        <span class="uk-text-danger uk-text-bold" uk-icon="icon: chevron-down; ratio: 1.5"></span>
-                                    <?php endif ?>
-                                    Realm <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?>
-                                </a>
-                                <div class="uk-accordion-content">
-                                    <p class="uk-text-center">
-                                        <?php if ($this->m_data->realm_status($charsMultiRealm->realmID, $this->m_general->realmGetHostname($charsMultiRealm->realmID))): ?>
-                                            <span class="uk-label">
-                                                <span uk-icon="icon: users"></span>
-                                                <?= $this->m_characters->getCharactersOnlineAlliance($multiRealm); ?>
-                                                <?= $this->lang->line('faction_alliance'); ?>
-                                            </span>
-                                            <span style="display:inline-block; width: 3px;"></span>
-                                            <span class="uk-label uk-label-danger">
-                                                <span uk-icon="icon: users"></span>
-                                                <?= $this->m_characters->getCharactersOnlineHorde($multiRealm); ?>
-                                                <?= $this->lang->line('faction_horde'); ?>
-                                            </span>
-                                        <?php else: ?>
-                                            <div class="uk-alert-danger" uk-alert>
-                                                <p class="uk-position-center"><?= $this->lang->line('realm_offline'); ?></p>
-                                            </div>
-                                        <?php endif ?>
-                                    </p>
-                                </div>
-                            </li>
-                        <?php endforeach ?>
-                    </ul>
-                <?php endif ?>
-                <?php if ($this->m_modules->getStatusDiscordExperimental() == '1'): ?>
-                    <div class="uk-card uk-width-1-1@m">
-                        <p class="uk-h3 uk-text-white"><i class="fab fa-discord"></i> Discord</p>
-                        <div class="uk-mod-divider uk-mod-divider-light"></div>
-                        <div class="uk-text-center">
-                            <br>
-                            <a target="_blank" href="{conf_discordurl}{discord_code}" class="uk-h3 uk-text-white">
-                                <img class="uk-border-circle uk-text-center" src="{conf_discordcdn}{discord_id}/{discord_icon}.png" width="{discord_width_exp}" height="{discord_height_exp}" alt="">
-                                <div class="label">
-                                    {discord_name}
-                                </div>
-                            </a>
-                            <span class="uk-label uk-label-warning">
-                                {users_on}
-                                {discord_counts} 
-                            </span>
-                        </div>
-                    </div>
-                <?php endif ?>
-                <?php if ($this->m_modules->getStatusDiscordClassic() == '1'): ?>
-                    <div class="uk-card uk-width-1-1@m">
-                        <p class="uk-h3 uk-text-white"><i class="fab fa-discord"></i> Discord</p>
-                        <div class="uk-mod-divider uk-mod-divider-light"></div>
-                        <div class="uk-text-center">
-                            <br>
-                            <iframe src="{conf_discordwidget}{discord_id}&theme={conf_discordtheme}" width="{discord_width_class}" height="{discord_height_class}" {discord_extras}></iframe>
-                        </div>
-                    </div>
-                <?php endif ?>
-            </div>
-            <?php if($this->m_modules->getStatusStore() == '1'): ?>
-                <div class="uk-width-1-1@l">
-                    <p class="uk-h3 uk-text-white"><i class="fas fa-shopping-bag"></i> {home_store_top}</p>
-                    <div class="uk-mod-divider uk-mod-divider-light"></div>
-                    <br>
-                    <div uk-slider>
-                        <div class="uk-position-relative uk-visible-toggle uk-light">
-                            <ul class="uk-slider-items uk-child-width-1-6@s uk-grid">
-                                <?php foreach ($shopTop as $listTopShop): ?>
-                                    <li>
-                                        <div class="uk-text-center">
-                                            <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
-                                                <img src="{store_url}<?= $this->shop_model->getImage($listTopShop->id_shop); ?>" alt="">
-                                                <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-                                                    <p class="uk-h4 uk-margin-remove uk-text-truncate"><?= $this->shop_model->getName($listTopShop->id_shop); ?></p>
-                                                    <p><a href="<?= base_url('store/'); ?><?= $this->shop_model->getGroup($listTopShop->id_shop); ?>" class="uk-button uk-button-primary uk-button-small">{button_buy}</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                <?php endforeach ?>
-                            </ul>
-                            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-                            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
-                        </div>
-                    </div>
-                </div>
-            <?php endif ?>
+    <section class="uk-section uk-padding-remove slider-section">
+      <?php if($this->m_modules->getStatusSlides()): ?>
+      <?php if($this->home_model->getSlides()->num_rows()): ?>
+      <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: fade;autoplay: true;autoplay-interval: 5000;min-height: 200;max-height: 400;">
+        <ul class="uk-slideshow-items">
+          <?php foreach ($slides as $slides): ?>
+            <li>
+              <img src="{slide_url}<?= $slides->image; ?>" alt="<?= $slides->title ?>" uk-cover>
+              <div class="uk-container uk-position-relative uk-margin-xlarge-top">
+                <h2 class="uk-h2 uk-position-medium uk-text-left"><?= $slides->title ?></h2>
+              </div>
+            </li>
+          <?php endforeach ?>
+        </ul>
+        <div class="uk-position-bottom-center uk-position-medium">
+          <ul class="uk-slideshow-nav uk-dotnav"></ul>
         </div>
+      </div>
+      <?php endif ?>
+      <?php endif ?>
+    </section>
+    <section class="uk-section uk-section-xsmall home-section" data-uk-height-viewport="expand: true">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-medium uk-margin-small" data-uk-grid>
+          <div class="uk-width-2-3@s">
+            <?php if ($this->m_modules->getStatusNews()): ?>
+            <p><span class="uk-h3">{home_latest_news}</span><a href="<?= base_url('news') ;?>" class="uk-text-small uk-margin-small-left"><?= $this->lang->line('home_view_all_news'); ?></a></p>
+            <div class="uk-grid uk-grid-medium uk-grid-match uk-child-width-1-1 uk-child-width-1-2@s" data-uk-grid>
+              <?php foreach ($threeNews as $newstree): ?>
+              <div>
+                <a href="<?= base_url('news/'.$newstree->id) ;?>" title="{button_learn_more}">
+                  <div class="uk-card uk-card-default uk-card-hover">
+                    <div class="uk-card-media-top">
+                      <img src="{news_url}<?= $newstree->image ?>" alt="<?= $newstree->title ?>">
+                    </div>
+                    <div class="uk-card-body">
+                      <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $newstree->title ?></h4>
+                      <p class="uk-margin-small"><?= substr(ucfirst(strtolower(strip_tags($newstree->description))), 0, 160).' ...'; ?></p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <?php endforeach ?>
+            </div>
+            <?php endif ?>
+          </div>
+          <div class="uk-width-1-3@s">
+            <?php if($this->m_modules->getStatusRealmStatus()): ?>
+            <h3 class="uk-h3">{home_server_status}</h3>
+            <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin-small" data-uk-grid>
+              <?php foreach ($realmsList as $charsMultiRealm): 
+                $multiRealm = $this->m_data->getRealmConnectionData($charsMultiRealm->id);
+              ?>
+              <div>
+                <div class="uk-card uk-card-default uk-card-body card-status">
+                  <div class="uk-grid uk-grid-small" data-uk-grid>
+                    <div class="uk-width-expand">
+                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><i class="fas fa-server"></i> Realm <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h5>
+                    </div>
+                    <div class="uk-width-auto">
+                      <?php if ($this->m_data->realm_status($charsMultiRealm->realmID, $this->m_general->realmGetHostname($charsMultiRealm->realmID))): ?>
+                        <div class="status-dot online" uk-tooltip="<?= $this->lang->line('online'); ?>"><span><span></span></span></div>
+                      <?php else: ?>
+                        <div class="status-dot offline" uk-tooltip="<?= $this->lang->line('offline'); ?>"><span><span></span></span></div>
+                      <?php endif ?>
+                    </div>
+                  </div>
+                  <?php if ($this->m_data->realm_status($charsMultiRealm->realmID, $this->m_general->realmGetHostname($charsMultiRealm->realmID))): ?>
+                  <div class="uk-grid uk-grid-collapse uk-margin-small" data-uk-grid>
+                    <div class="uk-width-1-2">
+                      <div class="uk-tile alliance-bar uk-text-center" uk-tooltip="<?= $this->lang->line('faction_alliance'); ?>">
+                        <i class="fas fa-users"></i>
+                        <?= $this->m_characters->getCharactersOnlineAlliance($multiRealm); ?>
+                      </div>
+                    </div>
+                    <div class="uk-width-1-2">
+                      <div class="uk-tile horde-bar uk-text-center" uk-tooltip="<?= $this->lang->line('faction_horde'); ?>">
+                        <i class="fas fa-users"></i>
+                        <?= $this->m_characters->getCharactersOnlineHorde($multiRealm); ?>
+                      </div>
+                    </div>
+                  </div>
+                  <?php else: ?>
+                  <p class="uk-margin-small"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('realm_notification'); ?> <span class="uk-text-danger uk-text-bold uk-text-uppercase"><?= $this->lang->line('offline'); ?></span></p>
+                  <?php endif ?>
+                </div>
+              </div>
+              <?php endforeach ?>
+            </div>
+            <h5 class="uk-h5 uk-text-center uk-margin dotted-divider">
+              <?php if ($this->m_general->getExpansionAction() == 1): ?>
+              <i class="fas fa-gamepad"></i> Set Realmlist {conf_realmlist}
+              <?php else: ?>
+              <i class="fas fa-gamepad"></i> Set Portal "{conf_realmlist}"
+              <?php endif ?>
+            </h5>
+            <?php endif ?>
+            <?php if ($this->m_modules->getStatusDiscordExperimental() == '1'): ?>
+            <h3 class="uk-h3 uk-margin-small-top"><?= $this->lang->line('home_discord'); ?></h3>
+            <div class="uk-text-center uk-margin-small">
+              <a class="discord-widget" href="https://discord.gg/<?= $this->config->item('discord_inv'); ?>" title="Join us on Discord">
+                <img src="https://discordapp.com/api/guilds/{discord_id}/embed.png?style=banner3">
+              </a>
+            </div>
+            <?php endif ?>
+            <?php if ($this->m_modules->getStatusDiscordClassic() == '1'): ?>
+            <h3 class="uk-h3 uk-margin-small-top"><?= $this->lang->line('home_discord'); ?></h3>
+            <div class="uk-text-center uk-margin-small">
+              <iframe src="{conf_discordwidget}{discord_id}&theme={conf_discordtheme}" width="{discord_width_class}" height="{discord_height_class}" {discord_extras}></iframe>
+            </div>
+            <?php endif ?>
+          </div>
+        </div>
+      </div>
+    </section>

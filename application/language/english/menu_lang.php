@@ -49,5 +49,6 @@ $lang['nav_home'] = 'Home';
 $lang['nav_donate'] = 'Donate';
 $lang['nav_armory'] = 'Armory';
 $lang['nav_vote'] = 'Vote';
+$lang['nav_cart'] = 'Cart';
 
 $lang['nav_account'] = 'My Account';

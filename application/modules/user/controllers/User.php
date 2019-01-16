@@ -50,7 +50,7 @@ class User extends MX_Controller {
                     'id' => 'button_log',
                     'name' => 'button_log',
                     'value' => $this->lang->line('button_login'),
-                    'class' => 'uk-button uk-button-primary uk-width-1-1')
+                    'class' => 'uk-button uk-button-default uk-width-1-1')
             );
 
             $this->load->view('login1', $data);
@@ -78,7 +78,7 @@ class User extends MX_Controller {
                     'id' => 'button_log',
                     'name' => 'button_log',
                     'value' => $this->lang->line('button_login'),
-                    'class' => 'uk-button uk-button-primary uk-width-1-1')
+                    'class' => 'uk-button uk-button-default uk-width-1-1')
             );
 
             $this->load->view('login2', $data);

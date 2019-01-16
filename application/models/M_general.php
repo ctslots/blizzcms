@@ -9,14 +9,6 @@ class M_general extends CI_Model {
         $this->auth = $this->load->database('auth', TRUE);
     }
 
-    public function getSpecifyQuestion($id)
-    {
-        return $this->db->select('question')
-                ->where('id', $id)
-                ->get('fx_questions')
-                ->row_array()['question'];
-    }
-
     public function getUserInfoGeneral($id)
     {
         return $this->db->select('*')
