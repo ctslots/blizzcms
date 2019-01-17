@@ -1,8 +1,8 @@
     <section class="uk-section uk-section-small" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium" data-uk-grid>
-          <div class="uk-width-1-4@m"></div>
-          <div class="uk-width-1-2@m">
+          <div class="uk-width-1-5@m"></div>
+          <div class="uk-width-3-5@m">
             <div class="uk-text-center">
               <?php if($this->m_general->getUserInfoGeneral($idlink)->num_rows()) { ?>
               <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($idlink))); ?>" width="120" height="120" alt="" />
@@ -34,7 +34,7 @@
               </div>
             </div>
           </div>
-          <div class="uk-width-1-4@m"></div>
+          <div class="uk-width-3-5@m"></div>
         </div>
       </div>
     </section>
