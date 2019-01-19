@@ -21,21 +21,46 @@ class Vote extends MX_Controller {
 
         if (!$this->m_permissions->getMyPermissions('Permission_Vote'))
             redirect(base_url(),'refresh');
+        $this->load->config('vote');
 
-        $this->load->model('vote_model');
+        $this->load->model('vote_model', 'fxvote');
     }
 
     public function index()
     {
-        $data['fxtitle'] = $this->lang->line('nav_vote');
-
+        $data = array(
+            'fxtitle' => $this->lang->line('nav_vote'),
+            'voteList' => $this->fxvote->getVotes(),
+        );
         $this->load->view('header', $data);
         $this->load->view('index');
         $this->load->view('footer');
     }
-
-    public function votenow($id)
+    
+    /**
+     * function votenow
+     */
+    public function voteNow($id)
     {
-        $this->vote_model->getvoteNow($id);
+        echo $this->fxvote->voteNow($id);
+    }
+
+    /**
+     * function count votes
+     */
+    public function voteNowCount()
+    {
+        $id = $this->input->post('value', TRUE);
+        $seconds = $this->fxvote->getVoteTime($id);
+        echo $this->fxvote->getCountDownHTML($id, $seconds);
+    }
+
+    /**
+     * function calling url to vote
+     */
+    public function voteCallURL()
+    {
+        $id = $this->input->post('value', TRUE);
+        echo $this->fxvote->getVoteUrl($id);
     }
 }

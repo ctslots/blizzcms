@@ -9,6 +9,7 @@
 ## Useful Links
 
 * [BlizzCMS v1](https://blizzcms.projectcms.net/) - Check our demo
+* [Themes](https://gitlab.com/ProjectCMS/Resources/Themes) - Download free themes
 
 ## Requirements
 
@@ -22,4 +23,4 @@ PHP version **5.6 or newer** is recommended.
 
 ## Copyright and License
 
-Copyright [ProjectCMS](https://projectcms.net) under the MIT [License](LICENSE).
+Copyright [ProjectCMS](https://projectcms.net) under the MIT [License](License).
