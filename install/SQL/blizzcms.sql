@@ -762,7 +762,7 @@ CREATE TABLE IF NOT EXISTS `fx_votes_logs` (
   `points` int(10) NOT NULL,
   `lasttime` int(10) NOT NULL,
   `expired_at` int(10) NOT NULL,
-  KEY `Índice 1` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
