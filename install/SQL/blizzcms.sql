@@ -10,6 +10,7 @@ MySQL - 5.5.5-10.1.29-MariaDB : Database - blizzcms
 /*!40101 SET SQL_MODE=''*/;
 
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 /*Table structure for table `fx_api_char` */
@@ -738,11 +739,11 @@ CREATE TABLE `fx_users_permission` (
   CONSTRAINT `fx_users_permission_ibfk_1` FOREIGN KEY (`idrank`) REFERENCES `fx_ranks_default` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 /*Table structure for table `fx_votes` */
 
 DROP TABLE IF EXISTS `fx_votes`;
-
-CREATE TABLE `fx_votes` (
+CREATE TABLE IF NOT EXISTS `fx_votes` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `url` text NOT NULL,
@@ -750,18 +751,21 @@ CREATE TABLE `fx_votes` (
   `points` int(10) NOT NULL DEFAULT '1',
   `image` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `fx_votes_logs` */
-
 DROP TABLE IF EXISTS `fx_votes_logs`;
-
-CREATE TABLE `fx_votes_logs` (
+CREATE TABLE IF NOT EXISTS `fx_votes_logs` (
+  `id` int(14) NOT NULL AUTO_INCREMENT,
   `idaccount` int(10) NOT NULL,
   `idvote` int(10) NOT NULL,
-  `lasttime` int(10) NOT NULL
+  `points` int(10) NOT NULL,
+  `lasttime` int(10) NOT NULL,
+  `expired_at` int(10) NOT NULL,
+  KEY `Índice 1` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

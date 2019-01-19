@@ -8,87 +8,124 @@ class Vote_model extends CI_Model {
         parent::__construct();
     }
 
+    
+    /**
+     * @return mixed
+     */
+    
     public function getVotes()
     {
-    	return $this->db->select('*')
-    			->get('fx_votes');
+        return $this->db->get('fx_votes')->result();
     }
-
-    public function getFinallyTime($id, $time)
+    
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getVotePoints($id)
     {
-    	$qq = $this->db->select('lasttime')
-    			->where('idaccount', $this->session->userdata('fx_sess_id'))
-    			->where('idvote', $id)
-    			->get('fx_votes_logs');
-
-    	if($qq->num_rows())
-	    	return strtotime('+'.$time.' hour', $qq->row_array()['lasttime']);
-	    else
-	    	return '0,0,0';
+        return $this->db->where('id', $id)->get('fx_votes')->row('points');
     }
-
-    public function getVoteSpecify($id)
+    
+    /**
+     * @param $id
+     * @param $userid
+     * @return mixed
+     */
+    public function getVoteLog($id, $userid)
     {
-    	return $this->db->select('*')
-    			->where('id', $id)
-    			->get('fx_votes');
+        return $this->db->where('idaccount', $userid)->where('idvote', $id)->limit('1')->order_by('id', 'DESC')->get('fx_votes_logs');
     }
-
-    public function getvoteNow($id)
+    
+    /**
+     * @param $id
+     * @param $userid
+     * @return mixed
+     */
+    public function getTimeLogExpired($id, $userid)
     {
-    	if($id == '0')
-    		redirect(base_url('vote'),'refresh');
+        return $this->db->where('idaccount', $userid)->where('idvote', $id)->limit('1')->order_by('id', 'DESC')->get('fx_votes_logs')->row('expired_at');
+    }
+    
+    /**
+     * @param $id
+     * @param $userid
+     * @return mixed
+     */
+    public function getCredits($userid)
+    {
+        return $this->db->where('accountid', $userid)->limit('1')->get('fx_credits')->row('vp');
+    }
+    
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getVoteUrl($id)
+    {
+        return $this->db->where('id', $id)->get('fx_votes')->row('url');
+    }
+    
+    /**
+     * @param &id
+     * @return bool|string
+     */
+    
+    public function voteNow($id)
+    {
+        $userid = $this->session->userdata('fx_sess_id');
+        $mytime = $this->m_data->getTimestamp();
+        $ppoints = $this->getVotePoints($id);
 
-    	if(!$this->getVoteSpecify($id)->num_rows())
-    		redirect(base_url('vote'),'refresh');
+        $qqcheck = $this->getVoteLog($id, $userid);
+        $credits = $this->getCredits($userid);
+        
+    	$url = $this->getVoteUrl($id);
 
-    	$url = $this->getVoteSpecify($id)->row_array()['url'];
-
+        $fecha = new DateTime();
+        $expired = $fecha->add(new DateInterval($this->config->item('voteTime')));
+        
+        $expired_at = $expired->getTimestamp();
+        
     	if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
 		    $url = "http://" . $url;
 		}
-
-    	if($this->m_data->getTimestamp() < /* >= */ $this->getFinallyTime($id, $this->getVoteSpecify($id)->row('time')) ||
-    		!$this->getVoteSpecifyLog($this->session->userdata('fx_sess_id'), $id)->num_rows())
-    	{
-    		echo '<script type="text/javascript">
+        
+       $comprobetime = $qqcheck->row('expired_at');
+        if($this->m_data->getTimestamp() >= $comprobetime){
+        $datalog = array(
+            'idaccount' => $userid,
+            'idvote' => $id,
+            'lasttime' => $mytime,
+            'expired_at' => $expired_at,
+            'points' => $ppoints,
+        );
+        
+        $qq = $this->db->where('accountid', $userid)->get('fx_credits');
+         if(!$qq->num_rows()){
+           $datas = array('accountid' => $userid, 'vp' => $ppoints, 'dp' => '0');
+           $this->db->insert('fx_credits', $datas);
+         } else {
+            $vp2 = $this->db->where('accountid', $userid)->get('fx_credits')->row('vp');
+            $vp = ($vp2+$ppoints);
+             
+            $data = array( 'vp' => $vp );
+             
+            $this->db->where('accountid', $userid)->update('fx_credits', $data); 
+            $this->db->insert('fx_votes_logs', $datalog);
+             
+        }     
+            
+        echo '<script type="text/javascript">
 					window.open( "'.$url.'" )
 				</script>';
-			$this->insertPoints($this->session->userdata('fx_sess_id'), $id);
-    		redirect(base_url('vote'),'refresh');
-    	}
-    	else
-    		redirect(base_url('vote'),'refresh');
-    }
-
-    public function getVoteSpecifyLog($account, $idvote)
-    {
-    	return $this->db->select('*')
-    			->where('idaccount', $account)
-    			->where('idvote', $idvote)
-    			->get('fx_votes_logs');
-    }
-
-    public function insertPoints($account, $idvote)
-    {
-    	$qq = $this->getVoteSpecifyLog($account, $idvote);
-
-    	if($qq->num_rows())
-    	{
-    		$this->db->set('lasttime', $this->m_data->getTimestamp())
-    				->where('idaccount', $account)
-    				->where('idvote', $idvote)
-    				->update('fx_votes_logs');
-    	}
-    	else
-    	{
-    		$data = array(
-	    		'idaccount' => $account,
-	    		'idvote' => $idvote,
-	    		'lasttime' => $this->m_data->getTimestamp()
-	    	);
-    		$this->db->insert('fx_votes_logs', $data);	
-    	}
+        redirect(base_url('vote'),'refresh');
+        } else { 
+            echo '<script type="text/javascript">';
+            echo 'alert("According to our records you have already voted in this top. Contact with Support Ingame for Resolving this problem")';
+            echo '</script>';
+            redirect(base_url('vote'),'refresh');
+        }
     }
     
 }
