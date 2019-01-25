@@ -58,12 +58,12 @@
           <p><i class="far fa-check-circle"></i> <?=$this->lang->line('store_success');?></p>
         </div>
         <?php endif; ?>
-        <div class="uk-grid-small uk-grid-match uk-child-width-1-5@s" data-uk-grid>
+        <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1 uk-child-width-1-4@s uk-child-width-1-5@m" data-uk-grid>
             <?php foreach($this->shop_model->getShopGeneral($idlink)->result() as $itemsG) { ?>
             <div>
               <div class="uk-inline-clip uk-transition-toggle wow-store-margin" tabindex="0">
                 <img src="<?= base_url('assets/images/store/'); ?><?= $itemsG->image ?>" class="uk-border-rounded uk-transition-scale-up uk-transition-opaque" alt="">
-                <div class="uk-overlay uk-position-bottom">
+                <div class="uk-overlay uk-position-bottom-center">
                   <p class="uk-text-center uk-text-break uk-light"><a rel="item=<?= $itemsG->itemid ?>" class="uk-button uk-button-text"><?= $itemsG->name ?></a></p>
                   <p class="uk-text-center">
                     <?php if(!is_null($itemsG->price_vp) && !empty($itemsG->price_vp) && $itemsG->price_vp != '0') { ?>
