@@ -29,8 +29,8 @@
     <?php endif ?>
 
     <!-- Notify -->
-    <link rel="stylesheet" href="<?= base_url('core/amaranjs/dist/css/amaran.min.css'); ?>">
-    <script src="<?= base_url('core/amaranjs/dist/js/jquery.amaran.min.js'); ?>"></script>
+    <link rel="stylesheet" href="<?= base_url('core/amaranjs/css/amaran.min.css'); ?>">
+    <script src="<?= base_url('core/amaranjs/js/jquery.amaran.min.js'); ?>"></script>
     <!-- Cookieconsent -->
     <link rel="stylesheet" href="<?= base_url('core/cookieconsent/css/cookieconsent.min.css'); ?>"/>
     <script type="text/javascript" src="<?= base_url('core/cookieconsent/js/cookieconsent.min.js'); ?>"></script>
@@ -55,7 +55,7 @@
       }
     })});
     </script>
-    <!-- loader -->
+    <!-- Loader -->
     <link href="<?= base_url('core/pageloader/pace-theme-minimal.tmpl.css'); ?>" rel="stylesheet" />
     <script src="<?= base_url('core/pageloader/pace.min.js'); ?>"></script>
   </head>

@@ -9,6 +9,6 @@
     <!-- Blizzcms JS -->
     <script src="<?= base_url('core/js/blizzcms.admin.js'); ?>"></script>
     <!-- Notify -->
-    <script src="<?= base_url('core/amaranjs/dist/js/jquery.amaran.min.js') ?>"></script>
+    <script src="<?= base_url('core/amaranjs/js/jquery.amaran.min.js') ?>"></script>
   </body>
 </html>
