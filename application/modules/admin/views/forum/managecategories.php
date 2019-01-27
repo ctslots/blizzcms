@@ -1,24 +1,22 @@
-    <div id="content" data-uk-height-viewport="expand: true">
+      <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
         <div class="uk-container uk-container-expand">
-            <div class="uk-grid uk-grid-medium uk-grid-match" data-uk-grid>
-                <div class="uk-width-1-1@l uk-width-1-1@xl">
-                    <div class="uk-card uk-card-default uk-card-small">
-                        <div class="uk-card-header uk-card-secondary">
-                            <div class="uk-grid uk-grid-small">
-                                <div class="uk-width-auto"><h4 class="uk-margin-remove-bottom"><span data-uk-icon="icon: list"></span> <?= $this->lang->line('admin_manage_categories'); ?></h4></div>
-                            </div>
-                        </div>
-                        <!-- content -->
-                        <div class="uk-card-body">
-                        <!-- ajax -->
-                            <div id="categoryList"></div>
-                        <!-- ajax -->
-                        </div>
-                        <!-- content -->
-                    </div>
+          <div class="uk-card uk-card-default">
+            <div class="uk-card-header">
+              <div class="uk-grid uk-grid-small">
+                <div class="uk-width-auto">
+                  <h4 class="uk-h4"><span data-uk-icon="icon: list"></span> <?= $this->lang->line('admin_manage_categories'); ?></h4>
                 </div>
+                <div class="uk-width-expand"></div>
+              </div>
             </div>
+            <div class="uk-card-body">
+              <!-- ajax -->
+              <div id="categoryList"></div>
+              <!-- ajax -->
+            </div>
+          </div>
         </div>
+      </section>
 
 <script>
     $(document).ready(function(){
@@ -69,11 +67,11 @@
                         title:'<?= $this->lang->line('notify_title_warning'); ?>',
                         message:'<?= $this->lang->line('notify_title_empty'); ?>',
                         info:'',
-                        icon:'fas fa-exclamation'
+                        icon:'fas fa-exclamation',
                     },
                     'position'  :'top right',
                     'inEffect'  :'slideRight',
-                    'outEffect' :'slideRight'
+                    'outEffect' :'slideRight',
                 });
                 return false;
             }
