@@ -1018,6 +1018,20 @@ class Admin_model extends CI_Model {
             ->num_rows();
     }
 
+    public function getNewsCreated()
+    {
+        return $this->db->select('id')
+            ->get('fx_news')
+            ->num_rows();
+    }
+
+    public function getChangelogsCreated()
+    {
+        return $this->db->select('id')
+            ->get('fx_changelogs')
+            ->num_rows();
+    }
+
     //config
     public function settingConfig($data)
     {

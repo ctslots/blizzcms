@@ -26,7 +26,7 @@
                 <div class="uk-card-body uk-text-center">
                   <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">News Created</h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
-                  <h1 class="uk-h1 uk-text-warning uk-margin-small"><span data-uk-icon="icon: file-text; ratio: 2.2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getAccCreated(); ?>">0</span></h1>
+                  <h1 class="uk-h1 uk-text-warning uk-margin-small"><span data-uk-icon="icon: file-text; ratio: 2.2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getNewsCreated(); ?>">0</span></h1>
                   <p class="uk-text-small uk-margin-remove">Total news writed</p>
                 </div>
               </div>
@@ -36,7 +36,7 @@
                 <div class="uk-card-body uk-text-center">
                   <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">Changelogs Created</h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
-                  <h1 class="uk-h1 uk-text-primary uk-margin-small"><span data-uk-icon="icon: history; ratio: 2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getAccCreated(); ?>">0</span></h1>
+                  <h1 class="uk-h1 uk-text-primary uk-margin-small"><span data-uk-icon="icon: history; ratio: 2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getChangelogsCreated(); ?>">0</span></h1>
                   <p class="uk-text-small uk-margin-remove">Total changelogs writed</p>
                 </div>
               </div>
