@@ -18,86 +18,86 @@
         </div>
       </section>
 
-<script>
-    $(document).ready(function(){
-        function fetch_data(){
+      <script>
+        $(document).ready(function(){
+          function fetch_data(){
             $.ajax({
-                url:"<?= base_url('admin/getCategoryList'); ?>",
-                method:"POST",
-                success:function(data){
-                    $('#categoryList').html(data);
-                }
+              url:"<?= base_url('admin/getCategoryList'); ?>",
+              method:"POST",
+              success:function(data){
+                $('#categoryList').html(data);
+              }
             });
-        }
-        fetch_data();
+          }
+          fetch_data();
 
-        function edit_data(id, text, colum_name){
+          function edit_data(id, text, colum_name){
             $.ajax({
-                url:"<?= base_url('admin/updateCategory'); ?>",
-                method:"POST",
-                data:{id:id, text:text, colum_name:colum_name},
-                dataType:"text",
-                success:function(data){
-                    $.amaran({
-                        'theme'     :'awesome ok',
-                        'content'   :{
-                            title:'<?= $this->lang->line('notify_title_success'); ?>',
-                            message:'<?= $this->lang->line('notify_category_updated'); ?>',
-                            info:'',
-                            icon:'fas fa-check'
-                        },
-                        'position'  :'top right',
-                        'inEffect'  :'slideRight',
-                        'outEffect' :'slideRight'
-                    });
-                }
+              url:"<?= base_url('admin/updateCategory'); ?>",
+              method:"POST",
+              data:{id:id, text:text, colum_name:colum_name},
+              dataType:"text",
+              success:function(data){
+                $.amaran({
+                  'theme': 'awesome ok',
+                  'content': {
+                    title: '<?= $this->lang->line('notify_title_success'); ?>',
+                    message: '<?= $this->lang->line('notify_category_updated'); ?>',
+                    info: '',
+                    icon: 'fas fa-check-circle'
+                  },
+                  'position': 'top right',
+                  'inEffect': 'slideRight',
+                  'outEffect': 'slideRight'
+                });
+              }
             });
-        }
-        $(document).on('blur', '#categoryName', function(){
+          }
+          $(document).on('blur', '#categoryName', function(){
             var id = $(this).data("id1");
             var text = $('#categoryName').val();
             edit_data(id, text, "categoryName");
-        });
-        $(document).on('click', '#button_addCategory', function(){
+          });
+          $(document).on('click', '#button_addCategory', function(){
             var categoryname = $('#newcategoryname').val();
             if(categoryname == ''){
-                $.amaran({
-                    'theme'     :'awesome warning',
-                    'content'   :{
-                        title:'<?= $this->lang->line('notify_title_warning'); ?>',
-                        message:'<?= $this->lang->line('notify_title_empty'); ?>',
-                        info:'',
-                        icon:'fas fa-exclamation',
-                    },
-                    'position'  :'top right',
-                    'inEffect'  :'slideRight',
-                    'outEffect' :'slideRight',
-                });
-                return false;
+              $.amaran({
+                'theme': 'awesome warning',
+                'content': {
+                  title: '<?= $this->lang->line('notify_title_warning'); ?>',
+                  message: '<?= $this->lang->line('notify_title_empty'); ?>',
+                  info: '',
+                  icon: 'fas fa-exclamation-circle',
+                },
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight',
+              });
+              return false;
             }
             $.ajax({
-                url:"<?= base_url('admin/insertCategory'); ?>",
-                method:"POST",
-                data:{categoryname:categoryname},
-                dataType:"text",
-                success:function(){
-                    $.amaran({
-                        'theme'     :'awesome ok',
-                        'content'   :{
-                            title:'<?= $this->lang->line('notify_title_success'); ?>',
-                            message:'<?= $this->lang->line('notify_category_added'); ?>',
-                            info:'',
-                            icon:'fas fa-plus'
-                        },
-                        'position'  :'top right',
-                        'inEffect'  :'slideRight',
-                        'outEffect' :'slideRight'
-                    });
-                    fetch_data();
-                }
+              url:"<?= base_url('admin/insertCategory'); ?>",
+              method:"POST",
+              data:{categoryname:categoryname},
+              dataType:"text",
+              success:function(){
+                $.amaran({
+                  'theme': 'awesome ok',
+                  'content': {
+                    title: '<?= $this->lang->line('notify_title_success'); ?>',
+                    message: '<?= $this->lang->line('notify_category_added'); ?>',
+                    info: '',
+                    icon: 'fas fa-plus-circle'
+                  },
+                  'position': 'top right',
+                  'inEffect': 'slideRight',
+                  'outEffect': 'slideRight'
+                });
+                fetch_data();
+              }
             });
-        });
-        $(document).on('click', '#button_deleteCategory', function(){
+          });
+          $(document).on('click', '#button_deleteCategory', function(){
             var id = $(this).data("id3");
             $.ajax({
                 url:"<?= base_url('admin/deleteCategory'); ?>",
@@ -105,21 +105,21 @@
                 data:{id:id},
                 dataType:"text",
                 success:function(data){
-                    $.amaran({
-                        'theme'     :'awesome error',
-                        'content'   :{
-                            title:'<?= $this->lang->line('notify_title_success'); ?>',
-                            message:'<?= $this->lang->line('notify_category_deleted'); ?>',
-                            info:'',
-                            icon:'fas fa-minus'
-                        },
-                        'position'  :'top right',
-                        'inEffect'  :'slideRight',
-                        'outEffect' :'slideRight'
-                    });
-                    fetch_data();
+                  $.amaran({
+                    'theme': 'awesome error',
+                    'content': {
+                      title: '<?= $this->lang->line('notify_title_success'); ?>',
+                      message: '<?= $this->lang->line('notify_category_deleted'); ?>',
+                      info: '',
+                      icon: 'fas fa-minus-circle'
+                    },
+                    'position': 'top right',
+                    'inEffect': 'slideRight',
+                    'outEffect': 'slideRight'
+                  });
+                  fetch_data();
                 }
             });
+          });
         });
-    });
-</script>
+      </script>

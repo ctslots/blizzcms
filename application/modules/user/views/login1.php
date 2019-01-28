@@ -39,62 +39,62 @@
       </div>
     </section>
 
-<script>
-    $(document).ready(function(){
+    <script>
+      $(document).ready(function(){
         $(document).on('click', '#button_log', function(){
-            var username = $('#login_username').val();
-            var password = $('#login_password').val();
-            if(username == ''){
-                $.amaran({
-                    'theme'     :'awesome warning',
-                    'content'   :{
-                        title:'<?= $this->lang->line('notify_title_warning'); ?>',
-                        message:'<?= $this->lang->line('notify_username_empty'); ?>',
-                        info:'',
-                        icon:'fas fa-exclamation'
-                    },
-                    'position'  :'top right',
-                    'inEffect'  :'slideRight',
-                    'outEffect' :'slideRight'
-                });
-                return false;
-            }
-            if(password == ''){
-                $.amaran({
-                    'theme'     :'awesome warning',
-                    'content'   :{
-                        title:'<?= $this->lang->line('notify_title_warning'); ?>',
-                        message:'<?= $this->lang->line('notify_password_empty'); ?>',
-                        info:'',
-                        icon:'fas fa-exclamation'
-                    },
-                    'position'  :'top right',
-                    'inEffect'  :'slideRight',
-                    'outEffect' :'slideRight'
-                });
-                return false;
-            }
-            $.ajax({
-                url:"<?= base_url('user/verify1'); ?>",
-                method:"POST",
-                data:{username:username, password:password},
-                dataType:"text",
-                success:function(){
-                    $.amaran({
-                        'theme'     :'awesome ok',
-                        'content'   :{
-                            title:'<?= $this->lang->line('notify_title_success'); ?>',
-                            message:'<?= $this->lang->line('notify_connecting'); ?>',
-                            info:'',
-                            icon:'fas fa-check'
-                        },
-                        'position'  :'top right',
-                        'inEffect'  :'slideRight',
-                        'outEffect' :'slideRight'
-                    });
-                    window.location.href = '<?= base_url(); ?>';
-                }
+          var username = $('#login_username').val();
+          var password = $('#login_password').val();
+          if(username == ''){
+            $.amaran({
+              'theme': 'awesome warning',
+              'content': {
+                title: '<?= $this->lang->line('notify_title_warning'); ?>',
+                message: '<?= $this->lang->line('notify_username_empty'); ?>',
+                info: '',
+                icon: 'fas fa-exclamation-circle'
+              },
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
             });
+            return false;
+          }
+          if(password == ''){
+            $.amaran({
+              'theme': 'awesome warning',
+              'content': {
+                title: '<?= $this->lang->line('notify_title_warning'); ?>',
+                message: '<?= $this->lang->line('notify_password_empty'); ?>',
+                info: '',
+                icon: 'fas fa-exclamation-circle'
+              },
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+            return false;
+          }
+          $.ajax({
+            url:"<?= base_url('user/verify1'); ?>",
+            method:"POST",
+            data:{username:username, password:password},
+            dataType:"text",
+            success:function(){
+              $.amaran({
+                'theme': 'awesome ok',
+                'content': {
+                  title: '<?= $this->lang->line('notify_title_success'); ?>',
+                  message: '<?= $this->lang->line('notify_connecting'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+              window.location.href = '<?= base_url(); ?>';
+            }
+          });
         });
-    });
-</script>
+      });
+    </script>
