@@ -15,45 +15,45 @@
  */
 
 @font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../core/fonts/lobster-regular-webfont.woff2') format('woff2'), url('../../core/fonts/lobster-regular-webfont.woff') format('woff');
+}
+
+@font-face {
   font-family: 'Blizzard';
   font-style: normal;
   font-weight: 300;
-  src: local('Blizzard Light'), local('Blizzard-Light'), url(../fonts/blizzard-light.ttf) format("truetype");
+  src: local('Blizzard Light'), local('Blizzard-Light'), url('../fonts/blizzard-light.ttf') format("truetype");
 }
 
 @font-face {
   font-family: 'Blizzard';
   font-style: normal;
   font-weight: 400;
-  src: local('Blizzard'), local('Blizzard'), url(../fonts/blizzard.ttf) format("truetype");
+  src: local('Blizzard'), local('Blizzard'), url('../fonts/blizzard.ttf') format("truetype");
 }
 
 @font-face {
   font-family: 'Blizzard';
   font-style: italic;
   font-weight: 400;
-  src: local('Blizzard Italic'), local('Blizzard-Italic'), url(../fonts/blizzard-italic.ttf) format("truetype");
+  src: local('Blizzard Italic'), local('Blizzard-Italic'), url('../fonts/blizzard-italic.ttf') format("truetype");
 }
 
 @font-face {
   font-family: 'Blizzard';
   font-style: normal;
   font-weight: 700;
-  src: local('Blizzard Bold'), local('Blizzard-Bold'), url(../fonts/blizzard-bold.ttf) format("truetype");
+  src: local('Blizzard Bold'), local('Blizzard-Bold'), url('../fonts/blizzard-bold.ttf') format("truetype");
 }
 
 @font-face {
   font-family: 'Blizzard';
   font-style: italic;
   font-weight: 700;
-  src: local('Blizzard Bold Italic'), local('Blizzard-Bold-Italic'), url(../fonts/blizzard-bolditalic.ttf) format("truetype");
-}
-
-@font-face {
-  font-family: 'Lobster';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lobster Regular'), local('Lobster-Regular'), url("../../../core/fonts/Lobster-Regular.ttf") format("truetype");
+  src: local('Blizzard Bold Italic'), local('Blizzard-Bold-Italic'), url('../fonts/blizzard-bolditalic.ttf') format("truetype");
 }
 
 html {
@@ -64,7 +64,7 @@ html {
 
 body {
   background-color: #012650;
-  background-image: url(../images/background.jpg);
+  background-image: url('../images/background.jpg');
   background-repeat: no-repeat;
   background-position: 50% 0%;
 }
@@ -221,7 +221,7 @@ hr,
 
 .home-section {
   background-color: #002650;
-  background-image: url(../images/main-section.jpg);
+  background-image: url('../images/main-section.jpg');
   background-repeat: no-repeat;
   background-position: 50% 0%;
   border-top: 1px solid rgba(0, 174, 255, .4);
@@ -229,7 +229,7 @@ hr,
 
 .footer-section {
   background-color: #00214a;
-  background-image: url(../images/footer.jpg);
+  background-image: url('../images/footer.jpg');
   background-repeat: no-repeat;
   background-position: 50% 0%;
   border-top: 1px solid rgba(255, 255, 255, .15);
@@ -523,12 +523,12 @@ hr,
 }
 
 .forum-header {
-  background-image: url(../images/background-header.jpg);
+  background-image: url('../images/background-header.jpg');
   background-position: 50% 0%;
 }
 
 .store-header {
-  background-image: url(../images/background-header.jpg);
+  background-image: url('../images/background-header.jpg');
   background-position: 50% 0%;
 }
 

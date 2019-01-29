@@ -1,56 +1,82 @@
-    <div id="content" data-uk-height-viewport="expand: true">
+      <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
         <div class="uk-container uk-container-expand">
-            <div class="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-2@l" data-uk-grid>
-                <div class="uk-text-center">
-                    <span class="uk-text-small"><span data-uk-icon="icon: users" class="uk-margin-small-right uk-text-primary"></span><?= $this->lang->line('account_count'); ?></span>
-                    <h1 class="uk-heading-primary uk-margin-remove  uk-text-success"><span class="counter" data-count="<?= $this->admin_model->getAccCreated(); ?>">0</span></h1>
-                    <div class="uk-text-small">
-                        <span class="uk-text-success" data-uk-icon="icon: info"></span> <?= $this->lang->line('total_account_registered'); ?>
-                    </div>
+          <div class="uk-grid uk-grid-collapse uk-grid-match uk-child-width-1-1 uk-child-width-1-3@s uk-child-width-1-4@m" data-uk-grid>
+            <div>
+              <div class="uk-card uk-card-secondary">
+                <div class="uk-card-body uk-text-center">
+                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('account_count'); ?></h5>
+                  <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
+                  <h1 class="uk-h1 uk-text-success uk-margin-small"><span data-uk-icon="icon: users; ratio: 2.2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getAccCreated(); ?>">0</span></h1>
+                  <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_account_registered'); ?></p>
                 </div>
-                <div class="uk-text-center">
-                    <span class="uk-text-small"><span data-uk-icon="icon: ban" class="uk-margin-small-right uk-text-primary"></span><?= $this->lang->line('ban_count'); ?></span>
-                    <h1 class="uk-heading-primary uk-margin-remove uk-text-danger"><span class="counter" data-count="<?= $this->admin_model->getBanCount(); ?>">0</span></h1>
-                    <div class="uk-text-small">
-                        <span class="uk-text-danger" data-uk-icon="icon: info"></span> <?= $this->lang->line('total_account_banned'); ?>
-                    </div>
+              </div>
+            </div>
+            <div>
+              <div class="uk-card uk-card-secondary">
+                <div class="uk-card-body uk-text-center">
+                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('ban_count'); ?></h5>
+                  <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
+                  <h1 class="uk-h1 uk-text-danger uk-margin-small"><span data-uk-icon="icon: ban; ratio: 2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getBanCount(); ?>">0</span></h1>
+                  <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_account_banned'); ?></p>
                 </div>
+              </div>
             </div>
-            <hr>
-            <div class="uk-grid uk-grid-medium uk-grid-match" data-uk-grid>
-                <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) { 
-                    $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
-                ?>
-                    <div class="uk-width-1-1@l uk-width-1-1@xl">
-                        <div class="uk-card uk-card-default uk-card-small">
-                            <div class="uk-card-header uk-card-secondary">
-                                <div class="uk-grid uk-grid-small">
-                                    <div class="uk-width-auto"><h4 class="uk-margin-remove-bottom"><span data-uk-icon="icon: server"></span> Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4></div>
-                                    <div class="uk-width-expand uk-text-right">
-                                        <a href="<?= base_url('admin/managerealms'); ?>" class="uk-icon-link uk-margin-small-right" data-uk-icon="icon: cog"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="uk-card-body">
-                                <div class="uk-column-1-2 uk-column-divider uk-text-center">
-                                    <p>
-                                        <span class="uk-text-small"><span data-uk-icon="icon: user" class="uk-margin-small-right uk-text-primary"></span><?= $this->lang->line('players_count'); ?></span>
-                                        <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><span class="counter" data-count="<?= $this->admin_model->getCharOn($multiRealm); ?>">0</span></h1>
-                                        <div class="uk-text-small">
-                                            <span class="uk-text-primary" data-uk-icon="icon: info"></span> <?= $this->lang->line('total_players_playing'); ?>
-                                        </div>
-                                    </p>
-                                    <p>
-                                        <span class="uk-text-small"><span data-uk-icon="icon: star" class="uk-margin-small-right uk-text-primary"></span><?= $this->lang->line('staff_count'); ?></span>
-                                        <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><span class="counter" data-count="<?= $this->admin_model->getGmCount($charsMultiRealm->realmID); ?>">0</span></h1>
-                                        <div class="uk-text-small">
-                                            <span class="uk-text-primary" data-uk-icon="icon: info"></span> <?= $this->lang->line('total_account_gm'); ?>
-                                        </div>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+            <div>
+              <div class="uk-card uk-card-secondary">
+                <div class="uk-card-body uk-text-center">
+                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">News Created</h5>
+                  <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
+                  <h1 class="uk-h1 uk-text-warning uk-margin-small"><span data-uk-icon="icon: file-text; ratio: 2.2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getNewsCreated(); ?>">0</span></h1>
+                  <p class="uk-text-small uk-margin-remove">Total news writed</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="uk-card uk-card-secondary">
+                <div class="uk-card-body uk-text-center">
+                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">Changelogs Created</h5>
+                  <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
+                  <h1 class="uk-h1 uk-text-primary uk-margin-small"><span data-uk-icon="icon: history; ratio: 2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getChangelogsCreated(); ?>">0</span></h1>
+                  <p class="uk-text-small uk-margin-remove">Total changelogs writed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1 uk-child-width-1-2@s" data-uk-grid>
+            <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) { 
+              $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
+            ?>
+            <div>
+              <div class="uk-card uk-card-default">
+                <div class="uk-card-header">
+                  <div class="uk-grid uk-grid-small" data-uk-grid>
+                    <div class="uk-width-auto">
+                      <h4 class="uk-h4"><span data-uk-icon="icon: server"></span> Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4>
                     </div>
-                <?php } ?>
+                    <div class="uk-width-expand uk-text-right">
+                      <a href="<?= base_url('admin/managerealms'); ?>" class="uk-icon-button" uk-icon="icon: cog" uk-tooltip="<?= $this->lang->line('admin_manage_realms'); ?>"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="uk-card-body">
+                  <div class="uk-grid uk-grid-small uk-grid-divider uk-text-center" data-uk-grid>
+                    <div class="uk-width-1-2">
+                      <h5 class="uk-h5 uk-text-primary uk-text-bold uk-text-uppercase uk-margin-remove">Alliance Players</h5>
+                      <h1 class="uk-h1 uk-margin-remove"><span class="counter" data-count="<?= $this->m_characters->getCharactersOnlineAlliance($multiRealm); ?>">0</span></h1>
+                      <p class="uk-text-small uk-margin-remove">Alliances playing on realm</p>
+                    </div>
+                    <div class="uk-width-1-2">
+                      <h5 class="uk-h5 uk-text-danger uk-text-bold uk-text-uppercase uk-margin-remove">Horde Players</h5>
+                      <h1 class="uk-h1 uk-margin-remove"><span class="counter" data-count="<?= $this->m_characters->getCharactersOnlineHorde($multiRealm); ?>">0</span></h1>
+                      <p class="uk-text-small uk-margin-remove">Hordes playing on realm</p>
+                    </div>
+                  </div>
+                  <hr class="uk-divider-icon uk-margin-small">
+                  <h6 class="uk-h6 uk-text-uppercase uk-margin-remove uk-text-center"><span data-uk-icon="icon: users; ratio: .8"></span> <span class="counter uk-text-bold uk-text-warning" data-count="<?= $this->m_characters->getAllCharactersOnline($multiRealm); ?>">0</span> Players playing on realm</h6>
+                </div>
+              </div>
             </div>
+            <?php } ?>
+          </div>
         </div>
+      </section>
