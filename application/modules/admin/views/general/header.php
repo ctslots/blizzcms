@@ -91,7 +91,7 @@
               </a>
               <div class="uk-navbar-dropdown">
                 <ul class="uk-nav uk-navbar-dropdown-nav">
-                  <li><a href="<?= base_url(); ?>"><span data-uk-icon="icon: home"></span> Main Page</a></li>
+                  <li><a href="<?= base_url(); ?>"><span data-uk-icon="icon: home"></span> Visit Site</a></li>
                   <li><a href="<?= base_url('panel'); ?>"><span data-uk-icon="icon: settings"></span> <?= $this->lang->line('button_user_panel'); ?></a></li>
                 </ul>
               </div>

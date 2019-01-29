@@ -251,3 +251,37 @@ ul.uk-nav-sub {
   color: #fff;
   font-size: 1.7rem;
 }
+
+.uk-button {
+  padding: 0 20px;
+}
+
+.uk-button-primary {
+  background: #0078ff;
+  transition: all ease .15s;
+}
+
+.uk-button-primary:focus,
+.uk-button-primary:hover {
+  background: #3393ff;
+}
+
+.uk-button-primary.uk-active,
+.uk-button-primary:active {
+  background: #3393ff;
+}
+
+.uk-button-danger {
+  background: #ff1b00;
+  transition: all ease .15s;
+}
+
+.uk-button-danger:focus,
+.uk-button-danger:hover {
+  background: #ff4933;
+}
+
+.uk-button-danger.uk-active,
+.uk-button-danger:active {
+  background: #ff4933;
+}
