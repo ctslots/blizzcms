@@ -37,7 +37,7 @@
                       <td><?= $realmsID->console_port; ?></td>
                       <td class="uk-text-center" uk-margin>
                         <form action="" method="post" accept-charset="utf-8">
-                          <button class="uk-button uk-button-danger uk-button-small" name="button_deleteRealm" value="<?= $realmsID->id ?>" type="submit"><i class="fas fa-trash-alt"></i></button>
+                          <button class="uk-button uk-button-danger" name="button_deleteRealm" value="<?= $realmsID->id ?>" type="submit"><i class="fas fa-trash-alt"></i></button>
                         </form>
                       </td>
                     </tr>

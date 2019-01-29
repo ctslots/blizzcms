@@ -82,14 +82,15 @@ class Admin extends MX_Controller {
     {
         $output = '';
         $output .= '
-        <table class="uk-table uk-table-justify uk-table-divider">
+        <div class="uk-overflow-auto uk-margin-small">
+        <table class="uk-table uk-table-divider uk-table-small">
             <thead>
                 <tr>
-                    <th>'.$this->lang->line('form_title').'</th>
-                    <th class="uk-text-center">'.$this->lang->line('store_item_price').'</th>
-                    <th class="uk-text-center">'.$this->lang->line('column_tax').'</th>
-                    <th class="uk-text-center">'.$this->lang->line('column_points').'</th>
-                    <th class="uk-text-center">'.$this->lang->line('column_action').'</th>
+                    <th class="uk-width-medium">'.$this->lang->line('form_title').'</th>
+                    <th class="uk-width-small">'.$this->lang->line('store_item_price').'</th>
+                    <th class="uk-width-small">'.$this->lang->line('column_tax').'</th>
+                    <th class="uk-width-small">'.$this->lang->line('column_points').'</th>
+                    <th class="uk-table-shrink">'.$this->lang->line('column_action').'</th>
                 </tr>
             </thead>
             <tbody>';
@@ -108,10 +109,8 @@ class Admin extends MX_Controller {
                     <td>
                         <input type="text" class="uk-input" id="donatePoints" value="'.$list->points.'" data-id6="'.$list->id.'">
                     </td>
-                    <td class="uk-text-center">
-                        <button class="uk-button uk-button-danger" name="button_deleteDonate" id="button_deleteDonate" data-id3="'.$list->id.'">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </button>
+                    <td class="uk-table-shrink">
+                        <button class="uk-button uk-button-danger" name="button_deleteDonate" id="button_deleteDonate" data-id3="'.$list->id.'"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>';
             }
@@ -130,10 +129,8 @@ class Admin extends MX_Controller {
                 <td>
                     <input type="text" class="uk-input" placeholder="Insert Points" id="newdonatepoints" value="1">
                 </td>
-                <td class="uk-text-center">
-                    <button class="uk-button uk-button-primary" name="button_adddonation" id="button_adddonation">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                    </button>
+                <td>
+                    <button class="uk-button uk-button-primary" name="button_adddonation" id="button_adddonation"><i class="fa fa-plus-circle"></i></button>
                 </td>
             ';
         if(!$this->admin_model->getDonateListAjax()->num_rows()){
@@ -143,7 +140,7 @@ class Admin extends MX_Controller {
             </tr>';
         }
         $output .= '</tbody>
-                        </table>';
+                        </table></div>';
 
         echo $output;
     }
@@ -152,11 +149,12 @@ class Admin extends MX_Controller {
     {
         $output = '';
         $output .= '
-        <table class="uk-table uk-table-justify uk-table-divider">
+        <div class="uk-overflow-auto uk-margin-small">
+        <table class="uk-table uk-table-divider uk-table-small">
             <thead>
                 <tr>
-                    <th>'.$this->lang->line('form_title').'</th>
-                    <th class="uk-text-center">'.$this->lang->line('column_action').'</th>
+                    <th class="uk-table-expand">'.$this->lang->line('form_title').'</th>
+                    <th class="uk-table-shrink">'.$this->lang->line('column_action').'</th>
                 </tr>
             </thead>
             <tbody>';
@@ -166,10 +164,8 @@ class Admin extends MX_Controller {
                     <td>
                         <input type="text" class="uk-input" id="categoryName" value="'.$list->categoryName.'" data-id1="'.$list->id.'">
                     </td>
-                    <td class="uk-text-center">
-                        <button class="uk-button uk-button-danger" name="button_deleteCategory" id="button_deleteCategory" data-id3="'.$list->id.'">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </button>
+                    <td>
+                        <button class="uk-button uk-button-danger" name="button_deleteCategory" id="button_deleteCategory" data-id3="'.$list->id.'"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>';
             }
@@ -178,10 +174,8 @@ class Admin extends MX_Controller {
                 <td>
                     <input type="text" class="uk-input" placeholder="Insert title" id="newcategoryname">
                 </td>
-                <td class="uk-text-center">
-                    <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                    </button>
+                <td>
+                    <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory"><i class="fa fa-plus-circle"></i></button>
                 </td>
             ';
         }
@@ -190,10 +184,8 @@ class Admin extends MX_Controller {
             <td>
                 <input type="text" class="uk-input" placeholder="Insert title" id="newcategoryname">
             </td>
-            <td class="uk-text-center">
-                <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                </button>
+            <td>
+                <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory"><i class="fa fa-plus-circle"></i></button>
             </td>
 
             <tr>
@@ -201,7 +193,7 @@ class Admin extends MX_Controller {
             </tr>';
         }
         $output .= '</tbody>
-                        </table>';
+                        </table></div>';
 
         echo $output;
     }
