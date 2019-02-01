@@ -285,3 +285,12 @@ ul.uk-nav-sub {
 .uk-button-danger:active {
   background: #ff4933;
 }
+
+@media screen and (max-width: 640px) {
+  table .uk-width-medium .uk-input {
+    min-width: 200px;
+  }
+  table .uk-width-small .uk-input {
+    min-width: 100px;
+  }
+}

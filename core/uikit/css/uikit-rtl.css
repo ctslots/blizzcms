@@ -2863,7 +2863,7 @@ select.uk-form-width-xsmall {
 }
 /* Hover modifier
  ========================================================================== */
-.uk-card-hover:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary):not(.uk-card-donate):not(.uk-card-vote):hover {
+.uk-card-hover:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary):not(.uk-card-donate):not(.uk-card-vote):not(.uk-card-forum):hover {
   background: #fff;
   box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
 }
@@ -2961,6 +2961,27 @@ select.uk-form-width-xsmall {
   border-bottom: 1px solid #e5e5e5;
 }
 .uk-card-vote .uk-card-footer {
+  border-top: 1px solid #e5e5e5;
+}
+/*
+ * Forum
+ */
+.uk-card-forum {
+  background: #fff;
+  color: #666;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+.uk-card-forum .uk-card-title {
+  color: #333;
+}
+.uk-card-forum.uk-card-hover:hover {
+  background-color: #fff;
+  box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
+}
+.uk-card-forum .uk-card-header {
+  border-bottom: 1px solid #e5e5e5;
+}
+.uk-card-forum .uk-card-footer {
   border-top: 1px solid #e5e5e5;
 }
 /* Size modifier
