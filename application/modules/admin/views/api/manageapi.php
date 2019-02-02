@@ -27,7 +27,7 @@
             <div class="uk-card-body">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-width-auto@m">
-                  <ul class="uk-tab-left" uk-tab="connect: #api-component; animation: uk-animation-fade">
+                  <ul class="uk-tab-left" uk-tab="connect: #api-component; animation: uk-animation-fade; toggle: > *">
                     <li class="uk-width-1-2 uk-width-1-1@m"><a href="#"><i class="fas fa-gamepad"></i> Principal</a></li>
                     <li class="uk-width-1-2 uk-width-1-1@m"><a href="#"><i class="far fa-user-circle"></i> Internal</a></li>
                     <li class="uk-width-1-2 uk-width-1-1@m"><a href="#"><i class="fas fa-tasks"></i> Skins</a></li>

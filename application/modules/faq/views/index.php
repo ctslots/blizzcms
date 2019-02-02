@@ -4,7 +4,7 @@
         <?php if($this->faq_model->getAll()->num_rows()) { ?>
         <div uk-grid>
           <div class="uk-width-1-6@m">
-            <ul class="uk-tab-right" uk-tab="connect: #component-tab-right; animation: uk-animation-fade">
+            <ul class="uk-tab-right" uk-tab="connect: #component-tab-right; animation: uk-animation-fade; toggle: > *">
               <?php foreach($this->faq_model->getFaqType() as $type) { ?>
               <li><a href="#"><?= $type->title ?></a></li>
               <?php } ?>

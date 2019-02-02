@@ -152,7 +152,7 @@
               <h4 class="uk-h4"><span data-uk-icon="icon: settings"></span> <?= $this->lang->line('admin_settings'); ?></h4>
             </div>
             <div class="uk-card-body">
-              <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
+              <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium; toggle: > *">
                 <li><a href="#"><i class="fas fa-cog"></i> Main Settings</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i> Website Settings</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i> Database Settings</a></li>
@@ -366,7 +366,7 @@
               <h4 class="uk-h4"><span data-uk-icon="icon: settings"></span> Module Settings</h4>
             </div>
             <div class="uk-card-body">
-              <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
+              <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium; toggle: > *">
                 <li><a href="#"><i class="fas fa-cog"></i> Recaptcha Settings</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i> Bugtracker Settings</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i> Donate Settings</a></li>

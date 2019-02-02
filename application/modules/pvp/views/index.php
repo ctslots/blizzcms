@@ -2,7 +2,7 @@
       <div class="uk-container">
         <h3 class="uk-h3 uk-text-bold uk-text-uppercase"><i class="ra ra-axe"></i> <?=$this->lang->line('nav_pvp_statistics');?></h3>
         <span class="uk-label uk-text-bold uk-label-danger"><?=$this->lang->line('pvp_top');?></span>
-        <ul uk-tab="connect: #pvpstatistics; animation: uk-animation-fade">
+        <ul uk-tab="connect: #pvpstatistics; animation: uk-animation-fade; toggle: > *">
           <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm):
             $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
           ?>
