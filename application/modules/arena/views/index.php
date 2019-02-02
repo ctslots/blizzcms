@@ -2,7 +2,7 @@
       <div class="uk-container">
         <h3 class="uk-h3 uk-text-bold uk-text-uppercase"><i class="ra ra-arena"></i> {nav_arena_statistics}</h3>
         <span class="uk-label uk-text-bold uk-label-danger">{lang_2v2}</span>
-        <ul uk-tab="connect: #2v2statistics; {uk-tab}">
+        <ul uk-tab="connect: #2v2statistics; {uk-tab}; toggle: > *">
           <?php foreach ($realms as $charsMultiRealm): ?>
             <li><a class="uk-text-bold"><span uk-icon="icon: server"></span> <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a></li>
           <?php endforeach ?>
@@ -42,7 +42,7 @@
           <?php endforeach ?>
         </ul>
         <span class="uk-label uk-text-bold uk-label-warning">{lang_3v3}</span>
-        <ul uk-tab="connect: #3v3statistics; {uk-tab}">
+        <ul uk-tab="connect: #3v3statistics; {uk-tab}; toggle: > *">
           <?php foreach ($realms as $charsMultiRealm): ?>
             <li><a class="uk-text-bold"><span uk-icon="icon: server"></span> <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a></li>
           <?php endforeach ?>
@@ -82,7 +82,7 @@
           <?php endforeach ?>
         </ul>
         <span class="uk-label uk-text-bold uk-label-success">{lang_5v5}</span>
-        <ul uk-tab="connect: #3v3statistics; {uk-tab}">
+        <ul uk-tab="connect: #3v3statistics; {uk-tab}; toggle: > *">
           <?php foreach ($realms as $charsMultiRealm): ?>
             <li><a class="uk-text-bold"><span uk-icon="icon: server"></span> <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a></li>
           <?php endforeach ?>
