@@ -436,6 +436,29 @@ class Admin extends MX_Controller {
         $this->load->view('api/modal');
     }
 
+    public function managetopsites()
+    {
+        $this->load->view('general/header');
+        $this->load->view('vote/managetopsites');
+        $this->load->view('general/footer');
+        $this->load->view('vote/modal');
+    }
+
+    public function edittopsite($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getTopsitesSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data['idlink'] = $id;
+
+        $this->load->view('general/header');
+        $this->load->view('vote/edittopsite', $data);
+        $this->load->view('general/footer');
+    }
+
     public function checkSoap()
     {
         foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) {

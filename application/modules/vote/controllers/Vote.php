@@ -21,7 +21,6 @@ class Vote extends MX_Controller {
 
         if (!$this->m_permissions->getMyPermissions('Permission_Vote'))
             redirect(base_url(),'refresh');
-        $this->load->config('vote');
 
         $this->load->model('vote_model', 'fxvote');
     }
@@ -32,22 +31,17 @@ class Vote extends MX_Controller {
             'fxtitle' => $this->lang->line('nav_vote'),
             'voteList' => $this->fxvote->getVotes(),
         );
+
         $this->load->view('header', $data);
-        $this->load->view('index');
+        $this->load->view('index', $data);
         $this->load->view('footer');
     }
-    
-    /**
-     * function votenow
-     */
+
     public function voteNow($id)
     {
         echo $this->fxvote->voteNow($id);
     }
 
-    /**
-     * function count votes
-     */
     public function voteNowCount()
     {
         $id = $this->input->post('value', TRUE);
@@ -55,9 +49,6 @@ class Vote extends MX_Controller {
         echo $this->fxvote->getCountDownHTML($id, $seconds);
     }
 
-    /**
-     * function calling url to vote
-     */
     public function voteCallURL()
     {
         $id = $this->input->post('value', TRUE);

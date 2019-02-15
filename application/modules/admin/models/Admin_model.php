@@ -1581,4 +1581,98 @@ class Admin_model extends CI_Model {
 
         redirect(base_url('admin/managefaq'),'refresh');
     }
+
+    public function getTopsites()
+    {
+        return $this->db->select('*')
+                ->get('fx_votes')
+                ->result();
+    }
+
+    public function delTopsite($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('fx_votes');
+
+        redirect(base_url('admin/managetopsites'),'refresh');
+    }
+
+    public function insertTopsite($name, $url, $time, $points, $image)
+    {
+        $data = array(
+            'name' => $name,
+            'url' => $url,
+            'time' => $time,
+            'points' => $points,
+            'image' => $image,
+        );
+
+        $this->db->insert('fx_votes', $data);
+
+        redirect(base_url('admin/managetopsites'),'refresh');
+    }
+
+    public function getTopsitesSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('fx_votes')
+                ->num_rows();
+    }
+
+    public function getTopsiteSpecifyName($id)
+    {
+        return $this->db->select('name')
+                ->where('id', $id)
+                ->get('fx_votes')
+                ->row('name');
+    }
+
+    public function getTopsiteSpecifyURL($id)
+    {
+        return $this->db->select('url')
+                ->where('id', $id)
+                ->get('fx_votes')
+                ->row('url');
+    }
+
+    public function getTopsiteSpecifyTime($id)
+    {
+        return $this->db->select('time')
+                ->where('id', $id)
+                ->get('fx_votes')
+                ->row('time');
+    }
+
+    public function getTopsiteSpecifyPoints($id)
+    {
+        return $this->db->select('points')
+                ->where('id', $id)
+                ->get('fx_votes')
+                ->row('points');
+    }
+
+    public function getTopsiteSpecifyImage($id)
+    {
+        return $this->db->select('image')
+                ->where('id', $id)
+                ->get('fx_votes')
+                ->row('image');
+    }
+
+    public function updateSpecifyTopsite($id, $name, $url, $time, $points, $image)
+    {
+        $update = array(
+            'name' => $name,
+            'url' => $url,
+            'time' => $time,
+            'points' => $points,
+            'image' => $image,
+        );
+
+        $this->db->where('id', $id)
+                ->update('fx_votes', $update);
+
+        redirect(base_url('admin/managetopsites'),'refresh');
+    }
 }
