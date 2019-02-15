@@ -28,7 +28,7 @@
                         <td><?=$tops2v2->name?></td>
                         <td class="uk-text-center">
                           <?php foreach ($this->arena_model->getMemberTeam($tops2v2->arenaTeamId, $multiRealm)->result() as $mmberteam): ?>
-                          <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.$this->m_general->getClassIcon($this->arena_model->getRaceGuid($mmberteam->guid, $multiRealm))) ?>" title="<?= $this->arena_model->getNameGuid($mmberteam->guid, $multiRealm) ?>"  width="30px" height="30px" uk-tooltip="pos: bottom">
+                          <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.$this->m_general->getClassIcon($this->arena_model->getRaceGuid($mmberteam->guid, $multiRealm))) ?>" title="<?= $this->arena_model->getNameGuid($mmberteam->guid, $multiRealm) ?>" width="30" height="30" uk-tooltip="pos: bottom">
                           <?php endforeach ?>
                         </td>
                         <td class="uk-text-center"><?=$tops2v2->rating?></td>
@@ -68,7 +68,7 @@
                         <td><?=$tops3v3->name?></td>
                         <td class="uk-text-center">
                           <?php foreach ($this->arena_model->getMemberTeam($tops3v3->arenaTeamId, $multiRealm)->result() as $mmberteam): ?>
-                          <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.$this->m_general->getClassIcon($this->arena_model->getRaceGuid($mmberteam->guid, $multiRealm))) ?>" title="<?= $this->arena_model->getNameGuid($mmberteam->guid, $multiRealm) ?>"  width="30px" height="30px" uk-tooltip="pos: bottom">
+                          <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.$this->m_general->getClassIcon($this->arena_model->getRaceGuid($mmberteam->guid, $multiRealm))) ?>" title="<?= $this->arena_model->getNameGuid($mmberteam->guid, $multiRealm) ?>" width="30" height="30" uk-tooltip="pos: bottom">
                           <?php endforeach ?>
                         </td>
                         <td class="uk-text-center"><?=$tops3v3->rating?></td>
@@ -82,12 +82,12 @@
           <?php endforeach ?>
         </ul>
         <span class="uk-label uk-text-bold uk-label-success">{lang_5v5}</span>
-        <ul uk-tab="connect: #3v3statistics; {uk-tab}; toggle: > *">
+        <ul uk-tab="connect: #5v5statistics; {uk-tab}; toggle: > *">
           <?php foreach ($realms as $charsMultiRealm): ?>
             <li><a class="uk-text-bold"><span uk-icon="icon: server"></span> <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a></li>
           <?php endforeach ?>
         </ul>
-        <ul id="3v3statistics" class="uk-switcher">
+        <ul id="5v5statistics" class="uk-switcher">
             <?php foreach ($realms as $charsMultiRealm):
               $multiRealm = $this->m_data->getRealmConnectionData($charsMultiRealm->id);
             ?>
@@ -108,7 +108,7 @@
                         <td><?=$tops5v5->name?></td>
                         <td class="uk-text-center">
                           <?php foreach ($this->arena_model->getMemberTeam($tops5v5->arenaTeamId, $multiRealm)->result() as $mmberteam): ?>
-                          <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.$this->m_general->getClassIcon($this->arena_model->getRaceGuid($mmberteam->guid, $multiRealm))) ?>" title="<?= $this->arena_model->getNameGuid($mmberteam->guid) ?>"  width="30px" height="30px" uk-tooltip="pos: bottom">
+                          <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.$this->m_general->getClassIcon($this->arena_model->getRaceGuid($mmberteam->guid, $multiRealm))) ?>" title="<?= $this->arena_model->getNameGuid($mmberteam->guid, $multiRealm) ?>" width="30" height="30" uk-tooltip="pos: bottom">
                           <?php endforeach ?>
                         </td>
                         <td class="uk-text-center"><?=$tops5v5->rating?></td>
