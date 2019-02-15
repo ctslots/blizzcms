@@ -46,7 +46,7 @@ $lang['opassword_not_match'] = 'Old Password do not match';
 $lang['oemail_not_match'] = 'The current email is not correct';
 $lang['email_used'] = 'Email in use';
 $lang['expansion_not_found'] = 'Expansion not found.';
-$lang['image_upload_error'] = 'Your image must be in .jpg format';
+$lang['image_upload_error'] = 'Your image must be in jpg or png format';
 $lang['changelog_not_found'] = 'The server does not have changelogs to inform at this time';
 $lang['faq_not_found'] = 'The server does not have frequently asked questions to show';
 
