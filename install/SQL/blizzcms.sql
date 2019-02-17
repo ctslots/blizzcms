@@ -680,13 +680,12 @@ CREATE TABLE `fx_slides` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL,
   `image` varchar(100) NOT NULL DEFAULT 'image.jpg' COMMENT 'assets/images/slides',
-  `mobile_image` varchar(100) DEFAULT 'imagemobile.jpg' COMMENT 'assets/images/slides',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `fx_slides` */
 
-insert  into `fx_slides`(`id`,`title`,`image`,`mobile_image`) values (1,'BlizzCMS','slide1.jpg','slide1_mobile.jpg'),(2,'Constant updates!','slide2.jpg','slide2_mobile.jpg');
+insert  into `fx_slides`(`id`,`title`,`image`) values (1,'BlizzCMS','slide1.jpg'),(2,'Constant updates!','slide2.jpg');
 
 /*Table structure for table `fx_tags` */
 
