@@ -268,8 +268,13 @@
                       <label class="uk-form-label uk-text-uppercase">Dev Navbar</label>
                       <div class="uk-form-controls">
                         <select class="uk-select" name="devnavbarfx">
+                          <?php if ($this->admin_model->getFixCoreNavBar($fileFixCore) == 'TRUE') { ?>
+                          <option value="TRUE" selected>TRUE</option>
                           <option value="FALSE">FALSE</option>
+                          <?php } else { ?>
+                          <option value="FALSE" selected>FALSE</option>
                           <option value="TRUE">TRUE</option>
+                          <?php } ?>
                         </select>
                       </div>
                     </div>
@@ -368,9 +373,15 @@
             <div class="uk-card-body">
               <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium; toggle: > *">
                 <li><a href="#"><i class="fas fa-cog"></i> Recaptcha Settings</a></li>
+                <?php if ($this->m_modules->getStatusLadBugtracker() == '1') { ?>
                 <li><a href="#"><i class="fas fa-cog"></i> Bugtracker Settings</a></li>
+                <?php } ?>
+                <?php if ($this->m_modules->getDonation() == '1') { ?>
                 <li><a href="#"><i class="fas fa-cog"></i> Donate Settings</a></li>
+                <?php } ?>
+                <?php if ($this->m_modules->getStatusStore() == '1') { ?>
                 <li><a href="#"><i class="fas fa-cog"></i> Store Settings</a></li>
+                <?php } ?>
               </ul>
               <ul class="uk-switcher uk-margin-small">
                 <li>
@@ -407,6 +418,7 @@
                     </div>
                   </form>
                 </li>
+                <?php if ($this->m_modules->getStatusLadBugtracker() == '1') { ?>
                 <li>
                   <form action="" method="post" accept-charset="utf-8">
                     <div class="uk-margin-small">
@@ -422,6 +434,8 @@
                     </div>
                   </form>
                 </li>
+                <?php } ?>
+                <?php if ($this->m_modules->getDonation() == '1') { ?>
                 <li>
                   <form action="" method="post" accept-charset="utf-8">
                     <div class="uk-margin-small">
@@ -437,8 +451,13 @@
                       <label class="uk-form-label uk-text-uppercase">PayPal Mode</label>
                       <div class="uk-form-controls">
                         <select class="uk-select" name="paypalMode">
+                          <?php if ($this->admin_model->getPaypalMode($fileDonate) == 'live') { ?>
+                          <option value="live" selected>Live</option>
                           <option value="sandbox">Sandbox</option>
+                          <?php } else { ?>
+                          <option value="sandbox" selected>Sandbox</option>
                           <option value="live">Live</option>
+                          <?php } ?>
                         </select>
                       </div>
                     </div>
@@ -465,14 +484,21 @@
                     </div>
                   </form>
                 </li>
+                <?php } ?>
+                <?php if ($this->m_modules->getStatusStore() == '1') { ?>
                 <li>
                   <form action="" method="post" accept-charset="utf-8">
                     <div class="uk-margin-small">
                       <label class="uk-form-label uk-text-uppercase">Store Type</label>
                       <div class="uk-form-controls">
                         <select class="uk-select" name="storeType">
-                          <option value="1">Store with Images</option>
+                          <?php if ($this->admin_model->getStoreType($fileStore) == '1') { ?>
+                          <option value="1" selected>Store with Images</option>
                           <option value="2">Store with Icons</option>
+                          <?php } else { ?>
+                          <option value="2" selected>Store with Icons</option>
+                          <option value="1">Store with Images</option>
+                          <?php } ?>
                         </select>
                       </div>
                     </div>
@@ -481,6 +507,7 @@
                     </div>
                   </form>
                 </li>
+                <?php } ?>
               </ul>
             </div>
           </div>
