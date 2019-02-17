@@ -232,7 +232,7 @@ endif;
         <h2 class="uk-modal-title uk-text-center"><i class="fas fa-question-circle"></i> What requirements need this website?</h2>
         <p class="uk-text-uppercase uk-text-bold"><i class="fas fa-server"></i> Host Requirements:</p>
         <ul class="uk-list uk-list-bullet">
-          <li class="uk-text-success uk-text-bold">PHP +7.2</li>
+          <li class="uk-text-success uk-text-bold">PHP +7.1</li>
         </ul>
         <hr class="uk-hr">
         <p class="uk-text-uppercase uk-text-bold"><i class="fas fa-cogs"></i> Apache Modules Required:</p>

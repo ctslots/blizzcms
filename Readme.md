@@ -13,7 +13,7 @@
 
 ## Requirements
 
-PHP version **5.6 or newer** is recommended.
+PHP version **7.1 or newer** is recommended.
 
 ## Authors
 
