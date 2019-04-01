@@ -28,7 +28,7 @@ class Vote_model extends CI_Model {
         return $this->db->where('idaccount', $userid)->where('idvote', $id)->limit('1')->order_by('id', 'DESC')->get('fx_votes_logs');
     }
 
-    public function getTimeLogExpired($id, $userid)
+    public function getTimeLogExpired($userid, $id)
     {
         return $this->db->where('idaccount', $userid)->where('idvote', $id)->limit('1')->order_by('id', 'DESC')->get('fx_votes_logs')->row('expired_at');
     }
