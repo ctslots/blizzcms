@@ -35,13 +35,6 @@
             </ul>
           </div>
           <div class="uk-navbar-right">
-            <?php if ($this->m_data->isLogged()): ?>
-            <?php if ($this->m_modules->getMessages() == '1'): ?>
-            <?php if($this->m_permissions->getMyPermissions('Permission_Chat')): ?>
-            <a class="uk-navbar-toggle" href="#chat" uk-tooltip="title: <?= $this->lang->line('nav_chat'); ?>; pos: left" uk-toggle><span uk-icon="icon: commenting"></span></a>
-            <?php endif ?>
-            <?php endif ?>
-            <?php endif ?>
             <ul class="uk-navbar-nav uk-visible@m">
               <li>
                 <?php if ($this->m_data->isLogged()): ?>
