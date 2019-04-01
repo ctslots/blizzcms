@@ -74,9 +74,10 @@ $lang['offline'] = 'Offline';
 $lang['online'] = 'Online';
 
 /*Notify Title Lang*/
-$lang['notify_title_success'] = 'Success!';
-$lang['notify_title_warning'] = 'Warning!';
-$lang['notify_title_error'] = 'Error!';
+$lang['notify_title_success'] = 'Success';
+$lang['notify_title_warning'] = 'Warning';
+$lang['notify_title_error'] = 'Error';
+$lang['notify_title_info'] = 'Info';
 
 /*Notify Message Lang*/
 $lang['notify_donation_added'] = 'Added donation';
@@ -97,3 +98,6 @@ $lang['notify_category_updated'] = 'Category updated';
 $lang['notify_username_empty'] = 'Username is empty';
 $lang['notify_password_empty'] = 'Password is empty';
 $lang['notify_connecting'] = 'Connecting...!';
+$lang['notify_checking'] = 'Verifying ....';
+$lang['notify_wrong_user'] = 'username or password is incorrect. please try again!';
+$lang['notify_wrong_email'] = 'email or password is incorrect. please try again!';

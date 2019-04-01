@@ -29,58 +29,10 @@ class User extends MX_Controller {
 
         if ($this->m_general->getExpansionAction() == 1)
         {
-            $data = array(
-                "username_form" => array(
-                    'id' => 'login_username',
-                    'name' => 'login_username',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('form_username'),
-                    'type' => 'text'),
-
-                "password_form" => array(
-                    'id' => 'login_password',
-                    'name' => 'login_password',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('form_password'),
-                    'type' => 'password'),
-
-                "submit_form" => array(
-                    'id' => 'button_log',
-                    'name' => 'button_log',
-                    'value' => $this->lang->line('button_login'),
-                    'class' => 'uk-button uk-button-default uk-width-1-1')
-            );
-
             $this->load->view('login1', $data);
         }
         else
         {
-            $data = array(
-                "email_form" => array(
-                    'id' => 'login_email',
-                    'name' => 'login_email',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('form_email'),
-                    'type' => 'email'),
-
-                "password_form" => array(
-                    'id' => 'login_password',
-                    'name' => 'login_password',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('form_password'),
-                    'type' => 'password'),
-
-                "submit_form" => array(
-                    'id' => 'button_log',
-                    'name' => 'button_log',
-                    'value' => $this->lang->line('button_login'),
-                    'class' => 'uk-button uk-button-default uk-width-1-1')
-            );
-
             $this->load->view('login2', $data);
         }
 
@@ -89,48 +41,17 @@ class User extends MX_Controller {
 
     public function verify1()
     {
-        if ($this->m_data->isLogged())
-            redirect(base_url(),'refresh');
 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $id = $this->m_data->getIDAccount($username);
-
-        if ($id == "0")
-            redirect(base_url('login?account'),'refresh');
-        else
-        {
-            $password = $this->m_data->Account($username, $password);
-
-            if (strtoupper($this->m_data->getPasswordAccountID($id)) == strtoupper($password))
-                $this->m_data->arraySession($id);
-            else
-                redirect(base_url('login?password'),'refresh');
-        }
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        echo $this->user_model->verifylogin($username, $password);
     }
 
     public function verify2()
     {
-        if ($this->m_data->isLogged())
-            redirect(base_url(),'refresh');
-
-        $email    = $this->input->post('login_email');
-        $password = $this->input->post('login_password');
-
-        $id = $this->m_data->getIDEmail($email);
-
-        if ($id == "0")
-            redirect(base_url('login?account'),'refresh');
-        else
-        {
-            $password = $this->m_data->Battlenet($email, $password);
-
-            if (strtoupper($this->m_data->getPasswordBnetID($id)) == strtoupper($password))
-                $this->m_data->arraySession($id);
-            else
-                redirect(base_url('login?password'),'refresh');
-        }
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        echo $this->user_model->verifylogin2($email, $password);
     }
 
     public function register()

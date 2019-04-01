@@ -211,7 +211,7 @@ class M_data extends CI_Model {
     public function sessionConnect($data)
     {
         $this->session->set_userdata($data);
-        redirect(base_url(),'refresh');
+        return true;
     }
 
     public function logout()

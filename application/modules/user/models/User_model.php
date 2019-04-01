@@ -100,6 +100,40 @@ class User_model extends CI_Model {
                 ->get('fx_users');
     }
 
+    public function verifylogin($username, $password)
+    {
+        $id = $this->m_data->getIDAccount($username);
+
+        if ($id == "0")
+            return 'userError';
+        else
+        {
+            $password = $this->m_data->Account($username, $password);
+
+            if (strtoupper($this->m_data->getPasswordAccountID($id)) == strtoupper($password))
+                return $this->m_data->arraySession($id);
+            else
+                return 'userErr';
+        }
+    }
+
+    public function verifylogin2($email, $password)
+    {
+        $id = $this->m_data->getIDEmail($email);
+
+        if ($id == "0")
+            return 'emailErr';
+        else
+        {
+            $password = $this->m_data->Battlenet($email, $password);
+
+            if (strtoupper($this->m_data->getPasswordBnetID($id)) == strtoupper($password))
+                return $this->m_data->arraySession($id);
+            else
+                return 'emailErr';
+        }
+    }
+
     public function updateInformation($id, $username, $email, $country)
     {
         $this->db->where('id', $id)
