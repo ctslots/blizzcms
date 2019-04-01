@@ -272,7 +272,7 @@ class M_data extends CI_Model {
             $username.':'.
             $password.'@'.
             $hostname.'/'.
-            $database.'?char_set=utf8&dbcollat=utf8_general_ci&cache_on=true&cachedir=/path/to/cache';
+            $database.'?char_set=utf8&dbcollat=utf8_general_ci&cache_on=true&cachedir=/path/to/cache&pconnect=true';
 
         return $this->load->database($dsn, TRUE);
     }
