@@ -117,7 +117,7 @@ class User_model extends CI_Model {
         $id = $this->m_data->getIDAccount($username);
 
         if ($id == "0")
-            return 'userError';
+            return 'userErr';
         else
         {
             $password = $this->m_data->Account($username, $password);
