@@ -35,7 +35,7 @@
                     </div>
                     <div class="uk-card-body">
                       <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $newstree->title ?></h4>
-                      <p class="uk-margin-small"><?= substr(ucfirst(strtolower(strip_tags($newstree->description))), 0, 160).' ...'; ?></p>
+                      <p class="uk-margin-small"><?= mb_substr(ucfirst(strtolower(strip_tags($newstree->description))), 0, 160, "UTF-8").' ...'; ?></p>
                     </div>
                   </div>
                 </a>
