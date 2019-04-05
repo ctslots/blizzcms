@@ -49,9 +49,9 @@
                       <?php if ($tracker->status == 1 || $tracker->status == 8 || $tracker->status == 3) { ?>
                       <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
                       <?php } else if($tracker->status == 2 || $tracker->status == 5 || $tracker->status == 6) { ?>
-                      <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getStatus($tracker->priority); ?></span>
+                      <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
                       <?php } else { ?>
-                      <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getStatus($tracker->priority); ?></span>
+                      <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
                       <?php } ?>
                     </a>
                   </td>

@@ -34,7 +34,15 @@
               <p><i class="far fa-clock"></i> <?= $this->lang->line('column_date'); ?>: <span class="uk-badge"><?= date('Y-m-d', $this->bugtracker_model->getDate($idlink)) ?></span></p>
             </div>
             <div class="uk-column-1-3 uk-column-divider">
-              <p><i class="fas fa-tags"></i> <?= $this->lang->line('column_status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></p>
+              <p><i class="fas fa-tags"></i> <?= $this->lang->line('column_status'); ?>: 
+                <?php if ($this->bugtracker_model->getStatusID($idlink) == 1 || $this->bugtracker_model->getStatusID($idlink) == 8 || $this->bugtracker_model->getStatusID($idlink) == 3) { ?>
+                <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span>
+                <?php } else if($this->bugtracker_model->getStatusID($idlink) == 2 || $this->bugtracker_model->getStatusID($idlink) == 5 || $this->bugtracker_model->getStatusID($idlink) == 6) { ?>
+                <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span>
+                <?php } else { ?>
+                <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span>
+                <?php } ?>
+              </p>
               <p><i class="fas fa-info-circle"></i> <?= $this->lang->line('column_status'); ?>:
                 <?php if ($this->bugtracker_model->closeStatus($idlink) == '0') { ?>
                   <span class="uk-label uk-label-success"><?= $this->lang->line('option_open'); ?></span>
