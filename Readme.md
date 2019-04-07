@@ -4,12 +4,12 @@
 [![Project Status](https://img.shields.io/badge/Status-Finished-red.svg?style=flat-square)](#)
 [![Project Version](https://img.shields.io/badge/Version-1.0.0-green.svg?style=flat-square)](#)
 
->  BlizzCMS v1 **will no longer receive new code updates**. We advise you to check his successor [BlizzCMS v2](https://gitlab.com/ProjectCMS/BlizzCMSv2)
+>  BlizzCMS v1 **will no longer receive new code updates**
 
 ## Useful Links
 
-* [BlizzCMS v1](https://blizzcms.projectcms.net/) - Check our demo
-* [Themes](https://gitlab.com/ProjectCMS/Resources/Themes) - Download free themes
+* [BlizzCMS v1]() - Check our demo
+* [Themes](https://gitlab.com/WoW-CMS/Resources/Themes) - Download free themes
 
 ## Requirements
 
