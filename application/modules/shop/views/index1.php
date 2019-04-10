@@ -64,7 +64,7 @@
               <div class="uk-inline-clip uk-transition-toggle wow-store-margin" tabindex="0">
                 <img src="<?= base_url('assets/images/store/'); ?><?= $itemsG->image ?>" class="uk-border-rounded uk-transition-scale-up uk-transition-opaque" alt="">
                 <div class="uk-overlay uk-position-bottom-center">
-                  <p class="uk-text-center uk-text-break uk-light"><a rel="item=<?= $itemsG->itemid ?>" class="uk-button uk-button-text"><?= $itemsG->name ?></a></p>
+                  <p class="uk-text-center uk-text-break uk-light"><a rel="item=<?= $itemsG->itemid ?>&amp;domain=<?= $this->config->item('wowhead_tooltip'); ?>" class="uk-button uk-button-text"><?= $itemsG->name ?></a></p>
                   <p class="uk-text-center">
                     <?php if(!is_null($itemsG->price_vp) && !empty($itemsG->price_vp) && $itemsG->price_vp != '0') { ?>
                     <a href="<?= base_url(); ?>cart/<?= $itemsG->id; ?>?tp=vp" class="uk-button uk-button-link">

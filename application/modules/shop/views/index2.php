@@ -71,11 +71,11 @@
               <?php foreach($this->shop_model->getShopGeneral($idlink)->result() as $itemsG) { ?>
               <tr>
                 <td class="uk-table-link">
-                  <a rel="item=<?= $itemsG->itemid ?>" class="uk-link-reset">
+                  <a rel="item=<?= $itemsG->itemid ?>&amp;domain=<?= $this->config->item('wowhead_tooltip'); ?>" class="uk-link-reset">
                     <img width="50" height="50" class="uk-border-rounded" src="//wow.zamimg.com/images/wow/icons/large/<?= $itemsG->iconname ?>.jpg" />
                   </a>
                 </td>
-                <td class="uk-table-link uk-text-center"><a rel="item=<?= $itemsG->itemid ?>" class="uk-link-reset"><?= $itemsG->name ?></a></td>
+                <td class="uk-table-link uk-text-center"><a rel="item=<?= $itemsG->itemid ?>&amp;domain=<?= $this->config->item('wowhead_tooltip'); ?>" class="uk-link-reset"><?= $itemsG->name ?></a></td>
                 <td class="uk-text-center">
                   <?php if(!is_null($itemsG->price_vp) && !empty($itemsG->price_vp) && $itemsG->price_vp != '0') { ?>
                   <a href="<?= base_url(); ?>cart/<?= $itemsG->id; ?>?tp=vp" class="uk-button uk-button-link">

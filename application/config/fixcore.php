@@ -125,6 +125,23 @@ $config['fx_devbar'] = FALSE;
 $config['tinymce_language'] = '';
 
 /*
+|--------------------------------------------------------------------------
+| Wowhead Tooltip
+|--------------------------------------------------------------------------
+|
+| Select the language that your website will use in Wowhead tooltip:
+| More information in https://wowhead.com/tooltips#related-advanced-usage
+|
+| ""    = English (default)
+| fr    = French
+| de    = German
+| ru    = Russian
+| es    = Spanish
+|
+*/
+$config['wowhead_tooltip'] = '';
+
+/*
 | Social Links
 */
 $config['social_facebook'] = "";
