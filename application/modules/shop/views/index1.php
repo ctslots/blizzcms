@@ -58,6 +58,12 @@
           <p><i class="far fa-check-circle"></i> <?=$this->lang->line('store_success');?></p>
         </div>
         <?php endif; ?>
+        <?php if(isset($_GET['error'])): ?>
+        <div class="uk-alert-danger" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <p><i class="fas fa-exclamation-triangle"></i> <?=$this->lang->line('points_insuff');?></p>
+        </div>
+        <?php endif; ?>
         <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1 uk-child-width-1-4@s uk-child-width-1-5@m" data-uk-grid>
             <?php foreach($this->shop_model->getShopGeneral($idlink)->result() as $itemsG) { ?>
             <div>

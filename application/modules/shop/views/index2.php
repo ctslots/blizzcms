@@ -58,6 +58,12 @@
           <p><i class="far fa-check-circle"></i> <?=$this->lang->line('store_success');?></p>
         </div>
         <?php endif; ?>
+        <?php if(isset($_GET['error'])): ?>
+        <div class="uk-alert-danger" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <p><i class="fas fa-exclamation-triangle"></i> <?=$this->lang->line('points_insuff');?></p>
+        </div>
+        <?php endif; ?>
         <div class="uk-overflow-auto uk-width-1-1">
           <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
             <thead>
