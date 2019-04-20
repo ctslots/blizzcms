@@ -18,7 +18,7 @@ MySQL - 5.5.5-10.1.29-MariaDB : Database - blizzcms
 DROP TABLE IF EXISTS `fx_api_char`;
 
 CREATE TABLE `fx_api_char` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -32,9 +32,9 @@ insert  into `fx_api_char`(`id`,`type`) values (1,'char_principal'),(2,'char_int
 DROP TABLE IF EXISTS `fx_api_generator`;
 
 CREATE TABLE `fx_api_generator` (
-  `id` int(10) NOT NULL,
-  `type` int(1) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type` int(1) unsigned NOT NULL,
+  `active` int(1) unsigned NOT NULL DEFAULT '0',
   KEY `type` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -45,9 +45,9 @@ CREATE TABLE `fx_api_generator` (
 DROP TABLE IF EXISTS `fx_avatars`;
 
 CREATE TABLE `fx_avatars` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT '1' COMMENT '1 = user | 2 = staff',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) unsigned NOT NULL,
+  `type` int(1) unsigned NOT NULL DEFAULT '1' COMMENT '1 = user | 2 = staff',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -80,16 +80,16 @@ INSERT INTO `fx_avatars` (`id`, `name`, `type`) VALUES
 DROP TABLE IF EXISTS `fx_bugtracker`;
 
 CREATE TABLE `fx_bugtracker` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `url` text,
-  `status` int(1) NOT NULL DEFAULT '1',
-  `type` int(1) NOT NULL DEFAULT '1',
-  `priority` int(1) NOT NULL DEFAULT '1',
-  `date` int(10) NOT NULL,
-  `author` int(10) NOT NULL,
-  `close` int(1) NOT NULL DEFAULT '0',
+  `status` int(1) unsigned NOT NULL DEFAULT '1',
+  `type` int(1) unsigned NOT NULL DEFAULT '1',
+  `priority` int(1) unsigned NOT NULL DEFAULT '1',
+  `date` int(10) unsigned NOT NULL,
+  `author` int(10) unsigned NOT NULL,
+  `close` int(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -100,7 +100,7 @@ CREATE TABLE `fx_bugtracker` (
 DROP TABLE IF EXISTS `fx_bugtracker_priority`;
 
 CREATE TABLE `fx_bugtracker_priority` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -114,7 +114,7 @@ insert  into `fx_bugtracker_priority`(`id`,`title`) values (1,'High'),(2,'Medium
 DROP TABLE IF EXISTS `fx_bugtracker_status`;
 
 CREATE TABLE `fx_bugtracker_status` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -128,7 +128,7 @@ insert  into `fx_bugtracker_status`(`id`,`title`) values (1,'New Report'),(2,'Wa
 DROP TABLE IF EXISTS `fx_bugtracker_type`;
 
 CREATE TABLE `fx_bugtracker_type` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -142,10 +142,10 @@ insert  into `fx_bugtracker_type`(`id`,`title`) values (1,'Achievements'),(2,'Ba
 DROP TABLE IF EXISTS `fx_changelogs`;
 
 CREATE TABLE `fx_changelogs` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   `image` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -155,11 +155,11 @@ CREATE TABLE `fx_changelogs` (
 DROP TABLE IF EXISTS `fx_chars_annotations`;
 
 CREATE TABLE `fx_chars_annotations` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `idchar` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idchar` int(10) unsigned NOT NULL,
   `annotation` text CHARACTER SET utf8 NOT NULL,
-  `date` int(10) NOT NULL,
-  `realmid` int(1) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `realmid` int(1) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -184,7 +184,7 @@ CREATE TABLE `fx_chat` (
 DROP TABLE IF EXISTS `fx_country`;
 
 CREATE TABLE `fx_country` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `country_code` varchar(2) NOT NULL DEFAULT '',
   `country_name` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
@@ -201,9 +201,9 @@ DROP TABLE IF EXISTS `fx_credits`;
 CREATE TABLE `fx_credits` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `accountid` int(11) unsigned NOT NULL,
-  `dp` int(11) NOT NULL DEFAULT '0',
-  `vp` int(11) NOT NULL DEFAULT '0',
-  `lastVote` int(10) NOT NULL DEFAULT '1490579700',
+  `dp` int(11) unsigned NOT NULL DEFAULT '0',
+  `vp` int(11) unsigned NOT NULL DEFAULT '0',
+  `lastVote` int(10) unsigned NOT NULL DEFAULT '1490579700',
   `maxVotes` int(10) unsigned NOT NULL DEFAULT '5',
   UNIQUE KEY `id_2` (`id`),
   UNIQUE KEY `accountId` (`accountid`),
@@ -217,11 +217,11 @@ CREATE TABLE `fx_credits` (
 DROP TABLE IF EXISTS `fx_donate`;
 
 CREATE TABLE `fx_donate` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `price` varchar(10) NOT NULL,
   `tax` varchar(10) NOT NULL DEFAULT '0.00',
-  `points` int(10) NOT NULL DEFAULT '1',
+  `points` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -234,14 +234,14 @@ insert  into `fx_donate`(`id`,`name`,`price`,`tax`,`points`) values (1,'Simple',
 DROP TABLE IF EXISTS `fx_donate_history`;
 
 CREATE TABLE `fx_donate_history` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
   `payment_id` varchar(100) NOT NULL,
   `hash` varchar(100) NOT NULL,
   `total` varchar(10) NOT NULL,
-  `complete` int(1) NOT NULL DEFAULT '0',
+  `complete` int(1) unsigned NOT NULL DEFAULT '0',
   `create_time` varchar(100) NOT NULL,
-  `points` int(10) DEFAULT NULL,
+  `points` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -250,12 +250,12 @@ CREATE TABLE `fx_donate_history` (
 DROP TABLE IF EXISTS `fx_events`;
 
 CREATE TABLE `fx_events` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) CHARACTER SET utf8 NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
-  `date_event_start` int(10) NOT NULL,
-  `date_event_end` int(10) NOT NULL,
-  `date` int(10) NOT NULL,
+  `date_event_start` int(10) unsigned NOT NULL,
+  `date_event_end` int(10) unsigned NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -266,11 +266,11 @@ CREATE TABLE `fx_events` (
 DROP TABLE IF EXISTS `fx_faq`;
 
 CREATE TABLE `fx_faq` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT '1',
+  `type` int(1) unsigned NOT NULL DEFAULT '1',
   `description` text NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -281,7 +281,7 @@ CREATE TABLE `fx_faq` (
 DROP TABLE IF EXISTS `fx_faq_type`;
 
 CREATE TABLE `fx_faq_type` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -295,7 +295,7 @@ insert  into `fx_faq_type`(`id`,`title`) values (1,'General'),(2,'Server'),(3,'W
 DROP TABLE IF EXISTS `fx_forum_category`;
 
 CREATE TABLE `fx_forum_category` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`,`categoryName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -307,11 +307,11 @@ CREATE TABLE `fx_forum_category` (
 DROP TABLE IF EXISTS `fx_forum_comments`;
 
 CREATE TABLE `fx_forum_comments` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `topic` int(10) NOT NULL,
-  `author` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `topic` int(10) unsigned NOT NULL,
+  `author` int(10) unsigned NOT NULL,
   `commentary` text CHARACTER SET utf8 NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -324,10 +324,10 @@ DROP TABLE IF EXISTS `fx_forum_forums`;
 CREATE TABLE `fx_forum_forums` (
   `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `category` int(10) NOT NULL,
+  `category` int(10) unsigned NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
   `icon` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT 'icon1.png',
-  `type` int(1) NOT NULL DEFAULT '1' COMMENT '1 = everyone | 2 = staff | 3 = staff post + everyone see',
+  `type` int(1) unsigned NOT NULL DEFAULT '1' COMMENT '1 = everyone | 2 = staff | 3 = staff post + everyone see',
   PRIMARY KEY (`id`),
   KEY `category` (`category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -347,7 +347,7 @@ CREATE TABLE `fx_forum_topics` (
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `locked` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `pined` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `archivar` int(1) NOT NULL DEFAULT '0',
+  `archivar` int(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -358,8 +358,8 @@ CREATE TABLE `fx_forum_topics` (
 DROP TABLE IF EXISTS `fx_head_items`;
 
 CREATE TABLE `fx_head_items` (
-  `item_id` int(10) NOT NULL DEFAULT '0',
-  `level` int(10) DEFAULT NULL,
+  `item_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `level` int(10) unsigned DEFAULT NULL,
   `quality_id` int(10) DEFAULT NULL,
   `class_id` int(10) DEFAULT NULL,
   `subclass_id` int(10) DEFAULT NULL,
@@ -374,7 +374,7 @@ CREATE TABLE `fx_head_items` (
 DROP TABLE IF EXISTS `fx_head_items_local`;
 
 CREATE TABLE `fx_head_items_local` (
-  `id` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL,
   `name_de` varchar(100) DEFAULT NULL,
   `quality_de` varchar(100) DEFAULT NULL,
   `class_de` varchar(100) DEFAULT NULL,
@@ -455,14 +455,14 @@ CREATE TABLE `fx_head_items_local` (
 DROP TABLE IF EXISTS `fx_menu`;
 
 CREATE TABLE `fx_menu` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `url` text NOT NULL,
   `icon` varchar(100) DEFAULT NULL,
   `permissions` varchar(100) NOT NULL DEFAULT 'Permission_FREE',
   `extras` text,
-  `father` int(10) NOT NULL DEFAULT '0',
-  `son` int(10) DEFAULT '0',
+  `father` int(10) unsigned NOT NULL DEFAULT '0',
+  `son` int(10) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
@@ -475,9 +475,9 @@ insert  into `fx_menu`(`id`,`name`,`url`,`icon`,`permissions`,`extras`,`father`,
 DROP TABLE IF EXISTS `fx_modules`;
 
 CREATE TABLE `fx_modules` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
+  `status` int(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -490,11 +490,11 @@ insert  into `fx_modules`(`id`,`name`,`status`) values (1,'Discord Experimental'
 DROP TABLE IF EXISTS `fx_news`;
 
 CREATE TABLE `fx_news` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL DEFAULT 'new.jpg' COMMENT 'assets/images/news',
   `description` text NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -507,11 +507,11 @@ insert  into `fx_news`(`id`,`title`,`image`,`description`,`date`) values (1,'Wel
 DROP TABLE IF EXISTS `fx_news_comments`;
 
 CREATE TABLE `fx_news_comments` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `id_new` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_new` int(10) unsigned NOT NULL,
   `commentary` text NOT NULL,
-  `date` int(10) NOT NULL,
-  `author` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `author` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_new` (`id_new`),
   KEY `author` (`author`)
@@ -524,8 +524,8 @@ CREATE TABLE `fx_news_comments` (
 DROP TABLE IF EXISTS `fx_news_top`;
 
 CREATE TABLE `fx_news_top` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `id_new` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_new` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_new` (`id_new`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -539,10 +539,10 @@ insert  into `fx_news_top`(`id`,`id_new`) values (1,1);
 DROP TABLE IF EXISTS `fx_pages`;
 
 CREATE TABLE `fx_pages` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -551,8 +551,8 @@ CREATE TABLE `fx_pages` (
 DROP TABLE IF EXISTS `fx_ranks_default`;
 
 CREATE TABLE `fx_ranks_default` (
-  `id` int(10) NOT NULL,
-  `permission` int(1) NOT NULL DEFAULT '1',
+  `id` int(10) unsigned NOT NULL,
+  `permission` int(1) unsigned NOT NULL DEFAULT '1',
   `comment` varchar(100) DEFAULT 'Rank BlizzCMS',
   KEY `id` (`id`),
   KEY `fx_ranks_ibfk_1` (`permission`)
@@ -567,8 +567,8 @@ insert  into `fx_ranks_default`(`id`,`permission`,`comment`) values (1,1,'Rank A
 DROP TABLE IF EXISTS `fx_ranks_linked`;
 
 CREATE TABLE `fx_ranks_linked` (
-  `id` int(10) NOT NULL,
-  `permission` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL,
+  `permission` int(10) unsigned NOT NULL,
   KEY `fx_ranks_permissions_ibfk_1` (`id`),
   KEY `permission` (`permission`),
   CONSTRAINT `fx_ranks_linked_ibfk_1` FOREIGN KEY (`permission`) REFERENCES `fx_ranks_permissions` (`id`)
@@ -583,7 +583,7 @@ insert  into `fx_ranks_linked`(`id`,`permission`) values (1,1),(1,2),(1,3),(1,4)
 DROP TABLE IF EXISTS `fx_ranks_permissions`;
 
 CREATE TABLE `fx_ranks_permissions` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -597,16 +597,16 @@ insert  into `fx_ranks_permissions`(`id`,`name`) values (1,'Admin'),(2,'Panel'),
 DROP TABLE IF EXISTS `fx_realms`;
 
 CREATE TABLE `fx_realms` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `hostname` varchar(100) DEFAULT '127.0.0.1',
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `char_database` varchar(255) DEFAULT NULL,
-  `realmID` int(1) NOT NULL,
+  `realmID` int(1) unsigned NOT NULL,
   `console_hostname` varchar(100) DEFAULT '127.0.0.1',
   `console_username` varchar(255) DEFAULT NULL,
   `console_password` varchar(255) DEFAULT NULL,
-  `console_port` int(6) DEFAULT '7878',
+  `console_port` int(6) unsigned DEFAULT '7878',
   `emulator` varchar(255) DEFAULT 'TC',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -616,14 +616,14 @@ CREATE TABLE `fx_realms` (
 DROP TABLE IF EXISTS `fx_shop`;
 
 CREATE TABLE `fx_shop` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `itemid` int(11) DEFAULT NULL,
-  `type` int(10) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `itemid` int(11) unsigned DEFAULT NULL,
+  `type` int(10) unsigned NOT NULL,
   `name` varchar(150) NOT NULL,
-  `price_dp` int(10) DEFAULT NULL,
-  `price_vp` int(10) DEFAULT NULL,
+  `price_dp` int(10) unsigned DEFAULT NULL,
+  `price_vp` int(10) unsigned DEFAULT NULL,
   `iconname` varchar(255) NOT NULL,
-  `groups` int(1) NOT NULL,
+  `groups` int(1) unsigned NOT NULL,
   `qquery` text CHARACTER SET utf8,
   `image` varchar(100) NOT NULL DEFAULT 'image1.jpg',
   PRIMARY KEY (`id`),
@@ -635,7 +635,7 @@ CREATE TABLE `fx_shop` (
 DROP TABLE IF EXISTS `fx_shop_groups`;
 
 CREATE TABLE `fx_shop_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -647,12 +647,12 @@ CREATE TABLE `fx_shop_groups` (
 DROP TABLE IF EXISTS `fx_shop_history`;
 
 CREATE TABLE `fx_shop_history` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `idshop` int(10) NOT NULL,
-  `itemid` int(10) DEFAULT NULL,
-  `date` int(10) NOT NULL,
-  `accountid` int(10) NOT NULL,
-  `charid` int(10) DEFAULT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idshop` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned DEFAULT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `accountid` int(10) unsigned NOT NULL,
+  `charid` int(10) unsigned DEFAULT NULL,
   `method` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -664,8 +664,8 @@ CREATE TABLE `fx_shop_history` (
 DROP TABLE IF EXISTS `fx_shop_top`;
 
 CREATE TABLE `fx_shop_top` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `id_shop` int(11) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_shop` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_shop` (`id_shop`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -677,7 +677,7 @@ CREATE TABLE `fx_shop_top` (
 DROP TABLE IF EXISTS `fx_slides`;
 
 CREATE TABLE `fx_slides` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL,
   `image` varchar(100) NOT NULL DEFAULT 'image.jpg' COMMENT 'assets/images/slides',
   PRIMARY KEY (`id`)
@@ -692,8 +692,8 @@ insert  into `fx_slides`(`id`,`title`,`image`) values (1,'BlizzCMS','slide1.jpg'
 DROP TABLE IF EXISTS `fx_tags`;
 
 CREATE TABLE `fx_tags` (
-  `id` int(10) NOT NULL,
-  `tag` int(10) NOT NULL DEFAULT '0',
+  `id` int(10) unsigned NOT NULL,
+  `tag` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -704,12 +704,12 @@ CREATE TABLE `fx_tags` (
 DROP TABLE IF EXISTS `fx_users`;
 
 CREATE TABLE `fx_users` (
-  `id` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `date` int(10) NOT NULL,
-  `profile` int(10) NOT NULL DEFAULT '1',
-  `location` int(1) DEFAULT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `profile` int(10) unsigned NOT NULL DEFAULT '1',
+  `location` int(1) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -718,10 +718,10 @@ CREATE TABLE `fx_users` (
 DROP TABLE IF EXISTS `fx_users_annotations`;
 
 CREATE TABLE `fx_users_annotations` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `iduser` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `iduser` int(10) unsigned NOT NULL,
   `annotation` text NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -732,8 +732,8 @@ CREATE TABLE `fx_users_annotations` (
 DROP TABLE IF EXISTS `fx_users_permission`;
 
 CREATE TABLE `fx_users_permission` (
-  `iduser` int(10) NOT NULL,
-  `idrank` int(10) NOT NULL,
+  `iduser` int(10) unsigned NOT NULL,
+  `idrank` int(10) unsigned NOT NULL,
   KEY `idrank` (`idrank`),
   CONSTRAINT `fx_users_permission_ibfk_1` FOREIGN KEY (`idrank`) REFERENCES `fx_ranks_default` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -743,11 +743,11 @@ CREATE TABLE `fx_users_permission` (
 
 DROP TABLE IF EXISTS `fx_votes`;
 CREATE TABLE IF NOT EXISTS `fx_votes` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `url` text NOT NULL,
-  `time` int(10) NOT NULL,
-  `points` int(10) NOT NULL DEFAULT '1',
+  `time` int(10) unsigned NOT NULL,
+  `points` int(10) unsigned NOT NULL DEFAULT '1',
   `image` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -755,12 +755,12 @@ CREATE TABLE IF NOT EXISTS `fx_votes` (
 /*Table structure for table `fx_votes_logs` */
 DROP TABLE IF EXISTS `fx_votes_logs`;
 CREATE TABLE IF NOT EXISTS `fx_votes_logs` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `idaccount` int(10) NOT NULL,
-  `idvote` int(10) NOT NULL,
-  `points` int(10) NOT NULL,
-  `lasttime` int(10) NOT NULL,
-  `expired_at` int(10) NOT NULL,
+  `id` int(14) unsigned NOT NULL AUTO_INCREMENT,
+  `idaccount` int(10) unsigned NOT NULL,
+  `idvote` int(10) unsigned NOT NULL,
+  `points` int(10) unsigned NOT NULL,
+  `lasttime` int(10) unsigned NOT NULL,
+  `expired_at` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
