@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS `fx_avatars`;
 
 CREATE TABLE `fx_avatars` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
   `type` int(1) unsigned NOT NULL DEFAULT '1' COMMENT '1 = user | 2 = staff',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
